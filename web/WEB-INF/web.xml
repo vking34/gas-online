@@ -15,7 +15,7 @@
     <!--</security-constraint>-->
     <!---->
 
-
+    <!--login-->
     <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>webapp.login</servlet-class>
@@ -26,4 +26,38 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
+    
+    <!--signup-->
+    <servlet>
+        <servlet-name>signup</servlet-name>
+        <servlet-class>webapp.signup</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>signup</servlet-name>
+        <url-pattern>/signup</url-pattern>
+    </servlet-mapping>
+
+
+    <!--greeting-->
+    <servlet>
+        <servlet-name>greeting</servlet-name>
+        <servlet-class>webapp.greeting</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>greeting</servlet-name>
+        <url-pattern>/greeting</url-pattern>
+    </servlet-mapping>
+
+    <!--article-->
+    <servlet>
+        <servlet-name>article</servlet-name>
+        <servlet-class>webapp.article</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>article</servlet-name>
+        <url-pattern>/article</url-pattern>
+    </servlet-mapping>
+    
 </web-app>

@@ -20,5 +20,13 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.28" level="application_server_libraries" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.45-bin" level="project" />
+    <orderEntry type="library" name="JSON-java-master" level="project" />
+    <orderEntry type="library" name="json-20160810" level="project" />
+    <orderEntry type="library" name="jackson-core-2.8.9" level="project" />
+    <orderEntry type="library" name="jackson-annotations-2.8.9" level="project" />
+    <orderEntry type="library" name="gson-2.6.2" level="project" />
+    <orderEntry type="library" name="org.apache.commons.io" level="project" />
+    <orderEntry type="library" name="jackson-databind-2.8.9" level="project" />
   </component>
 </module>
