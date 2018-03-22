@@ -21,15 +21,22 @@ function sendObj() {
             dataType: 'json',
             data: JSON.stringify(user),
             contentType: 'application/json; charset=UTF-8',
-            success: function (error) {
-                var $usernameError = $("#usernameError");
-                var $phoneNumberError = $("#phoneNumberError");
-                var $emailError = $("#emailError");
+            success: function (message) {
 
-                $usernameError.append('<li>'+ error.usernameError + '</li>');
-                $phoneNumberError.append('<li>' + error.phoneNumberError + '</li>');
-                $emailError.append('<li>' + error.emailError + '</li>');
+                if(message.status)
+                {
+                    window.location.href = message.url;
+                }
+                else {
+                    var $usernameError = $("#usernameError");
+                    var $phoneNumberError = $("#phoneNumberError");
+                    var $emailError = $("#emailError");
 
+                    $usernameError.append('<li>'+ message.usernameError + '</li>');
+                    $phoneNumberError.append('<li>' + message.phoneNumberError + '</li>');
+                    $emailError.append('<li>' + message.emailError + '</li>');
+
+                }
             }
         }
     );

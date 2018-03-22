@@ -1,4 +1,4 @@
-package webapp;
+package appLayer;
 
 public class registerError {
     private String usernameError;

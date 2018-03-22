@@ -1,8 +1,8 @@
 package webapp;
 
+import appLayer.Redirect;
 import appLayer.User;
 
-import javax.jws.soap.SOAPBinding;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,15 +12,9 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.LinkedList;
-import java.util.List;
 
-import java.lang.Throwable;
-
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
+import appLayer.registerError;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.org.apache.xpath.internal.SourceTree;
 
 
 @WebServlet(name = "signup")
@@ -47,28 +41,44 @@ public class signup extends HttpServlet {
 
         User user = mapper.readValue(json, User.class);
 //        System.out.println(user);
-        System.out.println(user.getFirstName());
-        System.out.println(user.getLastName());
+
         System.out.println(user.getUsername());
         System.out.println(user.getPassword());
         System.out.println(user.getPassword1());
         System.out.println(user.getPhoneNumber());
         System.out.println(user.getEmail());
 
-        registerError re = new registerError();
-        re.setUsernameError("username exist");
-        re.setPhoneNumberError("phone exist");
+//        registerError re = new registerError();
+//        re.setUsernameError("username exist");
+//        re.setPhoneNumberError("phone exist");
+//
+//        try {
+//            response.setContentType("application/json");
+//            PrintWriter out = response.getWriter();
+//            out.println(re.toString());
+//            out.close();
+//        }
+//        catch (IOException e)
+//        {
+//            e.printStackTrace();
+//        }
 
-        try {
-            response.setContentType("application/json");
-            PrintWriter out = response.getWriter();
-            out.println(re.toString());
-            out.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+//        Redirect r = new Redirect();
+//        r.setStatus(true);
+//        r.setUrl("/");
+//        System.out.println(r.toString());
+//
+//        try{
+//            response.setContentType("application/json");
+//            PrintWriter out = response.getWriter();
+//            out.println(r.toString());
+//            out.close();
+//        }
+//        catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+
 
     }
 

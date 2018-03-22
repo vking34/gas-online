@@ -60,4 +60,26 @@
         <url-pattern>/article</url-pattern>
     </servlet-mapping>
     
+    <!--Order-->
+    
+    <servlet>
+        <servlet-name>order</servlet-name>
+        <servlet-class>webapp.order</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>order</servlet-name>
+        <url-pattern>/order</url-pattern>
+    </servlet-mapping>
+
+    <!--received-->
+    
+    <servlet>
+        <servlet-name>successfulOrder</servlet-name>
+        <servlet-class>webapp.successfulOrder</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>successfulOrder</servlet-name>
+        <url-pattern>/successfulOrder</url-pattern>
+    </servlet-mapping>
+
 </web-app>
