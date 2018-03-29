@@ -82,4 +82,15 @@
         <url-pattern>/successfulOrder</url-pattern>
     </servlet-mapping>
 
+    <!--maps-->
+
+    <servlet>
+        <servlet-name>maps</servlet-name>
+        <servlet-class>webapp.maps</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>maps</servlet-name>
+        <url-pattern>/maps</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -1,1 +1,9 @@
 # Every time, add a new library, then must update the war file to execute the whole app.
+
+Geocoding API key:
+
+AIzaSyBIKfJ7pB6HQ3LQqU_6DxMAQrepy3gUhw0
+
+Google maps API key:
+
+AIzaSyCqq4Qc-3Ysc7yy9miNKpcUzEw_IwDj0dw
