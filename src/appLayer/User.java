@@ -23,6 +23,19 @@ public class User {
         return user_object.isValidUserLogin(username, password);
     }
 
+    public int isExistingUser(String username, String phoneNumber, String email)
+    {
+        user_db u = new user_db();
+        return u.isExistingUser(username, phoneNumber, email);
+    }
+
+    public boolean insertDB()
+    {
+        user_db u = new user_db();
+        u.insert(username, password, phoneNumber, email, firstName, lastName);
+        return true;
+    }
+
     public String getFirstName() {
         return firstName;
     }

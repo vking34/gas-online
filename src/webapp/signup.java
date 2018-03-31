@@ -42,11 +42,11 @@ public class signup extends HttpServlet {
         User user = mapper.readValue(json, User.class);
 //        System.out.println(user);
 
-        System.out.println(user.getUsername());
-        System.out.println(user.getPassword());
-        System.out.println(user.getPassword1());
-        System.out.println(user.getPhoneNumber());
-        System.out.println(user.getEmail());
+//        System.out.println(user.getUsername());
+//        System.out.println(user.getPassword());
+//        System.out.println(user.getPassword1());
+//        System.out.println(user.getPhoneNumber());
+//        System.out.println(user.getEmail());
 
 //        registerError re = new registerError();
 //        re.setUsernameError("username exist");
@@ -79,6 +79,56 @@ public class signup extends HttpServlet {
 //            e.printStackTrace();
 //        }
 
+        int errorCode = user.isExistingUser(user.getUsername(), user.getPhoneNumber(), user.getEmail());
+        if( errorCode != 0)
+        {
+            registerError re = new registerError();
+            if(errorCode == 1)
+            {
+                re.setUsernameError(user.getUsername() + " exists!");
+                System.out.println("username error!!!");
+            }
+            else if(errorCode == 2)
+            {
+                re.setPhoneNumberError(user.getPhoneNumber() + " exists!");
+                System.out.println("phoneNumber error !!!");
+            }
+            else {
+                re.setEmailError(user.getEmail() + " exists!");
+                System.out.println("email error!!!");
+            }
+
+            try {
+                response.setContentType("application/json");
+                PrintWriter out = response.getWriter();
+                out.println(re.toString());
+                out.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        else {
+
+            user.insertDB();
+            System.out.println("inserted.");
+            Redirect r = new Redirect();
+            r.setUrl("/welcome");
+            r.setStatus(true);
+            System.out.println(r.toString());
+
+            try{
+                response.setContentType("application/json");
+                PrintWriter out = response.getWriter();
+                out.print(r.toString());
+                out.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
 
     }
 

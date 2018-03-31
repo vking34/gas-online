@@ -21,7 +21,7 @@ public class login extends HttpServlet {
 
         if(u1.isValidUserCredentials(request.getParameter("username"), request.getParameter("password")) == true)
         {
-            request.getRequestDispatcher("/welcome.jsp").forward(request,response);
+            request.getRequestDispatcher("/").forward(request,response);
         }
         else
         {

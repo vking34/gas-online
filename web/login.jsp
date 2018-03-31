@@ -62,10 +62,10 @@
                     <%--<h3 class="card-title">Log in</h3>--%>
                     <form action="/login" method="post" novalidate>
                         Username:<br>
-                        <input id="username" type="text">
+                        <input name="username" id="username" type="text">
                         <br><br>
                         Password:<br>
-                        <input id="password" type="password">
+                        <input name="password" id="password" type="password">
                         <br><br>
                         <button type="submit" class="btn btn-primary btn-block">Log in</button>
                     </form>
