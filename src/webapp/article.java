@@ -83,7 +83,7 @@ public class article extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        request.getRequestDispatcher("/article.jsp").forward(request,response);
+        request.getRequestDispatcher("/article.html").forward(request,response);
     }
 }
 

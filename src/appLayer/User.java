@@ -16,11 +16,11 @@ public class User {
     private String phoneNumber;
     private String email;
 
-    public boolean isValidUserCredentials(String username, String password)
+    public boolean isValidUserCredentials()
     {
         user_db user_object = new user_db();
 
-        return user_object.isValidUserLogin(username, password);
+        return user_object.isValidUserLogin(this.username, this.password);
     }
 
     public int isExistingUser(String username, String phoneNumber, String email)

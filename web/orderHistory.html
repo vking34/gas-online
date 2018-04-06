@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History</title>
+
+    <link rel="stylesheet" href="css/accounts.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <a class="navbar-brand" href="/">Gas Order</a>
+
+        <!--userTab-->
+        <div class="container" id="userTab">
+            <div class="dropdown" style="float: right;margin-top: 8px;">
+                <button id="userBtn" class="btn btn-primary dropdown-toggle" style="width: 160px;" type="button" data-toggle="dropdown"><span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="/myAccount">My account</a></li>
+                    <li><a href="/orderHistory">My order history</a></li>
+                    <li><a href="/logout">Log out</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--end userTab  -->
+
+    </div>
+    </div>
+</nav>
+
+<script>
+    $(function () {
+        var name = $.cookie('username');
+        if(name)
+        {
+            $('#userBtn').text(name);
+        }
+        else
+        {
+            window.location.href = "/login";
+        }
+    })
+</script>
+
+<!--display history-->
+<div style="width:700px;padding:20px;">
+    <h5 style="text-align:center"><i style="color:#ccc"><small>Order History</small></i></h5>
+
+    <table id="orderHistory" class="table">
+        <tr>
+            <th>Date</th>
+            <th>Bill code</th>
+            <th>Delivery Address</th>
+            <th>Gas brand</th>
+            <th>Size</th>
+            <th>Price</th>
+            <th>Status</th>
+        </tr>
+    </table>
+</div>
+
+
+
+</body>
+</html>

@@ -10,10 +10,10 @@ import java.io.IOException;
 @WebServlet(name = "maps")
 public class maps extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/maps.jsp").forward(request,response);
+        request.getRequestDispatcher("/maps.html").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/maps.jsp").forward(request,response);
+        request.getRequestDispatcher("/maps.html").forward(request,response);
     }
 }

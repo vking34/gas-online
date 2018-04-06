@@ -22,7 +22,7 @@ public class greeting extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        request.getRequestDispatcher("/greeting.jsp").forward(request,response);
+        request.getRequestDispatcher("/greeting.html").forward(request,response);
     }
 
 

@@ -1,0 +1,75 @@
+<html>
+<head>
+    <title>Sign Up</title>
+
+    <link rel="stylesheet" href="css/accounts.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+    <script src="js/userObj.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <a class="navbar-brand" href="/">Gas Order</a>
+        <div id="logSign" class="form-inline ml-auto" style="float: right;margin-top: 8px;">
+            <a href="/login" class="btn btn-outline-secondary" style="color: white;">Sign in</a>
+            <a href="/signup" class="btn btn-primary ml-2">Sign up</a>
+        </div>
+    </div>
+</nav>
+<br />
+<h1 class="text-center logo my-4">
+    <a href="/signup">Sign up</a>
+</h1>
+<br />
+
+<div class="container">
+    <div class="row" style="text-align: center">
+        <div class="col-xs-12 col-sm-12 col-md-offset-3 col-md-6 well well-sm">
+            <legend><a href="/"><i class="glyphicon glyphicon-globe"></i></a> Sign up!</legend>
+            <!--<form action="/signup" method="post" class="form" role="form" novalidate>-->
+            <form method="post" novalidate>
+                <div class="row">
+                    <div class="col-xs-6 col-md-6">
+                        <input class="form-control" id="firstName" name="firstName" placeholder="First Name" type="text"
+                               required autofocus />
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <input class="form-control" id="lastName" name="lastName" placeholder="Last Name" type="text" required />
+                    </div>
+                </div>
+                <br />
+                <input class="form-control" id="username" name="username" placeholder="Username" type="text" />
+                <small id="usernameError" style="text-align: left; color: red" ></small>
+                <br />
+
+                <input class="form-control" id="password" name="password" placeholder="Password" type="password" />
+                <br />
+                <input class="form-control" id="password1" name="password1" placeholder="Re-enter password" type="password" />
+                <br />
+
+                <input class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone number" type="text" />
+                <small id="phoneNumberError" style="text-align: left; color: red"></small>
+                <br />
+
+                <input class="form-control" id="email" name="email" placeholder="Your Email" type="email" />
+                <small id="emailError" style="text-align: left; color: red"></small>
+                <br />
+                <br />
+                <button class="btn btn-lg btn-primary btn-block" type="button" onclick="sendObj()">
+                    Sign up</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
