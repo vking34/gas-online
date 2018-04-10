@@ -116,5 +116,19 @@
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+    
+    <!--orderHistory-->
+    
+    <servlet>
+        <servlet-name>History</servlet-name>
+        <servlet-class>webapp.orderHistory</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>History</servlet-name>
+        <url-pattern>/orderHistory</url-pattern>
+    </servlet-mapping>
 
+
+    
 </web-app>

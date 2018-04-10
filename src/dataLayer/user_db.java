@@ -1,5 +1,8 @@
 package dataLayer;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import java.sql.*;
 import java.lang.*;
 
@@ -13,6 +16,16 @@ public class user_db {
     static final String USER = "root";
     static final String PASS = "";
     static final String driver = "com.mysql.jdbc.Driver";
+    private String username;
+
+    public user_db()
+    {
+
+    }
+    public user_db(String name)
+    {
+        this.username = name;
+    }
 
     public boolean isValidUserLogin(String username, String password)
     {
@@ -192,5 +205,70 @@ public class user_db {
         }
 
         return true;
+    }
+
+    public String getOrderHistory()
+    {
+        // step 1: Set parameters
+        Connection connection = null;
+        Statement statement = null;
+        String sql = "";
+
+        try{
+            // step 2: register JDBC driver
+            Class.forName(this.driver);
+
+            // step 3: open a connection
+            System.out.println("Connecting to database...");
+            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            //step 4: execute a query
+            System.out.println("Creating statement...");
+            statement = connection.createStatement();
+
+            sql = "select o.date, o.billCode, concat(o.address,', ', o.ward) as address, c.brand, c.size, c.price, o.status from user u, gas_order o, gas_cylinder c WHERE u.username = '" + this.username + "' and u.phoneNumber = o.phoneNumber and o.gasCode = c.code ORDER BY o.date ASC;";
+            System.out.println(sql);
+
+            // execute
+            ResultSet rs = statement.executeQuery(sql);
+
+            JsonArray data = new JsonArray();
+
+            while (rs.next())
+            {
+                JsonObject row = new JsonObject();
+                row.addProperty("date", rs.getString("date"));
+                row.addProperty("billCode", rs.getString("billCode"));
+                row.addProperty("address", rs.getString("address"));
+                row.addProperty("brand", rs.getString("brand"));
+                row.addProperty("size", rs.getString("size"));
+                row.addProperty("price", rs.getString("price"));
+                row.addProperty("status", rs.getString("status"));
+                data.add(row);
+            }
+
+            // step 5: close
+            rs.close();
+            connection.close();
+            statement.close();
+
+            String jsonString = data.toString();
+            if(jsonString.equals("[]"))
+            {
+                return null;
+            }
+            else
+            {
+                System.out.println(jsonString);
+                return jsonString;
+            }
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
