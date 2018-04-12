@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>Gas Online</title>
+    <link rel="shortcut icon" type="image/png" href="/icon/flame.png">
     <link rel="stylesheet" href="css/home.css">
 
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -8,7 +9,6 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-      <script src="js/popper.min.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
 
@@ -24,10 +24,11 @@
 
         <!--userTab-->
         <div class="container" id="userTab">
-            <div class="dropdown" style="float: right;margin-top: 8px;">
+            <div class="
+            dropdown" style="float: right;margin-top: 8px;">
                 <button id="userBtn" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                    <li><a href="/myAccount">My account</a></li>
+                    <li><a href="/profile">My account</a></li>
                     <li><a href="/orderHistory">My order history</a></li>
                     <li><a href="/logout">Log out</a></li>
                 </ul>
@@ -63,82 +64,12 @@
   </script>
 
   <br><br><br>
-  <div class="container">
-    <div class="row">
-      <div class="span8">
-        <form action="/order" method="post" class="form-horizontal" id="billingform" accept-charset="utf-8">
 
-          <div class="control-group">
-            <label for="phoneNumber" class="control-label">
-              Phone Number
-            </label>
-            <div class="controls">
-              <input name="phoneNumber" type="text" value="" id="phoneNumber">
-              <span class="help-inline"> *We will call you right after you sumbit to confirm the address.</span>
-            </div>
-          </div>
+  <a href="/orderForm">Order Gas Now</a><br />
+  <a href="/products">Products</a><br />
+  <a href="/tips">Tips for using</a><br />
+  <a href="/about">About</a><br />
 
-          <div class="control-group">
-            <label for="address" class="control-label">
-              Street Address
-            </label>
-            <div class="controls"><input name="address" placeholder="254D Bach Mai" type="text" value="" id="address"><span class="help-inline"> The delivery address </span>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <label for="district" class="control-label">
-              District
-            </label>
-            <div class="controls">
-              <select name="district" id="district">
-                <option value=""></option>
-                <option value="HBT">Hai Ba Trung</option>
-                <option value="DD">Dong Da</option>
-                <option value="BD">Ba Dinh</option>
-                <option value="HK">Hoan Kiem</option>
-                <span class="help-inline"> Default: Set address to be your current position.</span>
-              </select>
-
-            </div>
-          </div>
-
-          <div class="control-group">
-            <label for="ward" class="control-label">
-              Ward
-            </label>
-            <div class="controls">
-              <!--<input name="ward" type="text" value="" id="ward">-->
-                <select name="ward" id="ward">
-                  <option value=""></option>
-                  <option value="BHT_BM">Bach Mai</option>
-                  <option value="BHT_BK">Bach Khoa</option>
-                  <option value="BHT_PH">Pho Hue</option>
-                  <option value="BHT_DT">Dong Tam</option>
-                  <option value="DD_PM">Phuong Mai</option>
-                  <option value="DD_OCD">O Cho Dua</option>
-                </select>
-            </div>
-          </div>
-
-          <br>
-          <div class="control-group">
-            <label class="control-label" for="humancheck">Humanity Check:</label>
-            <div class="controls">
-              <label class="radio inline" for="humancheck-0">
-                <input type="radio" name="humancheck" id="humancheck-0" value="robot" checked="checked">I'm a Robot (not be able to order)</label>
-              <label class="radio inline" for="humancheck-1">
-                <input type="radio" name="humancheck" id="humancheck-1" value="human">I'm Human</label>
-            </div>
-          </div>
-
-          <div class="form-actions">
-            <button type="submit" class="btn btn-large btn-primary">Order now</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
 
   </body>
 </html>

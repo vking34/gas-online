@@ -28,10 +28,11 @@ public class orderHistory extends HttpServlet {
                 {
                     user_db userDb = new user_db(cookie.getValue());
                     String jsonString = userDb.getOrderHistory();
-
+                    String jsonArray = "{\"data\": " + jsonString + "}";
+                    System.out.println(jsonArray);
                     response.setContentType("application/json");
                     PrintWriter out = response.getWriter();
-                    out.println(jsonString);
+                    out.println(jsonArray);
                     out.close();
                     return;
                 }
@@ -75,26 +76,4 @@ public class orderHistory extends HttpServlet {
         }
     }
 
-    public Cookie getCookie(HttpServletRequest request, String name)
-    {
-        try {
-            Cookie[] cookies = request.getCookies();
-
-            if(cookies != null)
-            {
-                for(Cookie cookie : cookies)
-                {
-                    if(cookie.getName().equals(name))
-                        return cookie;
-                }
-            }
-
-            return null;
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            return null;
-        }
-    }
 }
