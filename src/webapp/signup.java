@@ -38,46 +38,7 @@ public class signup extends HttpServlet {
         // 2. initiate jackson mapper
         ObjectMapper mapper = new ObjectMapper();
 
-
         User user = mapper.readValue(json, User.class);
-//        System.out.println(user);
-
-//        System.out.println(user.getUsername());
-//        System.out.println(user.getPassword());
-//        System.out.println(user.getPassword1());
-//        System.out.println(user.getPhoneNumber());
-//        System.out.println(user.getEmail());
-
-//        registerError re = new registerError();
-//        re.setUsernameError("username exist");
-//        re.setPhoneNumberError("phone exist");
-//
-//        try {
-//            response.setContentType("application/json");
-//            PrintWriter out = response.getWriter();
-//            out.println(re.toString());
-//            out.close();
-//        }
-//        catch (IOException e)
-//        {
-//            e.printStackTrace();
-//        }
-
-//        Redirect r = new Redirect();
-//        r.setStatus(true);
-//        r.setUrl("/");
-//        System.out.println(r.toString());
-//
-//        try{
-//            response.setContentType("application/json");
-//            PrintWriter out = response.getWriter();
-//            out.println(r.toString());
-//            out.close();
-//        }
-//        catch (Exception e)
-//        {
-//            e.printStackTrace();
-//        }
 
         int errorCode = user.isExistingUser(user.getUsername(), user.getPhoneNumber(), user.getEmail());
         if( errorCode != 0)
