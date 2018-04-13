@@ -7,7 +7,7 @@ public class orderDetails {
     private int gasCode;
     private String phoneNumber;
     private String address;
-    private String ward;
+    private String regionCode;
 
     orderDetails()
     {
@@ -38,11 +38,11 @@ public class orderDetails {
         this.address = address;
     }
 
-    public String getWard() {
-        return ward;
+    public String getRegionCode() {
+        return regionCode;
     }
 
-    public void setWard(String ward) {
-        this.ward = ward;
+    public void setRegionCode(String regionCode) {
+        this.regionCode = regionCode;
     }
 }

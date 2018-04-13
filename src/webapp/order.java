@@ -33,10 +33,10 @@ public class order extends HttpServlet {
         System.out.println(ord.getGasCode());
         System.out.println(ord.getPhoneNumber());
         System.out.println(ord.getAddress());
-        System.out.println(ord.getWard());
+        System.out.println(ord.getRegionCode());
 
 
-        request.getRequestDispatcher("/receivedOrder.html").forward(request,response);
+
 
 
     }
