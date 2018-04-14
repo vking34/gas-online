@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 import appLayer.orderDetails;
 import com.google.gson.Gson;
+import dataLayer.order_db;
 
 @WebServlet(name = "orderForm")
 public class order extends HttpServlet {
+    private static final long serialVersionUID = 1L;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         System.out.println("Just received POST request from 'Order Form'...");
@@ -35,10 +38,29 @@ public class order extends HttpServlet {
         System.out.println(ord.getAddress());
         System.out.println(ord.getRegionCode());
 
+        order_db orderDb = new order_db();
 
+        String outJson = orderDb.insertOrder(ord);
 
+        System.out.println(outJson);
 
+        try {
+            response.setContentType("application/json");
+            PrintWriter out = response.getWriter();
 
+            if (outJson != null) {
+                out.print(outJson);
+                out.close();
+            }
+            else {
+                out.print("{ \"status\":false }");
+            }
+            out.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -14,6 +14,8 @@
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
 
     <link rel="stylesheet" href="css/app.css">
+
+
 </head>
 
 <body>
@@ -25,8 +27,7 @@
 
         <!--userTab-->
         <div class="container" id="userTab">
-            <div class="
-            dropdown" style="float: right;margin-top: 8px;">
+            <div class="dropdown" style="float: right;margin-top: 8px;">
                 <button id="userBtn" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
                 <ul class="dropdown-menu">
                     <li><a href="/profile">My account</a></li>
@@ -61,50 +62,13 @@
         }
     });
 
-    function sendOrder() {
-
-        //get inputs
-
-        var order = new Object();
-
-        order.gasCode = $('#gasCode').val();
-        order.phoneNumber = $('#phoneNumber').val();
-        order.address = $('#address').val();
-        order.regionCode = $('#ward').val();
-        // order.district = $('#district').val();
-
-        $.ajax(
-            {
-                url : '/orderForm',
-                type : 'POST',
-                dataType: 'json',
-                data: JSON.stringify(order),
-                contentType: 'application/json',
-                success: function (message) {
-                    if(message.status == 0)
-                    {
-                        window.location.href = message.url;
-                    }
-                    else
-                    {
-                        alert("Invalid input !!!")
-                    }
-                },
-                error: function () {
-                    alert("The connection was interupted.")
-                }
-
-            }
-        );
-    }
-
 </script>
 
 <br><br><br>
 <div class="container">
-    <div class="row">
+    <div class="row" id="input">
         <div class="span8">
-            <form action="/orderForm" method="post" class="form-horizontal" id="billingform" accept-charset="utf-8">
+            <form action="/orderForm" method="post" class="form-horizontal" id="orderForm" accept-charset="utf-8">
 
                 <div class="control-group">
                     <label for="gasCode" class="control-label">
@@ -139,20 +103,20 @@
                 </div>
 
                 <!--<div class="control-group">-->
-                    <!--<label for="district" class="control-label">-->
-                        <!--District-->
-                    <!--</label>-->
-                    <!--<div class="controls">-->
-                        <!--<select name="district" id="district">-->
-                            <!--<option value=""></option>-->
-                            <!--<option value="HBT">Hai Ba Trung</option>-->
-                            <!--<option value="DD">Dong Da</option>-->
-                            <!--<option value="BD">Ba Dinh</option>-->
-                            <!--<option value="HK">Hoan Kiem</option>-->
-                            <!--<span class="help-inline"> Default: Set address to be your current position.</span>-->
-                        <!--</select>-->
+                <!--<label for="district" class="control-label">-->
+                <!--District-->
+                <!--</label>-->
+                <!--<div class="controls">-->
+                <!--<select name="district" id="district">-->
+                <!--<option value=""></option>-->
+                <!--<option value="HBT">Hai Ba Trung</option>-->
+                <!--<option value="DD">Dong Da</option>-->
+                <!--<option value="BD">Ba Dinh</option>-->
+                <!--<option value="HK">Hoan Kiem</option>-->
+                <!--<span class="help-inline"> Default: Set address to be your current position.</span>-->
+                <!--</select>-->
 
-                    <!--</div>-->
+                <!--</div>-->
                 <!--</div>-->
 
                 <div class="control-group">
@@ -190,7 +154,65 @@
             </form>
         </div>
     </div>
+
+    <div id="confirmed">
+        <h3>You have just ordered:</h3>
+        <h4>Gas Cylinder:</h4>
+        <p id="gasCylinder"></p>
+        <h4>Address:</h4>
+        <p id="street"></p>
+        <h4>We'll call back <p id="phone"></p> to confirm.</h4>
+        <h4>Thank for your trusted consumption.</h4>
+    </div>
+
 </div>
+
+
+<script>
+    $('#input').show();
+    $('#confirmed').hide();
+
+    function sendOrder() {
+
+        //get inputs
+
+        var order = new Object();
+
+        order.gasCode = $('#gasCode').val();
+        order.phoneNumber = $('#phoneNumber').val();
+        order.address = $('#address').val();
+        order.regionCode = $('#ward').val();
+        // order.district = $('#district').val();
+
+        $.ajax(
+            {
+                url : '/orderForm',
+                type : 'POST',
+                dataType: 'json',
+                data: JSON.stringify(order),
+                contentType: 'application/json; charset=UTF-8',
+                success: function (message) {
+
+                    if(message.status)
+                    {
+                        $('#input').hide();
+                        $('#confirmed').show();
+                        console.log(message.cylinder);
+                        $('#gasCylinder').text(message.cylinder);
+                        console.log(message.address);
+                        $('#street').text(message.address);
+                        console.log(message.phoneNumber);
+                        $('#phone').text(message.phoneNumber);
+                    }
+                    else
+                    {
+                        alert("Invalid input !!!")
+                    }
+                }
+            }
+        );
+    }
+</script>
 
 </body>
 </html>

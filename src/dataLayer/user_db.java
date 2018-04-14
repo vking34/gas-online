@@ -10,7 +10,6 @@ import java.lang.*;
 public class user_db {
 
     // JDBC driver name and database URL
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost:3306/gas_online";
 
     static final String USER = "root";
@@ -193,7 +192,7 @@ public class user_db {
 
              statement.executeUpdate(sql);
 
-            //step 6: close connection
+            //step 5: close connection
 
             connection.close();
             statement.close();
@@ -241,8 +240,8 @@ public class user_db {
                 row.addProperty("billCode", rs.getString("billCode"));
                 row.addProperty("address", rs.getString("address"));
                 row.addProperty("brand", rs.getString("brand"));
-                row.addProperty("size", rs.getString("size"));
-                row.addProperty("price", rs.getString("price"));
+                row.addProperty("size", rs.getInt("size"));
+                row.addProperty("price", rs.getInt("price"));
                 row.addProperty("status", rs.getString("status"));
                 data.add(row);
             }
