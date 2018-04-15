@@ -12,7 +12,9 @@ import java.io.PrintWriter;
 
 import appLayer.orderDetails;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import dataLayer.order_db;
+import org.json.JSONObject;
 
 @WebServlet(name = "orderForm")
 public class order extends HttpServlet {
@@ -29,14 +31,21 @@ public class order extends HttpServlet {
         }
         br.close();
 
-        Gson gson = new Gson();
+//        Gson gson = new Gson();
+//
+//        orderDetails ord = gson.fromJson(json, orderDetails.class);
+//
+//        System.out.println(ord.getGasCode());
+//        System.out.println(ord.getPhoneNumber());
+//        System.out.println(ord.getAddress());
+//        System.out.println(ord.getRegionCode());
 
-        orderDetails ord = gson.fromJson(json, orderDetails.class);
+        JSONObject ord = new JSONObject(json);
+        System.out.println(ord.getString("phoneNumber"));
+        System.out.println(ord.getString("ward"));
+        System.out.println(ord.getString("address"));
+        System.out.println(ord.getInt("gasCode"));
 
-        System.out.println(ord.getGasCode());
-        System.out.println(ord.getPhoneNumber());
-        System.out.println(ord.getAddress());
-        System.out.println(ord.getRegionCode());
 
         order_db orderDb = new order_db();
 
@@ -45,7 +54,7 @@ public class order extends HttpServlet {
         System.out.println(outJson);
 
         try {
-            response.setContentType("application/json");
+            response.setContentType("application/json; charset=UTF-8");
             PrintWriter out = response.getWriter();
 
             if (outJson != null) {
@@ -61,6 +70,7 @@ public class order extends HttpServlet {
         {
             e.printStackTrace();
         }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

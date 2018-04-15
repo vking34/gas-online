@@ -225,7 +225,7 @@ public class user_db {
             System.out.println("Creating statement...");
             statement = connection.createStatement();
 
-            sql = "SELECT o.date, o.billCode, concat(o.address, ', ', r.ward, ', ', r.district) as address, c.brand, c.size, c.price, o.status FROM user u, gas_order o, gas_cylinder c, region r, warehouse w WHERE u.username = '"+ this.username +"' AND u.phoneNumber = o.phoneNumber AND o.warehouse = w.houseCode AND w.regionCode = r.code AND o.gasCode = c.code ORDER BY o.date DESC ;";
+            sql = "SELECT o.date, o.billCode, concat(o.address, ', ', r.ward, ' ward, ', r.district, ' district') as address, c.brand, c.size, c.price, o.status FROM user u, gas_order o, gas_cylinder c, region r, warehouse w WHERE u.username = '"+ this.username +"' AND u.phoneNumber = o.phoneNumber AND o.warehouse = w.houseCode AND w.regionCode = r.code AND o.gasCode = c.code ORDER BY o.date DESC ;";
             System.out.println(sql);
 
             // execute

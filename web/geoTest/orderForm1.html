@@ -3,7 +3,7 @@
 <head>
     <title>Order Form</title>
     <link rel="shortcut icon" type="image/png" href="/icon/flame.png">
-    <!--<link rel="stylesheet" href="css/home.css">-->
+    <link rel="stylesheet" href="css/home.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -13,12 +13,13 @@
 
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
 
-    <!--<link rel="stylesheet" href="css/app.css">-->
+    <link rel="stylesheet" href="css/app.css">
 
 
 </head>
 
 <body>
+
 
 <nav class="navbar navbar-inverse">
     <div class="container">
@@ -63,15 +64,7 @@
 
 </script>
 
-<div id="map" style="width:75%;height:350px; align-content: center; margin-left: auto; margin-right: auto;"></div>
-
-<!--<div id="infowindow-content">-->
-    <!--<img src="" width="16" height="16" id="place-icon">-->
-    <!--<span id="place-name" class="title"></span><br>-->
-    <!--<span id="place-address"></span>-->
-<!--</div>-->
-
-<br /><br />
+<br><br><br>
 <div class="container">
     <div class="row" id="input">
         <div class="span8">
@@ -96,7 +89,7 @@
                         Phone Number
                     </label>
                     <div class="controls">
-                        <input name="phoneNumber" type="text" id="phoneNumber">
+                        <input name="phoneNumber" type="text" value="" id="phoneNumber">
                         <span class="help-inline"> *We will call you right after you sumbit to confirm the address.</span>
                     </div>
                 </div>
@@ -105,13 +98,48 @@
                     <label for="address" class="control-label">
                         Street Address
                     </label>
-                    <div class="controls"><input name="address" placeholder="Enter your location" type="text" value="" id="address" style="width: 400px"><span class="help-inline"> The delivery address </span>
+                    <div class="controls"><input name="address" placeholder="254D Bach Mai" type="text" value="" id="address"><span class="help-inline"> The delivery address </span>
+                    </div>
+                </div>
+
+                <!--<div class="control-group">-->
+                <!--<label for="district" class="control-label">-->
+                <!--District-->
+                <!--</label>-->
+                <!--<div class="controls">-->
+                <!--<select name="district" id="district">-->
+                <!--<option value=""></option>-->
+                <!--<option value="HBT">Hai Ba Trung</option>-->
+                <!--<option value="DD">Dong Da</option>-->
+                <!--<option value="BD">Ba Dinh</option>-->
+                <!--<option value="HK">Hoan Kiem</option>-->
+                <!--<span class="help-inline"> Default: Set address to be your current position.</span>-->
+                <!--</select>-->
+
+                <!--</div>-->
+                <!--</div>-->
+
+                <div class="control-group">
+                    <label for="ward" class="control-label">
+                        Ward
+                    </label>
+                    <div class="controls">
+                        <!--<input name="ward" type="text" value="" id="ward">-->
+                        <select name="ward" id="ward">
+                            <option value=""></option>
+                            <option value="BHT_BM">Bach Mai</option>
+                            <option value="BHT_BK">Bach Khoa</option>
+                            <option value="BHT_PH">Pho Hue</option>
+                            <option value="BHT_DT">Dong Tam</option>
+                            <option value="DD_PM">Phuong Mai</option>
+                            <option value="DD_OCD">O Cho Dua</option>
+                        </select>
                     </div>
                 </div>
 
                 <br>
                 <div class="control-group">
-                    <label class="control-label">Humanity Check:</label>
+                    <label class="control-label" for="humancheck">Humanity Check:</label>
                     <div class="controls">
                         <label class="radio inline" for="humancheck-0">
                             <input type="radio" name="humancheck" id="humancheck-0" value="robot" checked="checked">I'm a Robot (not be able to order)</label>
@@ -139,98 +167,10 @@
 
 </div>
 
+
 <script>
-
-    var map, infowindow;
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 21.01343, lng: 105.8346033},
-            zoom: 15,
-            mapTypeControl: false,
-            zoomControl: true,
-            zoomControlOptions: {
-                style: google.maps.ZoomControlStyle.SMALL
-            }
-        });
-
-        $('#input').show();
-        $('#confirmed').hide();
-
-        var input = document.getElementById('address');
-
-        var autocomplete = new google.maps.places.Autocomplete(input);
-
-
-        // var infowindowContent = document.getElementById('infowindow-content');
-        infowindow = new google.maps.InfoWindow();
-        // infowindow.setContent(infowindowContent);
-        var marker = new google.maps.Marker({
-            map: map
-        });
-
-        autocomplete.addListener('place_changed', function() {
-            infowindow.close();
-            marker.setVisible(false);
-            var place = autocomplete.getPlace();
-            if (!place.geometry) {
-                // User entered the name of a Place that was not suggested and
-                // pressed the Enter key, or the Place Details request failed.
-                window.alert("No details available for input: '" + place.name + "'");
-                return;
-            }
-
-            // If the place has a geometry, then present it on a map.
-            if (place.geometry.viewport) {
-                map.fitBounds(place.geometry.viewport);
-            } else {
-                map.setCenter(place.geometry.location);
-                map.setZoom(17);  // Why 17? Because it looks good.
-            }
-            marker.setPosition(place.geometry.location);
-            marker.setVisible(true);
-
-            var address = '';
-            if (place.address_components) {
-                address = [
-                    (place.address_components[0] && place.address_components[0].short_name || ''),
-                    " ",
-                    (place.address_components[1] && place.address_components[1].short_name || ''),
-                    ", ",
-                    (place.address_components[2] && place.address_components[2].short_name || ''),
-                    " ward"
-                ].join('');
-            }
-
-            // infowindowContent.children['place-icon'].src = place.icon;
-            // infowindowContent.children['place-name'].textContent = place.name;
-            // infowindowContent.children['place-address'].textContent = address;
-
-
-            // infowindow.setContent(address);
-            infowindow.setContent("<img src=\"" + place.icon +"\" width=\"16\" height=\"16\" id=\"place-icon\">" +
-                "<span id=\"place-name\"  class=\"title\">  " + place.name + "</span><br>" +
-                "<span id=\"place-address\">" + address + "</span>");
-
-            infowindow.open(map, marker);
-        });
-
-        // Sets a listener on a radio button to change the filter type on Places
-        // Autocomplete.
-        function setupClickListener(id, types) {
-            var radioButton = document.getElementById(id);
-            radioButton.addEventListener('click', function() {
-                autocomplete.setTypes(types);
-            });
-        }
-
-        setupClickListener('changetype-all', []);
-        setupClickListener('changetype-address', ['address']);
-        setupClickListener('changetype-establishment', ['establishment']);
-        setupClickListener('changetype-geocode', ['geocode']);
-
-
-
-    }
+    $('#input').show();
+    $('#confirmed').hide();
 
     function sendOrder() {
 
@@ -273,7 +213,6 @@
         );
     }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqq4Qc-3Ysc7yy9miNKpcUzEw_IwDj0dw&libraries=places&callback=initMap"
-        async defer></script>
+
 </body>
 </html>

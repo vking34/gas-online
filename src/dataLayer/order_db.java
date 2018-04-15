@@ -2,6 +2,7 @@ package dataLayer;
 import appLayer.orderDetails;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import org.json.JSONObject;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +18,7 @@ public class order_db {
     static final String PASS = "";
     static final String driver = "com.mysql.jdbc.Driver";
 
-    public String insertOrder(orderDetails order)
+    public String insertOrder(JSONObject order)
     {
 
         // step 1: Set parameters
@@ -37,7 +38,7 @@ public class order_db {
             System.out.println("Creating statement...");
             statement = connection.createStatement();
 
-            sql = "INSERT INTO gas_order(warehouse, gasCode, phoneNumber, date, address, status) SELECT w.houseCode, " + order.getGasCode() +", '" + order.getPhoneNumber() +"', '2018-04-17', '" + order.getAddress() +  "', 'A' FROM warehouse w WHERE w.regionCode = '" + order.getRegionCode() + "';";
+            sql = "INSERT INTO gas_order(warehouse, gasCode, phoneNumber, date, address, status) SELECT w.houseCode, " + order.getInt("gasCode") +", '" + order.getString("phoneNumber") +"', '2018-04-17', '" + order.getString("address") +  "', 'A' FROM warehouse w, region r WHERE w.regionCode = r.code AND r.ward ='" + order.getString("ward") + "';";
             System.out.println(sql);
 
             statement.executeUpdate(sql);
@@ -45,14 +46,14 @@ public class order_db {
             //step 5: close connections
             System.out.println("Order was inserted.");
 
-            sql = "SELECT c.name as cylinder, concat(r.ward, ' ward, ', r.district, ' district') as region FROM gas_cylinder c, region r WHERE c.code = " + order.getGasCode() + " AND r.code = '" + order.getRegionCode() +"';";
+            sql = "SELECT c.name as cylinder, concat(r.ward, ' ward, ', r.district, ' district') as region FROM gas_cylinder c, region r WHERE c.code = " + order.getInt("gasCode") + " AND r.ward = '" + order.getString("ward") +"';";
             System.out.println(sql);
             ResultSet rs = statement.executeQuery(sql);
             rs.next();
             JsonObject details = new JsonObject();
             details.addProperty("cylinder", rs.getString("cylinder"));
-            details.addProperty("address", order.getAddress() + ", " + rs.getString("region"));
-            details.addProperty("phoneNumber", order.getPhoneNumber());
+            details.addProperty("address", order.getString("address") + ", " + rs.getString("region"));
+            details.addProperty("phoneNumber", order.getString("phoneNumber"));
             details.addProperty("status", true);
             connection.close();
             statement.close();

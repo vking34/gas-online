@@ -30,7 +30,7 @@ public class orderHistory extends HttpServlet {
                     String jsonString = userDb.getOrderHistory();
                     String jsonArray = "{\"data\": " + jsonString + "}";
                     System.out.println(jsonArray);
-                    response.setContentType("application/json");
+                    response.setContentType("application/json; charset=UTF-8");
                     PrintWriter out = response.getWriter();
                     out.println(jsonArray);
                     out.close();
