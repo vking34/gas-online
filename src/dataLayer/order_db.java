@@ -45,7 +45,7 @@ public class order_db {
             //step 5: close connections
             System.out.println("Order was inserted.");
 
-            sql = "SELECT c.name as cylinder, concat(r.ward, ', ', r.district) as region FROM gas_cylinder c, region r WHERE c.code = " + order.getGasCode() + " AND r.code = '" + order.getRegionCode() +"';";
+            sql = "SELECT c.name as cylinder, concat(r.ward, ' ward, ', r.district, ' district') as region FROM gas_cylinder c, region r WHERE c.code = " + order.getGasCode() + " AND r.code = '" + order.getRegionCode() +"';";
             System.out.println(sql);
             ResultSet rs = statement.executeQuery(sql);
             rs.next();

@@ -1,9 +1,20 @@
 # Every time, add a new library, then must update the war file to execute the whole app.
 
-Geocoding API key:
+# Geocoding API key:
 
 AIzaSyBIKfJ7pB6HQ3LQqU_6DxMAQrepy3gUhw0
 
-Google maps API key:
+# Google maps API key:
 
 AIzaSyCqq4Qc-3Ysc7yy9miNKpcUzEw_IwDj0dw
+
+# Place API key:
+
+AIzaSyAa5vI5PP9qG-3yfmL0U0f9Hvp9B1mZK2c
+
+
+21.0022294
+105.8539553
+
+
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=21.0022294,105.8539553&radius=1500&key=AIzaSyAa5vI5PP9qG-3yfmL0U0f9Hvp9B1mZK2c
