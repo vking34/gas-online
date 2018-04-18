@@ -32,10 +32,14 @@
     var map, infoWindow;
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 21.0228855, lng: 105.7669236},
+            center: {lat: 21.0343, lng: 105.85},
             zoom: 14
         });
         infoWindow = new google.maps.InfoWindow;
+
+        var marker = new google.maps.Marker({       // declare a marker
+            map: map
+        });
 
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
@@ -49,10 +53,13 @@
 
                 $('#latitude').text(pos.lat);
                 $('#longitude').text(pos.lng);
-                infoWindow.setPosition(pos);
-                infoWindow.setContent('Location found.');
-                infoWindow.open(map);
+
+
+                map.setZoom(17);
                 map.setCenter(pos);
+                marker.setPosition(pos);
+                infoWindow.setContent('Location found.');
+                infoWindow.open(map, marker);
             }, function() {
                 handleLocationError(true, infoWindow, map.getCenter());
             });

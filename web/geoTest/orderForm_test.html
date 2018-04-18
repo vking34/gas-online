@@ -148,7 +148,7 @@
 
 <script>
 
-    var map, infowindow, marker;
+    var map, infowindow;
     var order = new Object();
     var street = "";
 
@@ -168,30 +168,36 @@
 
         infowindow = new google.maps.InfoWindow();  // info Window pops up when the marker appears
 
-        marker = new google.maps.Marker({           // declare a marker
+        var marker = new google.maps.Marker({       // declare a marker
             map: map
         });
 
-        // for Pinning the map
-
-        marker.setMap(map);                         // add marker under the map layer for Listener
-        map.addListener('click', addPin);           // handling with 'click' on map
-
         // for Sharing location
 
-        if (navigator.geolocation) {                // asking for sharing location
+        if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
+                // window.latitude = position.coords.latitude;
+                // window.longitude = position.coords.longitude;
+                // console.log(window.latitude);
+                // console.log(window.longitude);
+
                 var pos = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
-
                 window.order.pos = pos;
+                map.setZoom(17);
                 map.setCenter(pos);
-                map.setZoom(16.5);
                 marker.setPosition(pos);
 
-                reverserGeoCoding(pos);
+                reverserGeoCoding(pos, map, marker);
+
+
+                // infowindow.setPosition(pos);
+                // infowindow.setContent('Location found.');
+                // infowindow.open(map, marker);
+
+
 
             }, function() {
                 handleLocationError(true, infowindow, map.getCenter());
@@ -200,7 +206,6 @@
             // Browser doesn't support Geolocation
             handleLocationError(false, infowindow, map.getCenter());
         }
-
 
         // for Typing location
 
@@ -226,7 +231,6 @@
                 map.setCenter(place.geometry.location);
                 map.setZoom(16.5);  // Why 17? Because it looks good.
             }
-
             marker.setPosition(place.geometry.location);
             marker.setVisible(true);
 
@@ -244,59 +248,30 @@
                 window.order.ward = place.address_components[2].short_name;
             }
 
+            // infowindow.setContent(address);
             infowindow.setContent("<img src=\"" + place.icon +"\" width=\"16\" height=\"16\" id=\"place-icon\">" +
                 "<span id=\"place-name\"  class=\"title\">  " + place.name + "</span><br>" +
                 "<span id=\"place-address\">" + address + "</span>");
+
             infowindow.open(map, marker);
         });
     }
 
-    function addPin(event) {                // properties for click are returned in event
-        infowindow.close();
-        marker.setVisible(false);
-        marker.setPosition(event.latLng);
-        marker.setVisible(true);
-        reverserGeoCoding(event.latLng);
-    }
-
-    function reverserGeoCoding(pos) {
+    function reverserGeoCoding(pos, map, marker) {
         var geocoder = new google.maps.Geocoder;
         geocoder.geocode({'location': pos}, function (results, status) {
             if (status === 'OK'){
+                if(results[0]){
+                    // window.street = results[0].address_components[]
 
-                var location = results[0];
-                if(location){
-                    window.street = "";
-                    var details = "";
-                    if(location.address_components[0].types[0] == 'street_number')
-                    {
-                        details = details + location.address_components[0].short_name;
-                    }
-                    if(location.address_components[0].types[0] == 'route')
-                    {
-                        window.street += location.address_components[0].short_name;
-                    }
-                    if(location.address_components[1].types[0] == 'route')
-                    {
-                        window.street += location.address_components[1].short_name;
-                    }
-                    if(location.address_components[1].types[0] == 'political')
-                    {
-                        window.order.ward = location.address_components[1].short_name;
-                    }
-                    if(location.address_components[2].types[0] == 'political')
-                    {
-                        window.order.ward = location.address_components[2].short_name;
-                    }
 
-                    $('#details').val(details);
-                    $('#street').val(window.street + ", " + window.order.ward);
+                    $('#details').val(results[0].address_components[0].short_name + ", " + results[0].address_components[1].short_name);
 
-                    infowindow.setContent("<img src=\"https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png\" width=\"16\" height=\"16\" id=\"place-icon\">"+
-                        "<span id=\"place-name\"  class=\"title\">  " + details + "</span><br>" +
-                        "<span id=\"place-address\">"+ window.street + ", " + window.order.ward + "</span>");
+                    window.infowindow.setContent("<img src=\"https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png\" width=\"16\" height=\"16\" id=\"place-icon\">"+
+                        "<span id=\"place-name\"  class=\"title\">  " + results[0].address_components[0].short_name + ", " + results[0].address_components[1].short_name + "</span><br>" +
+                        "<span id=\"place-address\">"+ results[0].address_components[2].short_name + ", " + results[0].address_components[3].short_name + "</span>");
 
-                    infowindow.open(map, marker);
+                    window.infowindow.open(map, marker);
                 }
                 else {
                     window.alert('No results found');
@@ -342,7 +317,7 @@
                     }
                     else
                     {
-                        alert("Sorry!!! You're out of our service scope\nOr the input is invalid.");
+                        alert("Invalid input !!!")
                     }
                 }
             }
