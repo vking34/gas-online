@@ -154,11 +154,11 @@ public class user_db {
                     }
                 }
             }
+
             //step 6: close connection
             rs.close();
             connection.close();
             statement.close();
-
         }
         catch (Exception e)
         {
@@ -190,7 +190,7 @@ public class user_db {
             sql = "INSERT INTO user (username, password, phoneNumber, email, firstName, lastName) VALUES ('" +usename+ "', '" + password + "', '" + phoneNumber + "', '"+ email + "', '"+ firstName + "', '" + lastName + "');";
             System.out.println(sql);
 
-             statement.executeUpdate(sql);
+            statement.executeUpdate(sql);
 
             //step 5: close connection
 

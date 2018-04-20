@@ -1,4 +1,4 @@
-package webapp;
+package webapp.order;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

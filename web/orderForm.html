@@ -93,7 +93,8 @@
                     </label>
                     <div class="controls">
                         <input name="phoneNumber" type="text" id="phoneNumber">
-                        <span class="help-inline"> *We will call you right after you sumbit to confirm the address.</span>
+                        <!--<span class="help-inline"> *We will call you right after you sumbit to confirm the address.</span>-->
+                        <span id="phoneStatus"></span>
                     </div>
                 </div>
 
@@ -152,10 +153,11 @@
     var order = new Object();
     var street = "";
 
+
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 21.01343, lng: 105.8346033},
-            zoom: 14.5,
+            center: {lat: 21.0157795, lng: 105.8276146},
+            zoom: 14,
             mapTypeControl: false,
             zoomControl: true,
             zoomControlOptions: {
@@ -334,12 +336,25 @@
         infoWindow.open(map);
     }
 
-
-
     $(document).ready(function () {
+        var phoneStatus = 0;
         $('#btn').prop('disabled', true);
+
+        $('#phoneNumber').blur(function (e) {
+            if(validatePhone($('#phoneNumber').val())){
+                $('#phoneStatus').html('Valid');
+                $('#phoneStatus').css('color', 'green');
+                phoneStatus = 1;
+            }
+            else {
+                $('#phoneStatus').html('Invalid');
+                $('#phoneStatus').css('color', 'red');
+                phoneStatus = 0;
+            }
+        });
+        
         $('#humancheck-1').click(function () {
-            if($('#phoneNumber').val() != '' && $('#street').val() != ''){
+            if($('#phoneNumber').val() != '' && $('#street').val() != '' && phoneStatus == 1){
                 $('#btn').prop('disabled', false);
             }
         });
@@ -348,7 +363,7 @@
         });
 
         $('#phoneNumber, #street, #humancheck-1').keyup(function(){
-            if($('#phoneNumber').val() != '' && $('#street').val() != '' && $('#humancheck-1').is(':checked'))
+            if(phoneStatus == 1 && $('#phoneNumber').val() != '' && $('#street').val() != '' && $('#humancheck-1').is(':checked'))
             {
                 $('#btn').prop('disabled', false);
             }
@@ -356,7 +371,25 @@
                 $('#btn').prop('disabled', true);
             }
         });
+
+        $('#btn').keypress(function (e) {
+            if(e.which() == 13){
+                $('#btn').click();
+            }
+        });
+
     });
+    
+    function validatePhone(phone) {
+        var filter = /^[0-9-+]+$/;
+        if(filter.test(phone))
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
     function sendOrder() {
         marker.setAnimation(null);
@@ -395,7 +428,6 @@
             }
         );
     }
-
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqq4Qc-3Ysc7yy9miNKpcUzEw_IwDj0dw&libraries=places&callback=initMap"

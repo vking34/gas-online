@@ -18,7 +18,7 @@
     <!--login-->
     <servlet>
         <servlet-name>login</servlet-name>
-        <servlet-class>webapp.login</servlet-class>
+        <servlet-class>webapp.signin_signup.login</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -30,7 +30,7 @@
     <!--signup-->
     <servlet>
         <servlet-name>signup</servlet-name>
-        <servlet-class>webapp.signup</servlet-class>
+        <servlet-class>webapp.signin_signup.signup</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -64,7 +64,7 @@
     
     <servlet>
         <servlet-name>orderForm</servlet-name>
-        <servlet-class>webapp.order</servlet-class>
+        <servlet-class>webapp.order.order</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>orderForm</servlet-name>
@@ -75,7 +75,7 @@
     
     <servlet>
         <servlet-name>successfulOrder</servlet-name>
-        <servlet-class>webapp.successfulOrder</servlet-class>
+        <servlet-class>webapp.order.successfulOrder</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>successfulOrder</servlet-name>
@@ -109,7 +109,7 @@
 
     <servlet>
         <servlet-name>logout</servlet-name>
-        <servlet-class>webapp.logout</servlet-class>
+        <servlet-class>webapp.signin_signup.logout</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -121,7 +121,7 @@
     
     <servlet>
         <servlet-name>History</servlet-name>
-        <servlet-class>webapp.orderHistory</servlet-class>
+        <servlet-class>webapp.order.orderHistory</servlet-class>
     </servlet>
     
     <servlet-mapping>
@@ -132,7 +132,7 @@
     <!--profile-->
     <servlet>
         <servlet-name>profile</servlet-name>
-        <servlet-class>webapp.profile</servlet-class>
+        <servlet-class>webapp.signin_signup.profile</servlet-class>
     </servlet>
     
     <servlet-mapping>

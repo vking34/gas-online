@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
 
     <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
-    <script src="js/userObj.js"></script>
+    <!--<script src="js/userObj.js"></script>-->
 </head>
 <body>
 
@@ -49,28 +49,156 @@
                 </div>
                 <br />
                 <input class="form-control" id="username" name="username" placeholder="Username" type="text" />
-                <small id="usernameError" style="text-align: left; color: red" ></small>
+                <span id="usernameStatus"></span>
                 <br />
 
                 <input class="form-control" id="password" name="password" placeholder="Password" type="password" />
                 <br />
                 <input class="form-control" id="password1" name="password1" placeholder="Re-enter password" type="password" />
+                <span id="passwordStatus"></span>
                 <br />
 
                 <input class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone number" type="text" />
-                <small id="phoneNumberError" style="text-align: left; color: red"></small>
+                <span id="phoneStatus"></span>
                 <br />
 
                 <input class="form-control" id="email" name="email" placeholder="Your Email" type="email" />
-                <small id="emailError" style="text-align: left; color: red"></small>
+                <span id="emailStatus"></span>
                 <br />
                 <br />
-                <button class="btn btn-lg btn-primary btn-block" type="button" onclick="sendObj()">
+                <button id="btn" class="btn btn-lg btn-primary btn-block" type="button" onclick="sendObj()">
                     Sign up</button>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+
+    var phoneStatus = false;
+    var emailStatus = false;
+    var passwordStatus = false;
+    $('#btn').prop('disabled', true);
+    var passStatus = $('#passwordStatus');
+    $(document).ready(function () {
+
+        $('#username').blur(function (e) {
+            var u = $('#usernameStatus');
+            if($('#username').val() === ''){
+                u.html('Invalid');
+                u.css('color', 'red');
+            }
+            else {
+                u.html('');
+            }
+        });
+
+        $('#phoneNumber').blur(function (e) {
+            var phone = $('#phoneStatus');
+            if(validatePhone($('#phoneNumber').val())){
+                phone.html('');
+                phoneStatus = true;
+            }
+            else {
+
+                phone.html('Invalid');
+                phone.css('color', 'red');
+                phoneStatus = false;
+            }
+        });
+
+        $('#email').blur(function (e) {
+            var email = $('#emailStatus');
+            if(validateEmail($('#email').val())){
+                emailStatus = true;
+                email.html('');
+            }
+            else {
+                email.html('Invalid');
+                email.css('color', 'red');
+                emailStatus = false;
+            }
+        });
+
+        $('#password1, #password').blur(function (e) {
+            if($('#password').val() != $('#password1').val() || $('#password').val() === ''){
+                passStatus.html('Does not match');
+                passStatus.css('color', 'red');
+                passwordStatus = false;
+            }
+        });
+
+        $('#firstName, #lastName, #username, #password, #password1, #phoneNumber, #email').keyup(function () {
+
+            if($('#password').val() == $('#password1').val() && $('#password1').val())
+            {
+                passStatus.html('');
+                passwordStatus = true;
+            }
+
+            if($('#firstName').val() && $('#lastName').val() && $('#username').val() && $('#password').val() && passwordStatus && phoneStatus && emailStatus){
+                $('#btn').prop('disabled', false);
+            }
+            else {
+                $('#btn').prop('disabled', true);
+            }
+        });
+    });
+
+    function validatePhone(phone) {
+        var filter = /^[0-9-+]+$/;
+        return filter.test(phone);
+    }
+
+    function validateEmail(email) {
+        var filer = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return filer.test(email);
+    }
+
+    function sendObj() {
+
+        // get inputs
+
+        var user = new Object();
+
+        user.firstName = $('#firstName').val();
+        user.lastName = $('#lastName').val();
+        user.username = $('#username').val();
+        user.password = $('#password').val();
+        user.password1 = $('#password1').val();
+        user.phoneNumber = $('#phoneNumber').val();
+        user.email = $('#email').val();
+
+        var $error = $('#error');
+
+        $.ajax(
+            {
+                url: 'signup',
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(user),
+                contentType: 'application/json; charset=UTF-8',
+                success: function (message) {
+
+                    if(message.status)
+                    {
+                        window.location.href = message.url;
+                    }
+                    else {
+                        var $usernameError = $("#usernameError");
+                        var $phoneNumberError = $("#phoneNumberError");
+                        var $emailError = $("#emailError");
+
+                        $usernameError.append('<li>'+ message.usernameError + '</li>');
+                        $phoneNumberError.append('<li>' + message.phoneNumberError + '</li>');
+                        $emailError.append('<li>' + message.emailError + '</li>');
+                    }
+                }
+            }
+        );
+    }
+
+</script>
 
 </body>
 </html>

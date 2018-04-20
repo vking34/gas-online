@@ -35,11 +35,8 @@ function sendObj() {
                     $usernameError.append('<li>'+ message.usernameError + '</li>');
                     $phoneNumberError.append('<li>' + message.phoneNumberError + '</li>');
                     $emailError.append('<li>' + message.emailError + '</li>');
-
                 }
             }
         }
     );
-
-    return false;
 }

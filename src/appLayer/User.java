@@ -16,6 +16,11 @@ public class User {
     private String phoneNumber;
     private String email;
 
+    public User(String name, String pass){
+        this.username = name;
+        this.password = pass;
+    }
+
     public boolean isValidUserCredentials()
     {
         user_db user_object = new user_db();

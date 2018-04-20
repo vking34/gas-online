@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <title>Login</title>
@@ -57,8 +58,10 @@
                                             <input class="form-control" placeholder="Password" name="password" id="password" type="password" value="">
                                         </div>
                                     </div>
+                                    <span id="wrong"></span>
+                                    <br />
                                     <div class="form-group">
-                                        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in">
+                                        <button id="btn" type="button" onclick="sendUser()" class="btn btn-lg btn-primary btn-block">Sign in</button>
                                     </div>
                                 </div>
                             </div>
@@ -66,12 +69,55 @@
                     </form>
                 </div>
                 <div class="panel-footer ">
-                    Don't have an account! <a href="/signup" onClick=""> Sign Up Here </a>
+                    Don't have an account! <a href="/signup"> Sign Up Here </a><br />
+                    Have one but <a href="/forgetPassword"> forget password</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
 
+    function sendUser() {
+        var user = new Object();
+        user.username  = $('#username').val();
+        user.password = $('#password').val();
+
+        $.ajax(
+            {
+                url: '/login',
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(user),
+                contentType: 'application/json; charset=UTF-8',
+                success: function (message) {
+                    if(message.status)
+                    {
+                        window.location.href = message.url;
+                    }
+                    else {
+                        var wrong = $('#wrong');
+                        wrong.html('Username or Password was wrong');
+                        wrong.css('color', 'red');
+                    }
+                }
+            }
+        );
+    }
+
+    $(document).ready(function () {
+
+        $('#username, #password').keyup(function () {
+            if( $('#username').val() && $('#password').val() ){
+                $('#btn').prop('disabled', false);
+            }
+            else {
+                $('#btn').prop('disabled', true);
+            }
+        });
+
+    });
+
+</script>
 </body>
 </html>
