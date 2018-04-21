@@ -62,7 +62,7 @@ public class orderHistory extends HttpServlet {
                 System.out.println("name: "+ cookie.getName() + " value: "+ cookie.getValue());
                 if (cookie.getName().equals("username") && cookie.getValue() != null)
                 {
-                    request.getRequestDispatcher("/orderHistory.html").forward(request, response);
+                    request.getRequestDispatcher("/orderSites/orderHistory.html").forward(request, response);
                     return;
                 }
             }
@@ -75,5 +75,4 @@ public class orderHistory extends HttpServlet {
             response.sendRedirect("/login");
         }
     }
-
 }

@@ -19,6 +19,7 @@ import org.json.JSONObject;
 @WebServlet(name = "orderForm")
 public class order extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         System.out.println("Just received POST request from 'Order Form'...");
@@ -74,6 +75,6 @@ public class order extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/orderForm.html").forward(request,response);
+        request.getRequestDispatcher("/orderSites/orderForm.html").forward(request,response);
     }
 }

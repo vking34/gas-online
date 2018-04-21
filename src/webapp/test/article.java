@@ -1,4 +1,4 @@
-package webapp;
+package webapp.test;
 
 import appLayer.Article;
 

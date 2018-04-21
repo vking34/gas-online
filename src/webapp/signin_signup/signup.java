@@ -22,8 +22,6 @@ public class signup extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
         System.out.println("Just received POST request from 'Sign Up'...");
 
         BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
@@ -33,6 +31,7 @@ public class signup extends HttpServlet {
             System.out.println(json);
         }
         br.close();
+
         Gson gson = new Gson();
         User user = gson.fromJson(json, User.class);
 
@@ -74,6 +73,6 @@ public class signup extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/signup.html").forward(request, response);
+        request.getRequestDispatcher("/userSites/signup.html").forward(request, response);
     }
 }

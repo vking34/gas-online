@@ -1,4 +1,4 @@
-package webapp;
+package webapp.test;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

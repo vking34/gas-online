@@ -42,7 +42,7 @@
     <!--greeting-->
     <servlet>
         <servlet-name>greeting</servlet-name>
-        <servlet-class>webapp.greeting</servlet-class>
+        <servlet-class>webapp.test.greeting</servlet-class>
     </servlet>
     
     <servlet-mapping>
@@ -53,7 +53,7 @@
     <!--article-->
     <servlet>
         <servlet-name>article</servlet-name>
-        <servlet-class>webapp.article</servlet-class>
+        <servlet-class>webapp.test.article</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>article</servlet-name>
@@ -86,7 +86,7 @@
 
     <servlet>
         <servlet-name>maps</servlet-name>
-        <servlet-class>webapp.maps</servlet-class>
+        <servlet-class>webapp.test.maps</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>maps</servlet-name>
@@ -94,10 +94,9 @@
     </servlet-mapping>
 
     <!--welcome-->
-
     <servlet>
         <servlet-name>welcome</servlet-name>
-        <servlet-class>webapp.welcome</servlet-class>
+        <servlet-class>webapp.test.welcome</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -106,7 +105,6 @@
     </servlet-mapping>
 
     <!--logout-->
-
     <servlet>
         <servlet-name>logout</servlet-name>
         <servlet-class>webapp.signin_signup.logout</servlet-class>
@@ -118,7 +116,6 @@
     </servlet-mapping>
     
     <!--orderHistory-->
-    
     <servlet>
         <servlet-name>History</servlet-name>
         <servlet-class>webapp.order.orderHistory</servlet-class>
@@ -139,4 +136,15 @@
         <servlet-name>profile</servlet-name>
         <url-pattern>/profile</url-pattern>
     </servlet-mapping>
+
+    <!--change password-->
+    <servlet>
+        <servlet-name>changePassword</servlet-name>
+        <servlet-class>webapp.signin_signup.changePass</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>changePassword</servlet-name>
+        <url-pattern>/changePassword</url-pattern>
+    </servlet-mapping>
+
 </web-app>

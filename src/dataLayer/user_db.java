@@ -17,10 +17,8 @@ public class user_db {
     static final String driver = "com.mysql.jdbc.Driver";
     private String username;
 
-    public user_db()
-    {
+    public user_db(){}
 
-    }
     public user_db(String name)
     {
         this.username = name;
@@ -268,6 +266,50 @@ public class user_db {
             e.printStackTrace();
         }
 
+        return null;
+    }
+
+    public String getInfo(){
+
+        // step 1: Set parameters
+        Connection connection = null;
+        Statement statement = null;
+        String sql = "";
+
+        try {
+            // step 2: register JDBC driver
+            Class.forName(driver);
+
+            // step 3: open a connection
+            System.out.println("Connecting to database...");
+            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            // step 4: execute a query
+            System.out.println("Creating statement...");
+            statement = connection.createStatement();
+
+            sql = "SELECT concat(ucase(left(firstName, 1)),substr(firstName, 2), ' ', ucase(left(lastName, 1)),substr(lastName, 2)) as name, phoneNumber, email, point FROM user WHERE username = '" + this.username + "';";
+
+            System.out.println(sql);
+            ResultSet rs = statement.executeQuery(sql);
+
+            JsonObject info = new JsonObject();
+            if (rs.next()){
+                info.addProperty("name", rs.getString("name"));
+                info.addProperty("phoneNumber", rs.getString("phoneNumber"));
+                info.addProperty("email", rs.getString("email"));
+                info.addProperty("point", rs.getString("point"));
+                info.addProperty("status", true);
+            }
+            else {
+                info.addProperty("status", false);
+            }
+            return info.toString();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         return null;
     }
 }

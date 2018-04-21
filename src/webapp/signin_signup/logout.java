@@ -22,16 +22,5 @@ public class logout extends HttpServlet {
         ck.setMaxAge(0);
         response.addCookie(ck);
         response.sendRedirect("/");
-
-//        Cookie ck[] = request.getCookies();
-//
-//        if(ck!=null)
-//        {
-//            ck[0].setMaxAge(0);
-//            response.addCookie(ck[0]);
-//        }
-//
-//        response.sendRedirect("/");
-
     }
 }
