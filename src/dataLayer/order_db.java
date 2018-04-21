@@ -59,7 +59,6 @@ public class order_db {
             statement.close();
 
             return details.toString();
-
         }
         catch (Exception e)
         {

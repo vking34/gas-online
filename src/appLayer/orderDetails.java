@@ -9,11 +9,6 @@ public class orderDetails {
     private String address;
     private String regionCode;
 
-    orderDetails()
-    {
-
-    }
-
     public int getGasCode() {
         return gasCode;
     }

@@ -6,14 +6,10 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/j
-    s/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
-
-    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
-    <!--<script src="js/userObj.js"></script>-->
 </head>
 <body>
 
@@ -100,7 +96,6 @@
                 phoneStatus = true;
             }
             else {
-
                 phone.html('Invalid');
                 phone.css('color', 'red');
                 phoneStatus = false;
@@ -129,14 +124,13 @@
         });
 
         $('#firstName, #lastName, #username, #password, #password1, #phoneNumber, #email').keyup(function () {
-
             if($('#password').val() == $('#password1').val() && $('#password1').val())
             {
                 passStatus.html('');
                 passwordStatus = true;
             }
 
-            if($('#firstName').val() && $('#lastName').val() && $('#username').val() && $('#password').val() && passwordStatus && phoneStatus && emailStatus){
+            if($('#firstName').val() && $('#lastName').val() && $('#username').val() && validatePass($('#password').val(), $('#password1').val()) && validatePhone($('#phoneNumber').val()) && validateEmail($('#email').val())){
                 $('#btn').prop('disabled', false);
             }
             else {
@@ -144,6 +138,14 @@
             }
         });
     });
+
+    function validatePass(pass1, pass2) {
+        if(pass1 === pass2){
+            return true;
+        }else {
+            return false;
+        }
+    }
 
     function validatePhone(phone) {
         var filter = /^[0-9-+]+$/;
@@ -173,7 +175,7 @@
 
         $.ajax(
             {
-                url: 'signup',
+                url: '/signup',
                 type: 'POST',
                 dataType: 'json',
                 data: JSON.stringify(user),
@@ -185,13 +187,21 @@
                         window.location.href = message.url;
                     }
                     else {
-                        var $usernameError = $("#usernameError");
-                        var $phoneNumberError = $("#phoneNumberError");
-                        var $emailError = $("#emailError");
-
-                        $usernameError.append('<li>'+ message.usernameError + '</li>');
-                        $phoneNumberError.append('<li>' + message.phoneNumberError + '</li>');
-                        $emailError.append('<li>' + message.emailError + '</li>');
+                        if(message.errorCode == 1){
+                            var userStatus = $('#usernameStatus');
+                            userStatus.html('Username exists.');
+                            userStatus.css('color', 'red');
+                        }
+                        else if(message.errorCode == 2){
+                            var phone = $('#phoneStatus');
+                            phone.html('Phone Number exists.');
+                            phone.css('color', 'red');
+                        }
+                        else {
+                            var mailStatus = $('#emailStatus');
+                            mailStatus.html('Email exists');
+                            mailStatus.css('color', 'red');
+                        }
                     }
                 }
             }

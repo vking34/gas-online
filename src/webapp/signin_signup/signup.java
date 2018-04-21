@@ -1,6 +1,5 @@
 package webapp.signin_signup;
 
-import appLayer.Redirect;
 import appLayer.User;
 
 import javax.servlet.ServletException;
@@ -12,9 +11,8 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-
-import appLayer.registerError;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import org.json.JSONObject;
 
 
 @WebServlet(name = "signup")
@@ -35,62 +33,43 @@ public class signup extends HttpServlet {
             System.out.println(json);
         }
         br.close();
-        // 2. initiate jackson mapper
-        ObjectMapper mapper = new ObjectMapper();
+        Gson gson = new Gson();
+        User user = gson.fromJson(json, User.class);
 
-        User user = mapper.readValue(json, User.class);
+        System.out.println(user.getUsername());
 
         int errorCode = user.isExistingUser(user.getUsername(), user.getPhoneNumber(), user.getEmail());
-        if( errorCode != 0)
-        {
-            registerError re = new registerError();
-            if(errorCode == 1)
-            {
-                re.setUsernameError(user.getUsername() + " exists!");
-                System.out.println("username error!!!");
-            }
-            else if(errorCode == 2)
-            {
-                re.setPhoneNumberError(user.getPhoneNumber() + " exists!");
-                System.out.println("phoneNumber error !!!");
-            }
-            else {
-                re.setEmailError(user.getEmail() + " exists!");
-                System.out.println("email error!!!");
-            }
+        System.out.println(errorCode);
+        try{
+            response.setContentType("application/json; chatset=UTF-8");
+            PrintWriter out = response.getWriter();
+            JSONObject mess = new JSONObject();
+            mess.put("status", false);
 
-            try {
-                response.setContentType("application/json");
-                PrintWriter out = response.getWriter();
-                out.println(re.toString());
-                out.close();
+            switch (errorCode) {
+                case 1:
+                    mess.put("errorCode", 1);   // usernameError
+                    break;
+                case 2:
+                    mess.put("errorCode", 2);   // phoneNumberError
+                    break;
+                case 3:
+                    mess.put("errorCode", 3);   // emailError
+                    break;
+                default:                        // errorCode = 0
+                    mess.put("status", true);
+                    mess.put("url", "/welcome");
             }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+            String outJson = mess.toString();
+            out.print(outJson);
+            out.close();
         }
-        else {
-
+        catch (Exception e){
+         e.printStackTrace();
+        }
+        if(errorCode == 0){
             user.insertDB();
-            System.out.println("inserted.");
-            Redirect r = new Redirect();
-            r.setUrl("/welcome");
-            r.setStatus(true);
-            System.out.println(r.toString());
-
-            try{
-                response.setContentType("application/json");
-                PrintWriter out = response.getWriter();
-                out.print(r.toString());
-                out.close();
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
         }
-
     }
 
     @Override

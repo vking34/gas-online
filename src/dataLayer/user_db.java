@@ -122,7 +122,7 @@ public class user_db {
             System.out.println("Creating statement...");
             statement = connection.createStatement();
 
-            sql = "SELECT * FROM user WHERE username =\"" + username + "\";";
+            sql = "SELECT * FROM user WHERE username ='" + username + "';";
 
             System.out.println(sql);
 
@@ -132,25 +132,25 @@ public class user_db {
 
             if(rs.next())
             {
-                isExistingUser = 1;
+                isExistingUser = 1;     // usernameError
             }
             else {
-                sql = "SELECT * FROM user WHERE phoneNumber =\"" + phoneNumber + "\";";
+                sql = "SELECT * FROM user WHERE phoneNumber ='" + phoneNumber + "';";
                 System.out.println(sql);
 
                 rs = statement.executeQuery(sql);
                 if(rs.next())
                 {
-                    isExistingUser = 2;
+                    isExistingUser = 2; // phoneNumberError
                 }
                 else {
-                    sql = "SELECT * FROM user WHERE email =\"" + email + "\";";
+                    sql = "SELECT * FROM user WHERE email ='" + email + "';";
                     System.out.println(sql);
 
                     rs = statement.executeQuery(sql);
                     if(rs.next())
                     {
-                        isExistingUser = 3;
+                        isExistingUser = 3; // emailError
                     }
                 }
             }
