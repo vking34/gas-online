@@ -144,7 +144,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>changePassword</servlet-name>
-        <url-pattern>/changePassword</url-pattern>
+        <url-pattern>/profile/changePassword</url-pattern>
     </servlet-mapping>
 
 </web-app>

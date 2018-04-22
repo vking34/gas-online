@@ -41,6 +41,12 @@ public class User {
         return true;
     }
 
+    public boolean changePassword(String newPass)
+    {
+        user_db u = new user_db();
+        return u.changePass(this.username, newPass);
+    }
+
     public String getFirstName() {
         return firstName;
     }

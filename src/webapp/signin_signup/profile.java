@@ -71,4 +71,7 @@ public class profile extends HttpServlet {
             response.sendRedirect("/login");
         }
     }
+
+
+
 }

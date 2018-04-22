@@ -40,10 +40,7 @@ public class order_db {
 
             sql = "INSERT INTO gas_order(warehouse, gasCode, phoneNumber, date, address, status) SELECT w.houseCode, " + order.getInt("gasCode") +", '" + order.getString("phoneNumber") +"', '2018-04-17', '" + order.getString("address") +  "', 'A' FROM warehouse w, region r WHERE w.regionCode = r.code AND r.ward ='" + order.getString("ward") + "';";
             System.out.println(sql);
-
             statement.executeUpdate(sql);
-
-            //step 5: close connections
             System.out.println("Order was inserted.");
 
             sql = "SELECT c.name as cylinder, concat(r.ward, ' ward, ', r.district, ' district') as region FROM gas_cylinder c, region r WHERE c.code = " + order.getInt("gasCode") + " AND r.ward = '" + order.getString("ward") +"';";
@@ -55,6 +52,8 @@ public class order_db {
             details.addProperty("address", order.getString("address") + ", " + rs.getString("region"));
             details.addProperty("phoneNumber", order.getString("phoneNumber"));
             details.addProperty("status", true);
+
+            //step 5: close connections
             connection.close();
             statement.close();
 
@@ -64,8 +63,6 @@ public class order_db {
         {
             e.printStackTrace();
         }
-
-
         return null;
     }
 
