@@ -1,4 +1,4 @@
-package webapp.signin_signup;
+package webapp.user;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

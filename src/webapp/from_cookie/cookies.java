@@ -8,7 +8,6 @@ public class cookies extends HttpServlet {
 
     public String get_username(HttpServletRequest request){
         try {
-
             Cookie[] cookies = request.getCookies();
             Cookie cookie = null;
 

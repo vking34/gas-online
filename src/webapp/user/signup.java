@@ -1,4 +1,4 @@
-package webapp.signin_signup;
+package webapp.user;
 
 import appLayer.User;
 
@@ -26,10 +26,9 @@ public class signup extends HttpServlet {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
         String json = "";
-        if(br != null){
-            json = br.readLine();
-            System.out.println(json);
-        }
+
+        json = br.readLine();
+        System.out.println(json);
         br.close();
 
         Gson gson = new Gson();

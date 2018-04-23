@@ -1,4 +1,4 @@
-package webapp.signin_signup;
+package webapp.user;
 
 import appLayer.User;
 import org.json.JSONObject;
@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.*;
 
 @WebServlet(name = "login")
 public class login extends HttpServlet {

@@ -16,35 +16,11 @@ public class User {
     private String phoneNumber;
     private String email;
 
+    public User(){}
+
     public User(String name, String pass){
         this.username = name;
         this.password = pass;
-    }
-
-    public boolean isValidUserCredentials()
-    {
-        user_db user_object = new user_db();
-
-        return user_object.isValidUserLogin(this.username, this.password);
-    }
-
-    public int isExistingUser(String username, String phoneNumber, String email)
-    {
-        user_db u = new user_db();
-        return u.isExistingUser(username, phoneNumber, email);
-    }
-
-    public boolean insertDB()
-    {
-        user_db u = new user_db();
-        u.insert(username, password, phoneNumber, email, firstName, lastName);
-        return true;
-    }
-
-    public boolean changePassword(String newPass)
-    {
-        user_db u = new user_db();
-        return u.changePass(this.username, newPass);
     }
 
     public String getFirstName() {
@@ -113,5 +89,36 @@ public class User {
                 "\", password1=\"" + password1 +
                 "\", phoneNumber=\"" + phoneNumber +
                 "\", email=\"" + email + "\"}";
+    }
+
+    public boolean isValidUserCredentials()
+    {
+        user_db user_object = new user_db();
+
+        return user_object.isValidUserLogin(this.username, this.password);
+    }
+
+    public int isExistingUser(String username, String phoneNumber, String email)
+    {
+        user_db u = new user_db();
+        return u.isExistingUser(username, phoneNumber, email);
+    }
+
+    public boolean insertDB()
+    {
+        user_db u = new user_db();
+        u.insert(username, password, phoneNumber, email, firstName, lastName);
+        return true;
+    }
+
+    public boolean changePassword(String newPass)
+    {
+        user_db u = new user_db();
+        return u.changePass(this.username, newPass);
+    }
+
+    public boolean changePhone(String newPhoneNumber){
+        user_db u = new user_db();
+        return u.changePhone(username, newPhoneNumber);
     }
 }

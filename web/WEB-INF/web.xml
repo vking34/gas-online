@@ -18,7 +18,7 @@
     <!--login-->
     <servlet>
         <servlet-name>login</servlet-name>
-        <servlet-class>webapp.signin_signup.login</servlet-class>
+        <servlet-class>webapp.user.login</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -30,7 +30,7 @@
     <!--signup-->
     <servlet>
         <servlet-name>signup</servlet-name>
-        <servlet-class>webapp.signin_signup.signup</servlet-class>
+        <servlet-class>webapp.user.signup</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -107,7 +107,7 @@
     <!--logout-->
     <servlet>
         <servlet-name>logout</servlet-name>
-        <servlet-class>webapp.signin_signup.logout</servlet-class>
+        <servlet-class>webapp.user.logout</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -129,7 +129,7 @@
     <!--profile-->
     <servlet>
         <servlet-name>profile</servlet-name>
-        <servlet-class>webapp.signin_signup.profile</servlet-class>
+        <servlet-class>webapp.user.profile</servlet-class>
     </servlet>
     
     <servlet-mapping>
@@ -140,11 +140,22 @@
     <!--change password-->
     <servlet>
         <servlet-name>changePassword</servlet-name>
-        <servlet-class>webapp.signin_signup.changePass</servlet-class>
+        <servlet-class>webapp.user.changePass</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>changePassword</servlet-name>
         <url-pattern>/profile/changePassword</url-pattern>
+    </servlet-mapping>
+    
+    <!--change Phone Number-->
+    <servlet>
+        <servlet-name>changePhoneNumber</servlet-name>
+        <servlet-class>webapp.user.changePhoneNumber</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>changePhoneNumber</servlet-name>
+        <url-pattern>/profile/changePhoneNumber</url-pattern>
     </servlet-mapping>
 
     <!--Products-->
@@ -179,5 +190,6 @@
         <servlet-name>abouts</servlet-name>
         <url-pattern>/abouts</url-pattern>
     </servlet-mapping>
+    
 
 </web-app>

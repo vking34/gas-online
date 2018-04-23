@@ -3,11 +3,10 @@ import appLayer.orderDetails;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.json.JSONObject;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class order_db {
 
@@ -25,6 +24,9 @@ public class order_db {
         Connection connection = null;
         Statement statement = null;
         String sql = "";
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = dateFormat.format(date);
 
         try{
             // step 2: register JDBC driver
@@ -38,7 +40,7 @@ public class order_db {
             System.out.println("Creating statement...");
             statement = connection.createStatement();
 
-            sql = "INSERT INTO gas_order(warehouse, gasCode, phoneNumber, date, address, status) SELECT w.houseCode, " + order.getInt("gasCode") +", '" + order.getString("phoneNumber") +"', '2018-04-17', '" + order.getString("address") +  "', 'A' FROM warehouse w, region r WHERE w.regionCode = r.code AND r.ward ='" + order.getString("ward") + "';";
+            sql = "INSERT INTO gas_order(warehouse, gasCode, phoneNumber, date, address, status) SELECT w.houseCode, " + order.getInt("gasCode") +", '" + order.getString("phoneNumber") +"', '"+ dateString + "', '" + order.getString("address") +  "', 'A' FROM warehouse w, region r WHERE w.regionCode = r.code AND r.ward ='" + order.getString("ward") + "';";
             System.out.println(sql);
             statement.executeUpdate(sql);
             System.out.println("Order was inserted.");

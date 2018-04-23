@@ -346,4 +346,37 @@ public class user_db {
         }
         return false;
     }
+
+    public boolean changePhone(String username, String newPhoneNumber){
+        // step 1: Set parameters
+        Connection connection = null;
+        Statement statement = null;
+        String sql = "";
+
+        try {
+            // step 2: register JDBC driver
+            Class.forName(driver);
+
+            // step 3: open a connection
+            System.out.println("Connecting to database...");
+            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            // step 4: execute a query
+            System.out.println("Creating statement...");
+            statement = connection.createStatement();
+
+            sql = "UPDATE user SET phoneNumber = '" + newPhoneNumber + "' WHERE username = '"+ username + "';";
+            System.out.println(sql);
+            statement.executeUpdate(sql);
+
+            //step 5: close connections
+            connection.close();
+            statement.close();
+            return true;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
