@@ -147,4 +147,37 @@
         <url-pattern>/profile/changePassword</url-pattern>
     </servlet-mapping>
 
+    <!--Products-->
+    <servlet>
+        <servlet-name>products</servlet-name>
+        <servlet-class>products.products_view</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>products</servlet-name>
+        <url-pattern>/products</url-pattern>
+    </servlet-mapping>
+
+    <!--tips-->
+    <servlet>
+        <servlet-name>tips</servlet-name>
+        <servlet-class>tips.tips</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>tips</servlet-name>
+        <url-pattern>/tips</url-pattern>
+    </servlet-mapping>
+
+    <!--about-->
+    <servlet>
+        <servlet-name>abouts</servlet-name>
+        <servlet-class>others.abouts</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>abouts</servlet-name>
+        <url-pattern>/abouts</url-pattern>
+    </servlet-mapping>
+
 </web-app>
