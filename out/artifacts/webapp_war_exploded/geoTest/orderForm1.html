@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Order Form</title>
+    <link rel="shortcut icon" type="image/png" href="/icon/flame.png">
+    <link rel="stylesheet" href="css/home.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/app.css">
+
+
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <a class="navbar-brand" href="/">Gas Order</a>
+
+        <!--userTab-->
+        <div class="container" id="userTab">
+            <div class="dropdown" style="float: right;margin-top: 8px;">
+                <button id="userBtn" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="/profile">My account</a></li>
+                    <li><a href="/orderHistory">My order history</a></li>
+                    <li><a href="/logout">Log out</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--end userTab  -->
+
+        <!--login & sign up-->
+        <div id="logSign" class="form-inline ml-auto" style="float: right;margin-top: 8px;">
+            <a href="/login" class="btn btn-outline-secondary" style="color: white;">Sign in</a>
+            <a href="/signup" class="btn btn-primary ml-2">Sign up</a>
+        </div>
+        <!--end logSign-->
+    </div>
+</nav>
+
+<script type="text/javascript">
+    $(function () {
+        var name = $.cookie('username');
+        if(name)
+        {
+            $('#userBtn').text(name);
+            $('#logSign').hide();
+            $('#userTab').show();
+        }
+        else {
+            $('#logSign').show();
+            $('#userTab').hide();
+        }
+    });
+
+</script>
+
+<br><br><br>
+<div class="container">
+    <div class="row" id="input">
+        <div class="span8">
+            <form action="/orderForm" method="post" class="form-horizontal" id="orderForm" accept-charset="utf-8">
+
+                <div class="control-group">
+                    <label for="gasCode" class="control-label">
+                        Gas cylinder:
+                    </label>
+                    <div class="controls">
+                        <!--<input name="ward" type="text" value="" id="ward">-->
+                        <select name="gasCode" id="gasCode">
+                            <option value=100000>12 Kg Petrolimex Cylinder (325.000 VND)</option>
+                            <option value=100100>2 Kg Petrolimex Cylinder (70.000VND)</option>
+                            <option value="100200">48 Kg Petrolimex Cylinder (1.150.000 VND)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="phoneNumber" class="control-label">
+                        Phone Number
+                    </label>
+                    <div class="controls">
+                        <input name="phoneNumber" type="text" value="" id="phoneNumber">
+                        <span class="help-inline"> *We will call you right after you sumbit to confirm the address.</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="address" class="control-label">
+                        Street Address
+                    </label>
+                    <div class="controls"><input name="address" placeholder="254D Bach Mai" type="text" value="" id="address"><span class="help-inline"> The delivery address </span>
+                    </div>
+                </div>
+
+                <!--<div class="control-group">-->
+                <!--<label for="district" class="control-label">-->
+                <!--District-->
+                <!--</label>-->
+                <!--<div class="controls">-->
+                <!--<select name="district" id="district">-->
+                <!--<option value=""></option>-->
+                <!--<option value="HBT">Hai Ba Trung</option>-->
+                <!--<option value="DD">Dong Da</option>-->
+                <!--<option value="BD">Ba Dinh</option>-->
+                <!--<option value="HK">Hoan Kiem</option>-->
+                <!--<span class="help-inline"> Default: Set address to be your current position.</span>-->
+                <!--</select>-->
+
+                <!--</div>-->
+                <!--</div>-->
+
+                <div class="control-group">
+                    <label for="ward" class="control-label">
+                        Ward
+                    </label>
+                    <div class="controls">
+                        <!--<input name="ward" type="text" value="" id="ward">-->
+                        <select name="ward" id="ward">
+                            <option value=""></option>
+                            <option value="BHT_BM">Bach Mai</option>
+                            <option value="BHT_BK">Bach Khoa</option>
+                            <option value="BHT_PH">Pho Hue</option>
+                            <option value="BHT_DT">Dong Tam</option>
+                            <option value="DD_PM">Phuong Mai</option>
+                            <option value="DD_OCD">O Cho Dua</option>
+                        </select>
+                    </div>
+                </div>
+
+                <br>
+                <div class="control-group">
+                    <label class="control-label" for="humancheck">Humanity Check:</label>
+                    <div class="controls">
+                        <label class="radio inline" for="humancheck-0">
+                            <input type="radio" name="humancheck" id="humancheck-0" value="robot" checked="checked">I'm a Robot (not be able to order)</label>
+                        <label class="radio inline" for="humancheck-1">
+                            <input type="radio" name="humancheck" id="humancheck-1" value="human">I'm Human</label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-large btn-primary" onclick="sendOrder()">Order now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="confirmed">
+        <h3>You have just ordered:</h3>
+        <h4>Gas Cylinder:</h4>
+        <p id="gasCylinder"></p>
+        <h4>Address:</h4>
+        <p id="street"></p>
+        <h4>We'll call back <textarea id="phone"></textarea> to confirm.</h4>
+        <h4>Thank for your trusted consumption.</h4>
+    </div>
+
+</div>
+
+
+<script>
+    $('#input').show();
+    $('#confirmed').hide();
+
+    function sendOrder() {
+
+        //get inputs
+
+        var order = new Object();
+
+        order.gasCode = $('#gasCode').val();
+        order.phoneNumber = $('#phoneNumber').val();
+        order.address = $('#address').val();
+        order.regionCode = $('#ward').val();
+        // order.district = $('#district').val();
+
+        $.ajax(
+            {
+                url : '/orderForm',
+                type : 'POST',
+                dataType: 'json',
+                data: JSON.stringify(order),
+                contentType: 'application/json; charset=UTF-8',
+                success: function (message) {
+
+                    if(message.status)
+                    {
+                        $('#input').hide();
+                        $('#confirmed').show();
+                        console.log(message.cylinder);
+                        $('#gasCylinder').text(message.cylinder);
+                        console.log(message.address);
+                        $('#street').text(message.address);
+                        console.log(message.phoneNumber);
+                        $('#phone').text(message.phoneNumber);
+                    }
+                    else
+                    {
+                        alert("Invalid input !!!")
+                    }
+                }
+            }
+        );
+    }
+</script>
+
+</body>
+</html>

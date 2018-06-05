@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Form</title>
+    <link rel="shortcut icon" type="image/png" href="/icon/flame.png">
+    <link rel="stylesheet" href="../css/home.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <!--<script src="js/popper.min.js"></script>-->
+
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <a class="navbar-brand" href="/">Gas Order</a>
+
+        <!--userTab-->
+        <div class="container" id="userTab">
+            <div class="
+            dropdown" style="float: right;margin-top: 8px;">
+                <button id="userBtn" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="/profile">My account</a></li>
+                    <li><a href="/orderHistory">My order history</a></li>
+                    <li><a href="/logout">Log out</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--end userTab  -->
+
+        <!--login & sign up-->
+        <div id="logSign" class="form-inline ml-auto" style="float: right;margin-top: 8px;">
+            <a href="/login" class="btn btn-outline-secondary" style="color: white;">Sign in</a>
+            <a href="/signup" class="btn btn-primary ml-2">Sign up</a>
+        </div>
+        <!--end logSign-->
+    </div>
+    </div>
+</nav>
+
+<script type="text/javascript">
+    $(function () {
+        var name = $.cookie('username');
+        if(name)
+        {
+            $('#userBtn').text(name);
+            $('#logSign').hide();
+            $('#userTab').show();
+        }
+        else {
+            $('#logSign').show();
+            $('#userTab').hide();
+        }
+    })
+
+</script>
+
+<br><br><br>
+
+<h2>Thank you. Our honor to serve you.</h2>
+<h3>We'll call you to confirm the delivery address once again.</h3>
+
+</body>
+</html>

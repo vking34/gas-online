@@ -190,6 +190,9 @@ public class user_db {
 
             statement.executeUpdate(sql);
 
+            sql = "INSERT INTO address (userID) SELECT id FROM user WHERE username = '" + usename + "';";
+
+            System.out.println("inserted User");
             //step 5: close connection
 
             connection.close();
@@ -223,7 +226,7 @@ public class user_db {
             System.out.println("Creating statement...");
             statement = connection.createStatement();
 
-            sql = "SELECT o.date, o.billCode, concat(o.address, ', ', r.ward, ' ward, ', r.district, ' district') as address, c.brand, c.size, c.price, o.status FROM user u, gas_order o, gas_cylinder c, region r, warehouse w WHERE u.username = '"+ this.username +"' AND u.phoneNumber = o.phoneNumber AND o.warehouse = w.houseCode AND w.regionCode = r.code AND o.gasCode = c.code ORDER BY o.date DESC ;";
+            sql = "SELECT o.date, o.phoneNumber, concat(o.address, ', ', r.ward, ' ward, ', r.district, ' district') as address, c.brand, c.size, c.price, o.status FROM user u, gas_order o, gas_cylinder c, region r, warehouse w WHERE u.username = '"+ this.username +"' AND (u.id = o.userID OR u.phoneNumber = o.phoneNumber) AND o.warehouse = w.houseCode AND w.regionCode = r.code AND o.gasCode = c.code ORDER BY o.date ASC;";
             System.out.println(sql);
 
             // execute
@@ -235,7 +238,7 @@ public class user_db {
             {
                 JsonObject row = new JsonObject();
                 row.addProperty("date", rs.getString("date"));
-                row.addProperty("billCode", rs.getString("billCode"));
+                row.addProperty("phoneNumber", rs.getString("phoneNumber"));
                 row.addProperty("address", rs.getString("address"));
                 row.addProperty("brand", rs.getString("brand"));
                 row.addProperty("size", rs.getInt("size"));
@@ -295,11 +298,11 @@ public class user_db {
 
             JsonObject info = new JsonObject();
             if (rs.next()){
+                info.addProperty("status", true);
                 info.addProperty("name", rs.getString("name"));
                 info.addProperty("phoneNumber", rs.getString("phoneNumber"));
                 info.addProperty("email", rs.getString("email"));
-                info.addProperty("point", rs.getString("point"));
-                info.addProperty("status", true);
+                info.addProperty("point", rs.getInt("point"));
             }
             else {
                 info.addProperty("status", false);

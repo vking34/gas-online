@@ -1,4 +1,4 @@
-package webapp.test;
+package webapp.user;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,10 +10,10 @@ import java.io.IOException;
 @WebServlet(name = "welcome")
 public class welcome extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/welcome.html").forward(request, response);
+        request.getRequestDispatcher("/userSites/welcome.html").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/welcome.html").forward(request, response);
+        request.getRequestDispatcher("/userSites/welcome.html").forward(request, response);
     }
 }

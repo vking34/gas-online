@@ -14,11 +14,17 @@ import appLayer.orderDetails;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import dataLayer.order_db;
+import org.apache.commons.lang.StringUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
+import webapp.from_cookie.cookies;
 
 @WebServlet(name = "orderForm")
-public class order extends HttpServlet {
+public class order extends cookies {
+
     private static final long serialVersionUID = 1L;
+    private Boolean status = false;
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -47,10 +53,32 @@ public class order extends HttpServlet {
         System.out.println(ord.getString("address"));
         System.out.println(ord.getInt("gasCode"));
 
+        String username = null;
+        if(!StringUtils.containsIgnoreCase(request.getHeader("user-agent"), "Android"))
+        {
+            System.out.println("Getting username...");
+            username = super.get_username(request);
+        }
+        else {
+
+            try{
+                username = ord.getString("username");
+            }catch (JSONException e)
+            {
+                username = null;
+                e.printStackTrace();
+            }
+        }
 
         order_db orderDb = new order_db();
-
-        String outJson = orderDb.insertOrder(ord);
+        String outJson;
+        if(username != null )
+        {
+            outJson = orderDb.insertOrder(username, ord);
+        }
+        else {
+            outJson = orderDb.insertOrder(ord);
+        }
 
         System.out.println(outJson);
 
@@ -60,10 +88,12 @@ public class order extends HttpServlet {
 
             if (outJson != null) {
                 out.print(outJson);
-                out.close();
+                System.out.println(outJson);
+                status = true;
             }
             else {
                 out.print("{ \"status\":false }");
+                System.out.println("status: false");
             }
             out.close();
         }
@@ -72,6 +102,10 @@ public class order extends HttpServlet {
             e.printStackTrace();
         }
 
+//        String username = super.get_username(request);
+        if(username != null && status){
+            orderDb.updateAddress(username, ord);
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,0 +1,16 @@
+{
+  "build": {
+    "type": "maven",
+    "goal": "package"
+  },
+  "deploy": {
+    "container": "TOMCAT8",
+    "war": [
+      {
+        "file": "out/webapp_war/webapp_war.war",
+        "context": "/",
+        "checkMe": "/ping"
+      }
+    ]
+  }
+}
