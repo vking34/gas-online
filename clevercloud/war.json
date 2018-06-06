@@ -4,8 +4,7 @@
     "war": [
       {
         "file": "out/artifacts/webapp_war/webapp_war.war",
-        "context": "/",
-        "checkMe": "/ping"
+        "context": "/"
       }
     ]
   }
