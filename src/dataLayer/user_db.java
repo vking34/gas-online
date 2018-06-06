@@ -9,14 +9,9 @@ import java.lang.*;
 
 public class user_db {
 
-//    // JDBC driver name and database URL
-//    static final String DB_URL = "jdbc:mysql://localhost:3306/gas_online";
-//
-//    static final String USER = "root";
-//    static final String PASS = "";
-//    static final String driver = "com.mysql.jdbc.Driver";
-
     private String username;
+
+    static Connection connection = db.getConnection();
 
     public user_db(){}
 
@@ -29,18 +24,19 @@ public class user_db {
     {
         // step 1: set the parameters
         boolean isValidUser = false;
-        Connection connection = null;
         Statement statement = null;
         String sql = "";
 
         try
         {
             // step 2: register JDBC driver
-            Class.forName(db.driver);
+//            Class.forName(db.driver);
+//
+//            // step 3: open a connection
+//            System.out.println("Connecting to database...");
+//            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
-            // step 3: open a connection
-            System.out.println("Connecting to database...");
-            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
+//            connection = db.getConnection();
 
             // step 4: execute a query
             System.out.println("Creating statement...");
@@ -60,7 +56,6 @@ public class user_db {
             // step 6: close
             rs.close();
             statement.close();
-            connection.close();
 
         }
         catch (SQLException se)
@@ -85,16 +80,6 @@ public class user_db {
             {
             }
 
-            try {
-                if(connection != null)
-                {
-                    connection.close();
-                }
-            }
-            catch (SQLException se3)
-            {
-                se3.printStackTrace();
-            }
         }
         System.out.println("Closing DB connection ...");
 
@@ -105,17 +90,19 @@ public class user_db {
     {
         // step 1: set parameters
         int isExistingUser = 0;
-        Connection connection = null;
+//        Connection connection = null;
         Statement statement = null;
         String sql = "";
 
         try{
-            // step 2: register JDBC driver
-            Class.forName(db.driver);
+//            // step 2: register JDBC driver
+//            Class.forName(db.driver);
+//
+//            // step 3: open a connection
+//            System.out.println("Connecting to database...");
+//            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
-            // step 3: open a connection
-            System.out.println("Connecting to database...");
-            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
+//            connection = db.getConnection();
 
             //step 4: execute a query
             System.out.println("Creating statement...");
@@ -156,7 +143,7 @@ public class user_db {
 
             //step 6: close connection
             rs.close();
-            connection.close();
+//            connection.close();
             statement.close();
         }
         catch (Exception e)
@@ -170,17 +157,19 @@ public class user_db {
     public boolean insert(String usename, String password, String phoneNumber, String email, String firstName, String lastName)
     {
 
-        Connection connection = null;
+//        Connection connection = null;
         Statement statement = null;
         String sql = "";
 
         try {
             // step 2: register JDBC driver
-            Class.forName(db.driver);
+//            Class.forName(db.driver);
+//
+//            // step 3: open a connection
+//            System.out.println("Connecting to database...");
+//            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
-            // step 3: open a connection
-            System.out.println("Connecting to database...");
-            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
+//            connection = db.getConnection();
 
             // step 4: execute a query
             System.out.println("Creating statement...");
@@ -196,7 +185,7 @@ public class user_db {
             System.out.println("inserted User");
             //step 5: close connection
 
-            connection.close();
+//            connection.close();
             statement.close();
 
         }
@@ -211,17 +200,19 @@ public class user_db {
     public String getOrderHistory()
     {
         // step 1: Set parameters
-        Connection connection = null;
+//        Connection connection = null;
         Statement statement = null;
         String sql = "";
 
         try{
             // step 2: register JDBC driver
-            Class.forName(db.driver);
+//            Class.forName(db.driver);
+//
+//            // step 3: open a connection
+//            System.out.println("Connecting to database...");
+//            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
-            // step 3: open a connection
-            System.out.println("Connecting to database...");
-            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
+//            connection = db.getConnection();
 
             //step 4: execute a query
             System.out.println("Creating statement...");
@@ -250,7 +241,7 @@ public class user_db {
 
             // step 5: close
             rs.close();
-            connection.close();
+//            connection.close();
             statement.close();
 
             String jsonString = data.toString();
@@ -276,17 +267,19 @@ public class user_db {
     public String getInfo(){
 
         // step 1: Set parameters
-        Connection connection = null;
+//        Connection connection = null;
         Statement statement = null;
         String sql = "";
 
         try {
             // step 2: register JDBC driver
-            Class.forName(db.driver);
+//            Class.forName(db.driver);
+//
+//            // step 3: open a connection
+//            System.out.println("Cj8vhyB73s6LdBGMuKjD1onnecting to database...");
+//            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
-            // step 3: open a connection
-            System.out.println("Connecting to database...");
-            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
+//            connection = db.getConnection();
 
             // step 4: execute a query
             System.out.println("Creating statement...");
@@ -319,17 +312,19 @@ public class user_db {
 
     public boolean changePass(String username, String newPass){
         // step 1: Set parameters
-        Connection connection = null;
+//        Connection connection = null;
         Statement statement = null;
         String sql = "";
 
         try {
             // step 2: register JDBC driver
-            Class.forName(db.driver);
+//            Class.forName(db.driver);
+//
+//            // step 3: open a connection
+//            System.out.println("Connecting to database...");
+//            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
-            // step 3: open a connection
-            System.out.println("Connecting to database...");
-            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
+//            connection = db.getConnection();
 
             // step 4: execute a query
             System.out.println("Creating statement...");
@@ -340,7 +335,7 @@ public class user_db {
             statement.executeUpdate(sql);
 
             //step 5: close connections
-            connection.close();
+//            connection.close();
             statement.close();
             return true;
         }
@@ -353,17 +348,19 @@ public class user_db {
 
     public boolean changePhone(String username, String newPhoneNumber){
         // step 1: Set parameters
-        Connection connection = null;
+//        Connection connection = null;
         Statement statement = null;
         String sql = "";
 
         try {
             // step 2: register JDBC driver
-            Class.forName(db.driver);
+//            Class.forName(db.driver);
+//
+//            // step 3: open a connection
+//            System.out.println("Connecting to database...");
+//            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
-            // step 3: open a connection
-            System.out.println("Connecting to database...");
-            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
+//            connection = db.getConnection();
 
             // step 4: execute a query
             System.out.println("Creating statement...");
@@ -374,7 +371,7 @@ public class user_db {
             statement.executeUpdate(sql);
 
             //step 5: close connections
-            connection.close();
+//            connection.close();
             statement.close();
             return true;
         }

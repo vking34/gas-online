@@ -10,18 +10,13 @@ import java.sql.*;
 
 public class order_db {
 
-    // JDBC driver name and database URL
-//    static final String DB_URL = "jdbc:mysql://localhost:3306/gas_online";
-//
-//    static final String USER = "root";
-//    static final String PASS = "";
-//    static final String driver = "com.mysql.jdbc.Driver";
+    static Connection connection = db.getConnection();
 
     public String insertOrder(JSONObject order)
     {
 
         // step 1: Set parameters
-        Connection connection = null;
+
         Statement statement = null;
         String sql = "";
         Date date = new Date();
@@ -30,11 +25,11 @@ public class order_db {
 
         try{
             // step 2: register JDBC driver
-            Class.forName(db.driver);
-
-            // step 3: open a connection
-            System.out.println("Connecting to database...");
-            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
+//            Class.forName(db.driver);
+//
+//            // step 3: open a connection
+//            System.out.println("Connecting to database...");
+//            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
             // step 4: execute a query
             System.out.println("Creating statement...");
@@ -66,7 +61,7 @@ public class order_db {
             details.addProperty("status", true);
 
             //step 5: close connections
-            connection.close();
+//            connection.close();
             statement.close();
 
             return details.toString();
@@ -82,7 +77,7 @@ public class order_db {
     {
 
         // step 1: Set parameters
-        Connection connection = null;
+//        Connection connection = null;
         Statement statement = null;
         String sql = "";
         Date date = new Date();
@@ -91,11 +86,13 @@ public class order_db {
 
         try{
             // step 2: register JDBC driver
-            Class.forName(db.driver);
+//            Class.forName(db.driver);
+//
+//            // step 3: open a connection
+//            System.out.println("Connecting to database...");
+//            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
-            // step 3: open a connection
-            System.out.println("Connecting to database...");
-            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
+//            connection = db.getConnection();
 
             // step 4: execute a query
             System.out.println("Creating statement...");
@@ -127,7 +124,7 @@ public class order_db {
             details.addProperty("status", true);
 
             //step 5: close connections
-            connection.close();
+//            connection.close();
             statement.close();
 
             return details.toString();
@@ -142,15 +139,17 @@ public class order_db {
     public boolean updateAddress(String username, JSONObject order){
 
         // step 1: Set parameters
-        Connection connection = null;
+//        Connection connection = null;
         Statement statement = null;
         String sql = "";
         try{
             // step 2: register JDBC driver
-            Class.forName(db.driver);
+//            Class.forName(db.driver);
+//
+//            // step 3: open a connection
+//            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
-            // step 3: open a connection
-            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
+//            connection = db.getConnection();
 
             // step 4: execute a query
             statement = connection.createStatement();
@@ -174,7 +173,7 @@ public class order_db {
             System.out.println("updated Address");
 
             //step 5: close connections
-            connection.close();
+//            connection.close();
             statement.close();
 
             return true;

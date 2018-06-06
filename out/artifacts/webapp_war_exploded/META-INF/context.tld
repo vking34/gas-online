@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+    <Resource
+        name="DSpool"
+        auth="Container"
+        type="javax.sql.DataSource"
+        maxIdle="30"
+        maxWait="10000"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://btdc0xcbj-mysql.services.clever-cloud.com:3306/btdc0xcbj"
+        username="utuu6mcqmehz7exr"
+        password="j8vhyB73s6LdBGMuKjD1"/>
+</Context>

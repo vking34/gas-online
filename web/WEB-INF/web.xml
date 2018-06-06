@@ -82,8 +82,18 @@
         <url-pattern>/orderForm</url-pattern>
     </servlet-mapping>
 
+    <!--get Last Order-->
+    <servlet>
+        <servlet-name>getLastOrder</servlet-name>
+        <servlet-class>webapp.order.getLastOrder</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>getLastOrder</servlet-name>
+        <url-pattern>/getLastOrder</url-pattern>
+    </servlet-mapping>
+
     <!--received-->
-    
     <servlet>
         <servlet-name>successfulOrder</servlet-name>
         <servlet-class>webapp.order.successfulOrder</servlet-class>
@@ -99,20 +109,10 @@
         <servlet-name>maps</servlet-name>
         <servlet-class>webapp.test.maps</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>maps</servlet-name>
         <url-pattern>/maps</url-pattern>
-    </servlet-mapping>
-
-    <!--welcome-->
-    <servlet>
-        <servlet-name>welcome</servlet-name>
-        <servlet-class>webapp.test.welcome</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>welcome</servlet-name>
-        <url-pattern>/welcome</url-pattern>
     </servlet-mapping>
 
     <!--logout-->

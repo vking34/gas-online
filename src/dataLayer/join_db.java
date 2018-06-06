@@ -13,7 +13,7 @@ public class join_db {
 //    static final String PASS = "";
 
 //    static final String driver = "com.mysql.jdbc.Driver";
-    Connection connection = null;
+    static Connection connection = db.getConnection();
     Statement statement = null;
     String sql = "";
 
@@ -22,10 +22,10 @@ public class join_db {
         JsonObject lastOrder = new JsonObject();
         try {
             // step 2: register JDBC driver
-            Class.forName(db.driver);
-
-            // step 3: open a connection
-            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
+//            Class.forName(db.driver);
+//
+//            // step 3: open a connection
+//            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
             //step 4: execute a query
             statement = connection.createStatement();
@@ -45,7 +45,7 @@ public class join_db {
 
             // step 5: close
             rs.close();
-            connection.close();
+//            connection.close();
             statement.close();
 
             return lastOrder.toString();
