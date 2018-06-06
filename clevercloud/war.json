@@ -7,7 +7,7 @@
     "container": "TOMCAT8",
     "war": [
       {
-        "file": "out/webapp_war/webapp_war.war",
+        "file": "out/artifacts/webapp_war/webapp_war.war",
         "context": "/",
         "checkMe": "/ping"
       }
