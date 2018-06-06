@@ -291,6 +291,7 @@
         marker.setVisible(false);
         marker.setPosition(event.latLng);
         marker.setVisible(true);
+        window.order.pos = event.latLng;
         reverserGeoCoding(event.latLng);
     }
 

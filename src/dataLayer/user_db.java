@@ -9,12 +9,13 @@ import java.lang.*;
 
 public class user_db {
 
-    // JDBC driver name and database URL
-    static final String DB_URL = "jdbc:mysql://localhost:3306/gas_online";
+//    // JDBC driver name and database URL
+//    static final String DB_URL = "jdbc:mysql://localhost:3306/gas_online";
+//
+//    static final String USER = "root";
+//    static final String PASS = "";
+//    static final String driver = "com.mysql.jdbc.Driver";
 
-    static final String USER = "root";
-    static final String PASS = "";
-    static final String driver = "com.mysql.jdbc.Driver";
     private String username;
 
     public user_db(){}
@@ -35,11 +36,11 @@ public class user_db {
         try
         {
             // step 2: register JDBC driver
-            Class.forName(driver);
+            Class.forName(db.driver);
 
             // step 3: open a connection
             System.out.println("Connecting to database...");
-            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
             // step 4: execute a query
             System.out.println("Creating statement...");
@@ -110,11 +111,11 @@ public class user_db {
 
         try{
             // step 2: register JDBC driver
-            Class.forName(driver);
+            Class.forName(db.driver);
 
             // step 3: open a connection
             System.out.println("Connecting to database...");
-            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
             //step 4: execute a query
             System.out.println("Creating statement...");
@@ -175,11 +176,11 @@ public class user_db {
 
         try {
             // step 2: register JDBC driver
-            Class.forName(driver);
+            Class.forName(db.driver);
 
             // step 3: open a connection
             System.out.println("Connecting to database...");
-            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
             // step 4: execute a query
             System.out.println("Creating statement...");
@@ -216,11 +217,11 @@ public class user_db {
 
         try{
             // step 2: register JDBC driver
-            Class.forName(this.driver);
+            Class.forName(db.driver);
 
             // step 3: open a connection
             System.out.println("Connecting to database...");
-            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
             //step 4: execute a query
             System.out.println("Creating statement...");
@@ -281,11 +282,11 @@ public class user_db {
 
         try {
             // step 2: register JDBC driver
-            Class.forName(driver);
+            Class.forName(db.driver);
 
             // step 3: open a connection
             System.out.println("Connecting to database...");
-            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
             // step 4: execute a query
             System.out.println("Creating statement...");
@@ -324,11 +325,11 @@ public class user_db {
 
         try {
             // step 2: register JDBC driver
-            Class.forName(driver);
+            Class.forName(db.driver);
 
             // step 3: open a connection
             System.out.println("Connecting to database...");
-            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
             // step 4: execute a query
             System.out.println("Creating statement...");
@@ -358,11 +359,11 @@ public class user_db {
 
         try {
             // step 2: register JDBC driver
-            Class.forName(driver);
+            Class.forName(db.driver);
 
             // step 3: open a connection
             System.out.println("Connecting to database...");
-            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            connection = DriverManager.getConnection(db.DB_URL, db.USER, db.PASS);
 
             // step 4: execute a query
             System.out.println("Creating statement...");

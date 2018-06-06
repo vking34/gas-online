@@ -30,9 +30,8 @@
 
               <!--logSign-->
               <div class="navbar-btn smaller" id="logSignsmaller" style="float: left; margin-left: 10px;">
-                  <button class="btn btn-outline-secondary" style="color: white;"><a href="/login" >Sign in</a></button>
-                  <button class="btn btn-primary" style=""><a href="/signup" style="color:white;">Sign up</a></button>
-
+                  <button class="btn btn-outline-secondary" style="color: black;" onclick="location.href='/login'" >Sign in</button>
+                  <button class="btn btn-primary" style="" onclick="location.href='/signup'" >Sign up</button>
               </div>
               <!--end logSign-->
 
@@ -60,8 +59,8 @@
 
           <!--logSign-->
           <div class="navbar-btn bigger" id="logSignbigger" style="float: right;">
-              <button class="btn btn-outline-secondary" style="color: white;"><a href="/login" >Sign in</a></button>
-              <button class="btn btn-primary" style=""><a href="/signup" style="color:white;">Sign up</a></button>
+              <button class="btn btn-outline-secondary" style="color: black;" onclick="location.href='/login'" >Sign in</button>
+              <button class="btn btn-primary" style="" onclick="location.href='/signup'" >Sign up</button>
           </div>
           <!--end logSign-->
 
@@ -102,7 +101,7 @@
       $(function () {
           let name = $.cookie('username');
           $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
-          $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
+          // $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
           if(name){
               $('#logSignbigger').hide();
               $('#logSignsmaller').hide();
@@ -123,11 +122,10 @@
     <center>
         <div style="width: 60%; background-color: rgba(255, 255, 255, 0.75); margin: 100px 0; font-size:30px; padding: 50px 2%; border-radius: 30px;">
             <span class="intro">Thank you for using our services.<br>Login to order your needs or take a look at our safety advices.</span><br><br>
-            <button class="btn btn-outline-secondary buttonChange" style="color: white; font-size:20px"><a href="/login">Sign in</a></button>
-            <button class="btn btn-outline-secondary" style="color: white; font-size:20px"><a href="/tips" >Tips for using</a></button>
-            <button class="btn btn-outline-secondary" style="color: white; font-size:20px"><a href="/abouts" >About us</a></button>
-            <span style="font-size: 20px;"><br><br>Don't have an account?</span>
-            <button class="btn btn-primary"><a href="/signup" style="color:white; font-size: 20px;">Sign up</a></button>
+            <button class="btn btn-primary " style="color: white; font-size:40px" onclick="location.href='/orderForm'">Order gas</button>
+            <button class="btn btn-primary" style="color: white; font-size:40px" onclick="location.href='/products'" >Products</button>
+            <button class="btn btn-primary" style="color: white; font-size:40px" onclick="location.href='/tips'" >Tips for using</button>
+
         </div>
     </center>
 </div>
