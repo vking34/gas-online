@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>My Profile</title>
-    <link rel="shortcut icon" type="image/png" href="/icon/flame.png">
+    <link rel="shortcut icon" type="image/png" href="../icon/flame.png">
+    <link rel="stylesheet" href="../css/home.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -11,6 +12,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/app.css">
 
     <script>
 
@@ -54,46 +57,171 @@
             });
         }
 
+        function changePass() {
+            var passwords = new Object();
+            passwords.oldPass = $('#oldPassword').val();
+            passwords.newPass = $('#newPassword').val();
+
+            $.ajax(
+                {
+                    url : '/profile/changePassword',
+                    type : 'POST',
+                    dataType : 'json',
+                    data : JSON.stringify(passwords),
+                    contentType : 'application/json; charset=UTF-8',
+                    success : function (mess) {
+                        if(mess.status)
+                        {
+                            $('#close').click();
+                            window.alert('Successful')
+                        }
+                        else {
+                            window.alert('Wrong password!!!\nPlease try again.')
+                        }
+                    }
+                });
+        }
+
     </script>
 </head>
 
 <body>
 
-<nav class="navbar navbar-inverse">
-    <div class="container">
-        <a class="navbar-brand" href="/">Gas Order</a>
+<nav class="navbar navbar-inverse" style="padding-bottom: 10px; margin-bottom: 0px; border-radius: 0px;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <!--menu-->
+            <a class="navbar-brand" href="/">
+                <img height="40px" width="30px" src="../icon/flame.png">
+            </a>
+            <a class="navbar-brand logo" href="/" style="background: rgb(1,182,255); border-radius: 15px; margin-top: 10px; margin-left:1px;">
+                ICT Gas Store
+            </a>
+
+            <!--userTab-->
+            <div class="navbar-btn smaller" id="userTabsmaller">
+                <div class="dropdown" style="float: right;">
+                    <button id="userBtnsmaller" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li class="active"><a href="/profile">My account</a></li>
+                        <li><a href="/orderHistory">My order history</a></li>
+                        <li><a href="/logout">Log out</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--end userTab  -->
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu" style="float: right; margin-top: 20px;">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
 
         <!--userTab-->
-        <div class="container" id="userTab">
-            <div class="
-            dropdown" style="float: right;margin-top: 8px;">
-                <button id="userBtn" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
+        <div class="navbar-btn bigger" id="userTabbigger" style="float: right;">
+            <div class="dropdown" style="float: right;">
+                <button id="userBtnbigger" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                    <li><a href="/profile">My account</a></li>
+                    <li class="active"><a href="/profile">My account</a></li>
                     <li><a href="/orderHistory">My order history</a></li>
                     <li><a href="/logout">Log out</a></li>
                 </ul>
             </div>
         </div>
         <!--end userTab  -->
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="nav navbar-nav" style="margin-top: 10px;">
+                <li><a href="../index.html" style="background:none;"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-fire"></span> Products
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Gas</a></li>
+                        <li><a href="#">Devices</a></li>
+                        <li><a href="#">Maintenance services</a></li>
+                    </ul>
+                </li>
+                <li><a href="../tips/tips.html"><span class="glyphicon glyphicon-thumbs-up"></span> Tips for using</a></li>
+                <li><a href="../others/abouts.html"><span class="glyphicon glyphicon-briefcase"></span> About us</a></li>
+            </ul>
+        </div>
     </div>
-    </div>
+
 </nav>
 
 <script type="text/javascript">
     var name = $.cookie('username');
-    $('#userBtn').text(name);
+    $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
+    $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
 </script>
 <br /><br /><br />
+<div class="container col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3" style="background-color: #fff9fb; border: #928f90 4px solid; border-radius: 10px; overflow: hidden; font-family: 'Times New Roman'; font-size: 18px;">
+    <div class="info" style="padding-top: 20px;">
+        <span>Name: </span><span id="name" style="font-weight: bold; color: #232392;"></span><br>
+    </div>
+    <div class="info">
+        <span>Phone Number: </span><span id="phoneNumber" style="font-weight: bold; color: #232392;"></span>
+    </div>
+    <div class="info">
+        <span>Email: </span><span id="email" style="font-weight: bold; color: #232392;"></span><br>
+    </div>
+    <div class="info">
+        <span>Point: </span> <span id="point" style="font-weight: bold; color: #232392;"></span><br/>
+    </div>
 
-<div>
-    <h5>Name: </h5><span id="name"></span>
-    <h5>Phone Number: </h5><div id="phoneNumber"></div>
+    <br>
+
+    <!--<a href="/profile/changePassword">Change password</a>-->
 
     <!-- Button trigger modal -->
-    <button id="change_phone_modal" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    <center><button id="change_phone_modal" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="margin-right: 1%;margin-top: 0px; margin-bottom: 20px;">
         Change Phone Number
     </button>
+
+    <button id="change_pass_modal" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal1" style="margin-top: 0px; margin-bottom: 20px;">
+        Change Password
+    </button></center>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel1">Change Password</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="input-group">
+                        <span class="input-group-addon">Current password</span>
+                        <input class="form-control" id="oldPassword" name="password" placeholder="Password" type="password" />
+                    </div>
+                    <span id="oldPassStatus" class="announce"></span>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">New password</span>
+                        <input class="form-control" id="newPassword" name="password1" placeholder="New Password" type="password" />
+                    </div>
+                    <span id="samePassStatus" class="announce"></span>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Re-enter new password</span>
+                        <input class="form-control" id="newPassword1" name="password1" placeholder="Confirm password" type="password" />
+                    </div>
+                    <span id="newPassStatus" class="announce"></span>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="change_pass_btn" type="button" class="btn btn-primary" onclick="changePass()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -122,49 +250,118 @@
             </div>
         </div>
     </div>
-
-    <h5>Email: </h5><span id="email"></span>
-    <h5>Point: </h5> <span id="point"></span><br/>
-    <!--<a href="/profile/changePassword">Change password</a>-->
-
-    <button id="change_pass_modal" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal1">
-        Change Password
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel1">Change Password</h4>
-                </div>
-                <div class="modal-body">
-
-                    <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon3">@</span>
-                        <input id="oldPassword" type="password" class="form-control" placeholder="Current password" aria-describedby="basic-addon1">
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon4">#</span>
-                        <input id="newPassword1" type="password" class="form-control" placeholder="New password" aria-describedby="basic-addon1">
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon5">#</span>
-                        <input id="newPassword2" type="password" class="form-control" placeholder="Confirm new password" aria-describedby="basic-addon1">
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button id="change_pass_btn" type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
+
+<script>
+
+    var oldPassStatus = $('#oldPassStatus');
+    var newPassStatus = $('#newPassStatus');
+    var samePassStatus = $('#samePassStatus')
+    $('#change_pass_btn').prop('disabled', true);
+
+    $(document).ready(function () {
+        $('#oldPassword').blur(function () {
+            if($('#oldPassword').val() === ''){
+                oldPassStatus.text('Invalid');
+                oldPassStatus.css('color', 'red');
+            }
+            else {
+                oldPassStatus.html('');
+            }
+        });
+
+        $('#newPassword').blur(function () {
+            if($('#newPassword').val() === $('#oldPassword').val()){
+                samePassStatus.text('Enter Different Password!');
+                samePassStatus.css('color', 'red');
+            }
+            else {
+                if($('#newPassword').val() === ''){
+                    samePassStatus.text('Invalid');
+                    samePassStatus.css('color', 'red');
+                }
+                else{
+                    samePassStatus.html('');
+                }
+            }
+            if($('#newPassword1').val() !== $('#newPassword').val()){
+                newPassStatus.html('Does not match');
+                newPassStatus.css('color', 'red');
+            }
+            else
+                newPassStatus.html('');
+        });
+
+        $('#newPassword1').blur(function () {
+            if($('#newPassword1').val() !== $('#newPassword').val()){
+                newPassStatus.html('Does not match');
+                newPassStatus.css('color', 'red');
+            }
+            else {
+                newPassStatus.html('');
+            }
+        });
+
+        $('#oldPassword').keyup(function () {
+            if($('#oldPassword').val() === ''){
+                oldPassStatus.text('Invalid');
+                oldPassStatus.css('color', 'red');
+            }
+            else {
+                oldPassStatus.html('');
+            }
+
+            if($('#oldPassword').val() && $('#oldPassword').val() !== $('#newPassword').val() && $('#newPassword').val() && $('#newPassword').val() === $('#newPassword1').val()){
+                $('#change_pass_btn').prop('disabled', false);
+            }
+            else {
+                $('#change_pass_btn').prop('disabled', true);
+            }
+        })
+
+        $('#newPassword').keyup(function () {
+            if($('#newPassword').val() === $('#oldPassword').val()){
+                samePassStatus.text('Enter Different Password!');
+                samePassStatus.css('color', 'red');
+            }
+            else {
+                if($('#newPassword').val() === ''){
+                    samePassStatus.text('Invalid');
+                    samePassStatus.css('color', 'red');
+                }
+                else{
+                    samePassStatus.html('');
+                }
+            }
+            if($('#newPassword1').val() !== $('#newPassword').val()){
+                newPassStatus.html('Does not match');
+                newPassStatus.css('color', 'red');
+            }
+            else
+                newPassStatus.html('');
+            if($('#oldPassword').val() && $('#oldPassword').val() !== $('#newPassword').val() && $('#newPassword').val() && $('#newPassword').val() === $('#newPassword1').val()){
+                $('#change_pass_btn').prop('disabled', false);
+            }
+            else {
+                $('#change_pass_btn').prop('disabled', true);
+            }
+        })
+        $('#newPassword1').keyup(function () {
+            if($('#newPassword1').val() !== $('#newPassword').val()){
+                newPassStatus.html('Does not match');
+                newPassStatus.css('color', 'red');
+            }
+            else {
+                newPassStatus.html('');
+            }
+            if($('#oldPassword').val() && $('#oldPassword').val() !== $('#newPassword').val() && $('#newPassword').val() && $('#newPassword').val() === $('#newPassword1').val()){
+                $('#change_pass_btn').prop('disabled', false);
+            }
+            else {
+                $('#change_pass_btn').prop('disabled', true);
+            }
+        })
+    });
+    </script>
 </body>
 </html>

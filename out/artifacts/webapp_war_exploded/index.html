@@ -1,75 +1,136 @@
+<!doctype html>
 <html>
-  <head>
+<head>
     <title>Gas Online</title>
-    <link rel="shortcut icon" type="image/png" href="/icon/flame.png">
-
-
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta name=”viewport” content=”width=device-width, initial-scale=1″>
+      <link rel="shortcut icon" type="image/png" href="icon/flame.png">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
-      <link rel="stylesheet" href="css/home.css">
-    <!--<link rel="stylesheet" href="css/app.css">-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script language="javascript" src="js/home.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="css/home.css">
   </head>
 
   <body>
 
 
-  <nav class="navbar navbar-inverse">
-    <div class="container">
-      <a class="navbar-brand" href="/">Gas Order</a>
+  <nav class="navbar navbar-inverse" style="padding-bottom: 10px; margin-bottom: 0px; border-radius: 0px;">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <!--menu-->
+              <a class="navbar-brand" href="/">
+                  <img height="40px" width="30px" src="icon/flame.png">
+              </a>
+              <a class="navbar-brand logo" href="/" style="background: rgb(1,182,255); border-radius: 15px; margin-top: 10px; margin-left:1px;">
+                  ICT Gas Store
+              </a>
 
-        <!--userTab-->
-        <div class="container" id="userTab">
-            <div class="
-            dropdown" style="float: right;margin-top: 8px;">
-                <button id="userBtn" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li><a href="/profile">My account</a></li>
-                    <li><a href="/orderHistory">My order history</a></li>
-                    <li><a href="/logout">Log out</a></li>
-                </ul>
-            </div>
-        </div>
-        <!--end userTab  -->
+              <!--logSign-->
+              <div class="navbar-btn smaller" id="logSignsmaller" style="float: left; margin-left: 10px;">
+                  <button class="btn btn-outline-secondary" style="color: white;"><a href="/login" >Sign in</a></button>
+                  <button class="btn btn-primary" style=""><a href="/signup" style="color:white;">Sign up</a></button>
 
-        <!--login & sign up-->
-        <div id="logSign" class="form-inline ml-auto" style="float: right;margin-top: 8px;">
-          <a href="/login" class="btn btn-outline-secondary" style="color: white;">Sign in</a>
-          <a href="/signup" class="btn btn-primary ml-2">Sign up</a>
-        </div>
-        <!--end logSign-->
+              </div>
+              <!--end logSign-->
+
+              <!--userTab-->
+              <div class="navbar-btn smaller" id="userTabsmaller">
+                  <div class="dropdown" style="float: right;">
+                      <button id="userBtnsmaller" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
+                      <ul class="dropdown-menu">
+                          <li><a href="/profile">My account</a></li>
+                          <li><a href="/orderHistory">My order history</a></li>
+                          <li><a href="/logout">Log out</a></li>
+                      </ul>
+                  </div>
+              </div>
+              <!--end userTab  -->
+
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu" style="float: right; margin-top: 20px;">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+
+          </div>
+
+          <!--logSign-->
+          <div class="navbar-btn bigger" id="logSignbigger" style="float: right;">
+              <button class="btn btn-outline-secondary" style="color: white;"><a href="/login" >Sign in</a></button>
+              <button class="btn btn-primary" style=""><a href="/signup" style="color:white;">Sign up</a></button>
+          </div>
+          <!--end logSign-->
+
+          <!--userTab-->
+          <div class="navbar-btn bigger" id="userTabbigger" style="float: right;">
+              <div class="dropdown" style="float: right;">
+                  <button id="userBtnbigger" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                      <li><a href="/profile">My account</a></li>
+                      <li><a href="/orderHistory">My order history</a></li>
+                      <li><a href="/logout">Log out</a></li>
+                  </ul>
+              </div>
+          </div>
+          <!--end userTab  -->
+
+          <div class="collapse navbar-collapse" id="menu">
+              <ul class="nav navbar-nav" style="margin-top: 10px;">
+                  <li class="active" ><a href="/" style="background:none;"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                  <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-fire"></span> Products
+                          <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="#">Gas</a></li>
+                          <li><a href="#">Devices</a></li>
+                          <li><a href="#">Maintenance services</a></li>
+                      </ul>
+                  </li>
+                  <li><a href="/tips"><span class="glyphicon glyphicon-thumbs-up"></span> Tips for using</a></li>
+                  <li><a href="/abouts"><span class="glyphicon glyphicon-briefcase"></span> About us</a></li>
+                  </ul>
+          </div>
       </div>
-    </div>
+
   </nav>
 
   <script type="text/javascript">
-    $(function () {
-        var name = $.cookie('username');
-        if(name)
-        {
-            $('#userBtn').text(name);
-            $('#logSign').hide();
-            $('#userTab').show();
-        }
-        else {
-            $('#logSign').show();
-            $('#userTab').hide();
-        }
-    })
+      $(function () {
+          let name = $.cookie('username');
+          $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
+          $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
+          if(name){
+              $('#logSignbigger').hide();
+              $('#logSignsmaller').hide();
+              $('div.mainsection>center>div>span.intro').html("Thank you for using our services.<br>Start ordering your need or take a look at our safety advices.");
+              $('div.mainsection>center>div>button.btn.btn-outline-secondary.buttonChange').html("<a href=\"productSites/products.html\">Products</a>");
+          }
+          else {
+              $('#userTabbigger').hide();
+              $('#userTabsmaller').hide();
+              $('div.mainsection>center>div>span.intro').html("Thank you for using our services.<br>Login to order your needs or take a look at our safety advices.");
+              $('div.mainsection>center>div>button.btn.btn-outline-secondary.buttonChange').html("<a href=\"userSites/login.html\">Sign in</a>");
+          }
+      })
 
   </script>
 
-  <br><br><br>
-
-  <a href="/orderForm">Order Gas Now</a><br />
-  <a href="/products">Products</a><br />
-  <a href="/tips">Tips for using</a><br />
-  <a href="/abouts">Abouts</a><br />
-
+<div class="mainsection" style="background-image: url(images/seamless-gas-fire-and-flame-border-wanlop-sonngam.jpg); margin-top: 0;">
+    <center>
+        <div style="width: 60%; background-color: rgba(255, 255, 255, 0.75); margin: 100px 0; font-size:30px; padding: 50px 2%; border-radius: 30px;">
+            <span class="intro">Thank you for using our services.<br>Login to order your needs or take a look at our safety advices.</span><br><br>
+            <button class="btn btn-outline-secondary buttonChange" style="color: white; font-size:20px"><a href="/login">Sign in</a></button>
+            <button class="btn btn-outline-secondary" style="color: white; font-size:20px"><a href="/tips" >Tips for using</a></button>
+            <button class="btn btn-outline-secondary" style="color: white; font-size:20px"><a href="/abouts" >About us</a></button>
+            <span style="font-size: 20px;"><br><br>Don't have an account?</span>
+            <button class="btn btn-primary"><a href="/signup" style="color:white; font-size: 20px;">Sign up</a></button>
+        </div>
+    </center>
+</div>
 
   </body>
 </html>

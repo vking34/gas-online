@@ -1,3 +1,69 @@
-.navbar-brand {
-    font-family: 'Arimo', cursive;
+.navbar-inverse{
+    height: auto;
+}
+.navbar-inverse button{
+    margin-top: 10px;
+}
+.navbar-inverse .navbar-brand{
+    font-family: Times;
+    color:black;
+    font-size: 30px;
+}
+body {
+    background: #cedfd9;
+}
+
+.btn-outline-secondary:hover{
+    background: #b8caca;
+    border: white solid 1px;
+}
+div.info{
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+span.announce{
+    font-size:14px;
+    font-family: Arial;
+}
+@media all and (max-width: 1000px){
+    .logo{
+        display: none;
+    }
+
+    nav.navbar.navbar-inverse > div.container-fluid > div#menu.collapse.navbar-collapse {
+        float: left;
+    }
+
+    nav.navbar.navbar-inverse > div.container-fluid >div.navbar-header> div#userTabsmaller.navbar-btn.smaller{
+        display: inline-block;
+    }
+
+    nav.navbar.navbar-inverse > div.container-fluid > div#userTabbigger.navbar-btn.bigger{
+        display: none;
+    }
+
+    div.info{
+        padding-left: 0px;
+    }
+}
+@media all and (max-width: 650px){
+    div.mainsection>center>div>button.btn.btn-outline-secondary{
+        width: 80%;
+    }
+}
+@media all and (min-width: 1001px) {
+    nav.navbar.navbar-inverse > div.container-fluid > div#menu.collapse.navbar-collapse {
+        float: right;
+    }
+    nav.navbar.navbar-inverse > div.container-fluid >div.navbar-header> div#userTabsmaller.navbar-btn.smaller{
+        display: none;
+    }
+
+    nav.navbar.navbar-inverse > div.container-fluid > div#userTabbigger.navbar-btn.bigger{
+        display: inline-block;
+    }
+    div.info{
+        padding-left: 30px;
+    }
 }

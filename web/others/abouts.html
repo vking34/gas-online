@@ -1,9 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>About Us</title>
     <meta charset="UTF-8">
-    <title>Abouts</title>
+    <meta name=”viewport” content=”width=device-width, initial-scale=1″>
+    <link rel="shortcut icon" type="image/png" href="../icon/flame.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/about.css">
 </head>
+
+<body>
+
+
+<nav class="navbar navbar-inverse" style="padding-bottom: 10px; margin-bottom: 0px; border-radius: 0px;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <!--menu-->
+            <a class="navbar-brand" href="/">
+                <img height="40px" width="30px" src="../icon/flame.png">
+            </a>
+            <a class="navbar-brand logo" href="/" style="background: rgb(1,182,255); border-radius: 15px; margin-top: 10px; margin-left:1px;">
+                ICT Gas Store
+            </a>
+
+            <!--logSign-->
+            <div class="navbar-btn smaller" id="logSignsmaller" style="float: left; margin-left: 10px;">
+                <button class="btn btn-outline-secondary" style="color: white;"><a href="/login" >Sign in</a></button>
+                <button class="btn btn-primary" style=""><a href="/signup" style="color:white;">Sign up</a></button>
+
+            </div>
+            <!--end logSign-->
+
+            <!--userTab-->
+            <div class="navbar-btn smaller" id="userTabsmaller">
+                <div class="dropdown" style="float: right;">
+                    <button id="userBtnsmaller" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/profile">My account</a></li>
+                        <li><a href="/orderHistory">My order history</a></li>
+                        <li><a href="/logout">Log out</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--end userTab  -->
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu" style="float: right; margin-top: 20px;">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+
+        <!--logSign-->
+        <div class="navbar-btn bigger" id="logSignbigger" style="float: right;">
+            <button class="btn btn-outline-secondary" style="color: white;"><a href="/login" >Sign in</a></button>
+            <button class="btn btn-primary" style=""><a href="/signup" style="color:white;">Sign up</a></button>
+        </div>
+        <!--end logSign-->
+
+        <!--userTab-->
+        <div class="navbar-btn bigger" id="userTabbigger" style="float: right;">
+            <div class="dropdown" style="float: right;">
+                <button id="userBtnbigger" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="/profile">My account</a></li>
+                    <li><a href="/orderHistory">My order history</a></li>
+                    <li><a href="/logout">Log out</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--end userTab  -->
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="nav navbar-nav" style="margin-top: 10px;">
+                <li ><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-fire"></span> Products
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Gas</a></li>
+                        <li><a href="#">Devices</a></li>
+                        <li><a href="#">Maintenance services</a></li>
+                    </ul>
+                </li>
+                <li><a href="/tips"><span class="glyphicon glyphicon-thumbs-up"></span> Tips for using</a></li>
+                <li class="active"><a style="background:none;" href="/abouts"><span class="glyphicon glyphicon-briefcase"></span> About us</a></li>
+            </ul>
+        </div>
+    </div>
+
+</nav>
+
+<script type="text/javascript">
+    $(function () {
+        let name = $.cookie('username');
+        $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
+        $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
+        if(name){
+            $('#logSignbigger').hide();
+            $('#logSignsmaller').hide();
+            $('div.mainsection>center>div>span.intro').html("Thank you for using our services.<br>Start ordering your need or take a look at our safety advices.");
+            $('div.mainsection>center>div>button.btn.btn-outline-secondary.buttonChange').html("<a href=\"../productSites/products.html\">Products</a>");
+        }
+        else {
+            $('#userTabbigger').hide();
+            $('#userTabsmaller').hide();
+            $('div.mainsection>center>div>span.intro').html("Thank you for using our services.<br>Login to order your needs or take a look at our safety advices.");
+            $('div.mainsection>center>div>button.btn.btn-outline-secondary.buttonChange').html("<a href=\"../userSites/login.html\">Sign in</a>");
+        }
+    })
+
+</script>
+<div style="outline: none; border-color: #158dff; box-shadow: 0 0 10px #158dff; background: white;width:80%; margin-right:auto; margin-left:auto; height: auto; overflow: auto;">
+    <div id="header">
+        <div>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+
+                    <div class="item active">
+                        <img src="../images/doa-hoa-hong-phien-ban-story-mang-lai-dieu-moi-me-gi-972eaf92.jpg" alt="Los Angeles" style="width:100%;">
+                        <div class="carousel-caption">
+                            <h3>Chi Pu</h3>
+                            <p>very xinh</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <img src="../images/chi-pu-2.jpg" alt="Chicago" style="width:100%;">
+                        <div class="carousel-caption">
+                            <h3>Chi Pu</h3>
+                            <p>still xinh</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <img src="../images/maxresdefault1.jpg" alt="New York" style="width:100%;">
+                        <div class="carousel-caption">
+                            <h3>Chi Pu</h3>
+                            <p>xinh again</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 25px;">
+        <div class="maintitle">
+            <h4>ICT GAS JOINTSTOCK CORPORATION</h4>
+        </div>
+        <div class="maincontent">
+            Chung toi chuyen cung cap gas va cac thiet bi nha bep, cung nhu cac dich vu sua chua, bao duong gas va cac thiet bi blah blah<br>
+            Mua mot san pham, tang mot poster Chi Pu va mot dia CD co chua MV "Doa hoa hong" phien ban gioi han.
+        </div>
+    </div>
+    <div class="container">
+        <div class="mainabout mainleft">
+            <div class="maintitle">
+                <h4>History</h4>
+            </div>
+            <div class="maincontent">
+                Chung toi duoc thanh lap vao nam 1997 boi 3 nha ti phu: <br>Le Van Vuong, Ha Quy Dung va Ngo Anh Tuan blah blah blah
+            </div>
+        </div>
+        <div class="mainabout mainright">
+            <div class="maintitle">
+                <h4>Achievement</h4>
+            </div>
+            <div class="maincontent">
+                - Binh gas vang cua nam<br>
+                - Bep gas vang cua nam<br>
+                - Nhan hieu co guong mat dai dien xinh nhat Viet Nam<br>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="maintitle"><h4>FOUNDER</h4></div>
+        <div class="founder">
+            <div class="founderImage">
+                <img src="../images/vuong.jpg"/>
+            </div>
+            <div class="founderName">
+                Le Van Vuong
+            </div>
+        </div>
+        <div class="founder">
+            <div class="founderImage">
+                <img src="../images/dung.jpg"/>
+            </div>
+            <div class="founderName">
+                Ha Quy Dung
+            </div>
+        </div>
+        <div class="founder">
+            <div class="founderImage">
+                <img src="../images/tuan.jpg"/>
+            </div>
+            <div class="founderName">
+                Ngo Anh Tuan
+            </div>
+        </div>
+        <div class="founder">
+            <div class="founderImage">
+                <img src="../images/abi.jpg"/>
+            </div>
+            <div class="founderName">
+                Abiyyu Fahmi Fajri
+            </div>
+        </div>
+    </div>
+</div>
 <body>
 
 </body>

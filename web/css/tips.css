@@ -1,0 +1,139 @@
+.navbar-inverse{
+    height: auto;
+}
+.navbar-inverse button{
+    margin-top: 10px;
+}
+.navbar-inverse .navbar-brand{
+    font-family: Times;
+    color:black;
+    font-size: 30px;
+}
+body {
+    background: #cedfd9;
+}
+.tips{
+    width: 100%;
+    margin-bottom: 30px;
+    transition: all 0.5s;
+}
+.illus{
+    float: left;
+    width: 18%;
+    overflow: hidden;
+    position: relative;
+    border: 1px lightgray solid;
+    height: 100%;
+    transition: all 0.5s;
+}
+.illus>img{
+    width: 98%;
+    height: 98%;
+    padding: 2% 0 1% 2%;
+}
+.tips-art{
+    float: left;
+    width: 78%;
+    margin-left: 2%;
+    transition: all 0.5s;
+}
+.title{
+    font-weight: bold;
+    transition: all 0.5s;
+}
+@media all and (min-width: 1401px) {
+    nav.navbar.navbar-inverse > div.container-fluid > div#menu.collapse.navbar-collapse {
+        float: right;
+    }
+    nav.navbar.navbar-inverse>div.container-fluid>div#logSignbigger.navbar-btn.bigger{
+        display: inline-block;
+    }
+    nav.navbar.navbar-inverse > div.container-fluid > div.navbar-header>div#logSignsmaller.navbar-btn.smaller{
+        display: none;
+    }
+
+    nav.navbar.navbar-inverse > div.container-fluid >div.navbar-header> div#userTabsmaller.navbar-btn.smaller{
+        display: none;
+    }
+
+    nav.navbar.navbar-inverse > div.container-fluid > div#userTabbigger.navbar-btn.bigger{
+        display: inline-block;
+    }
+    .tips{
+        height: 150px;
+    }
+}
+@media all and (max-width: 1400px){
+    .tips{
+        height: 120px;
+    }
+}
+@media all and (max-width: 1000px){
+    .logo{
+        display: none;
+    }
+
+    nav.navbar.navbar-inverse > div.container-fluid > div#menu.collapse.navbar-collapse {
+        float: left;
+    }
+
+    nav.navbar.navbar-inverse>div.container-fluid>div#logSignbigger.navbar-btn.bigger{
+        display: none;
+    }
+    nav.navbar.navbar-inverse > div.container-fluid > div.navbar-header>div#logSignsmaller.navbar-btn.smaller{
+        display: inline-block;
+    }
+
+    nav.navbar.navbar-inverse > div.container-fluid >div.navbar-header> div#userTabsmaller.navbar-btn.smaller{
+        display: inline-block;
+    }
+
+    nav.navbar.navbar-inverse > div.container-fluid > div#userTabbigger.navbar-btn.bigger {
+        display: none;
+    }
+
+    .tips{
+        height: 100px;
+    }
+}
+@media all and (max-width: 800px){
+    .tips{
+        height: 70px;
+    }
+}
+
+@media all and (max-width: 600px){
+    .illus{
+        width: 98%;
+        height: auto;
+        padding: 0;
+        float: none;
+    }
+    .illus>img{
+        width: 99%;
+        height: 250px;
+        padding: 1%;
+        padding-right: 0;
+    }
+    .tips-art{
+        font-size: 13pt;
+        width: 95%;
+        float: none;
+        margin-top: 10px;
+    }
+    .tips{
+        height: auto;
+    }
+}
+
+@media all and (max-width: 480px){
+    .illus>img{
+        width: 99%;
+        height: 200px;
+        padding: 1%;
+        padding-right: 0;
+    }
+
+    .tips-art{
+        font-size: 12pt;
+}

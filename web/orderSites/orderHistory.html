@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>History</title>
-    <link rel="shortcut icon" type="image/png" href="/icon/flame.png">
-    <!--<link rel="stylesheet" href="css/home.css">-->
+    <title>Order History</title>
+    <link rel="shortcut icon" type="image/png" href="../icon/flame.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -13,90 +12,99 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <!--<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>-->
+
+
+    <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="../css/accounts.css">
+
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
-    <script>
 
-        $(document).ready(function() {
-            var name = $.cookie('username');
-            $('#userBtn').text(name);
-
-            var t = $('#example').DataTable( {
-                // "processing": true,
-                // "serverSide": true,
-
-                "ajax": {
-                    "url": "/orderHistory",
-                    "type": "POST"
-                },
-                "columns": [
-                    {"defaultContent": ""},
-                    { "data": "date" },
-                    { "data": "phoneNumber" },
-                    { "data": "address" },
-                    { "data": "brand" },
-                    { "data": "size" },
-                    { "data": "price" },
-                    { "data": "status"}
-                ],
-
-                "columnDefs": [ {
-                    "searchable": false,
-                    "orderable": false,
-                    "targets": 0
-                } ],
-                "order": [[ 1, 'desc' ]],
-
-                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-
-                "initComplete": function () {
-                    var api = this.api();
-                    api.$('td').click( function () {
-                        api.search( this.innerHTML ).draw();
-                    } );
-                }
-
-            } );
-
-            t.on( 'order.dt search.dt', function () {
-                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-                    cell.innerHTML = i+1;
-                } );
-            } ).draw();
-
-        } );
-    </script>
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-    <div class="container">
-        <a class="navbar-brand" href="/">Gas Order</a>
+<nav class="navbar navbar-inverse" style="padding-bottom: 10px; margin-bottom: 0px; border-radius: 0px;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <!--menu-->
+            <a class="navbar-brand" href="/">
+                <img height="40px" width="30px" src="../icon/flame.png">
+            </a>
+            <a class="navbar-brand logo" href="/" style="background: rgb(1,182,255); border-radius: 15px; margin-top: 10px; margin-left:1px;">
+                ICT Gas Store
+            </a>
+
+            <!--userTab-->
+            <div class="navbar-btn smaller" id="userTabsmaller">
+                <div class="dropdown" style="float: right;">
+                    <button id="userBtnsmaller" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/profile">My account</a></li>
+                        <li class="active"><a href="/orderHistory">My order history</a></li>
+                        <li><a href="/logout">Log out</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--end userTab  -->
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu" style="float: right; margin-top: 20px;">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
 
         <!--userTab-->
-        <div class="container" id="userTab">
-            <div class="dropdown" style="float: right;margin-top: 8px;">
-                <button id="userBtn" class="btn btn-primary dropdown-toggle" style="width: 160px;" type="button" data-toggle="dropdown"><span class="caret"></span></button>
+        <div class="navbar-btn bigger" id="userTabbigger" style="float: right;">
+            <div class="dropdown" style="float: right;">
+                <button id="userBtnbigger" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
                 <ul class="dropdown-menu">
                     <li><a href="/profile">My account</a></li>
-                    <li><a href="/orderHistory">My order history</a></li>
+                    <li class="active"><a href="/orderHistory">My order history</a></li>
                     <li><a href="/logout">Log out</a></li>
                 </ul>
             </div>
         </div>
         <!--end userTab  -->
 
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="nav navbar-nav" style="margin-top: 10px;">
+                <li><a href="/" style="background:none;"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-fire"></span> Products
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Gas</a></li>
+                        <li><a href="#">Devices</a></li>
+                        <li><a href="#">Maintenance services</a></li>
+                    </ul>
+                </li>
+                <li><a href="../tips/tips.html"><span class="glyphicon glyphicon-thumbs-up"></span> Tips for using</a></li>
+                <li><a href="../others/abouts.html"><span class="glyphicon glyphicon-briefcase"></span> About us</a></li>
+            </ul>
+        </div>
     </div>
+
 </nav>
 
+<script type="text/javascript">
+    var name = $.cookie('username');
+    $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
+    $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
+</script>
 
 <!--display history-->
-<div style="width:80%;padding:20px; margin-right:auto; margin-left:auto;">
-    <h3 style="text-align:center"><i style="color: deepskyblue"><small>My Order History</small></i></h3>
-    <br />
+<div style="outline: none; border-color: #158dff; box-shadow: 0 0 10px #158dff; text-align: center; border-radius: 15px; background: white;width:95%;padding:2%; margin-right:auto; margin-left:auto; margin-top: 40px;">
+    <legend align="center" style="color: blue;"><b>My Order History</b></legend>
+    <br>
 
 <div>
     <table id="example" class="table table-striped table-bordered row-border hover" style="width:100%">
@@ -104,8 +112,8 @@
         <thead>
         <tr>
             <th style="width: 4%;"></th>
-            <th style="width: 13%">Date</th>
-            <th style="width: 13%">Phone Number</th>
+            <th style="width: 16%">Date</th>
+            <th style="width: 10%">Bill Code</th>
             <th style="width: 27%">Delivery Address</th>
             <th style="width: 16%">Gas Brand</th>
             <th style="width: 6%">Size</th>
@@ -118,7 +126,7 @@
         <tr>
             <th></th>
             <th>Date</th>
-            <th>Phone Number</th>
+            <th>Bill Code</th>
             <th>Delivery Address</th>
             <th>Gas Brand</th>
             <th>Size</th>
@@ -130,5 +138,60 @@
 </div>
 
 </div>
+
+
+<script type="text/javascript">
+
+
+
+    $(document).ready(function() {
+        var t = $('#example').DataTable( {
+            // "processing": true,
+            // "serverSide": true,
+
+            "ajax": {
+                "url": "/orderHistory",
+                "type": "POST"
+            },
+            "columns": [
+                {"defaultContent": ""},
+                { "data": "date" },
+                { "data": "billCode" },
+                { "data": "address" },
+                { "data": "brand" },
+                { "data": "size" },
+                { "data": "price" },
+                { "data": "status"}
+            ],
+
+            "columnDefs": [ {
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            } ],
+            "order": [[ 1, 'asc' ]],
+
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+
+            "initComplete": function () {
+                var api = this.api();
+                api.$('td').click( function () {
+                    api.search( this.innerHTML ).draw();
+                } );
+            }
+
+        } );
+
+        t.on( 'order.dt search.dt', function () {
+            t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                cell.innerHTML = i+1;
+            } );
+        } ).draw();
+
+    } );
+
+</script>
+
+
 </body>
 </html>
