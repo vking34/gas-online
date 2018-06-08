@@ -22,7 +22,7 @@ public class products_view extends HttpServlet {
         try {
             response.setContentType("application/json; charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.print("{\"data\": " + products + "}");
+            out.print(products);
             out.close();
         }
         catch (Exception  e){
