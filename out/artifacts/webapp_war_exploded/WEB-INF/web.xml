@@ -201,6 +201,17 @@
         <servlet-name>abouts</servlet-name>
         <url-pattern>/abouts</url-pattern>
     </servlet-mapping>
-    
+
+    <!--order WebSocket-->
+    <servlet>
+        <servlet-name>distributeOrder</servlet-name>
+        <servlet-class>manager.distributeOrder</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>distributeOrder</servlet-name>
+        <url-pattern>/manageOrder</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
