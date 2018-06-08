@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>About Us</title>
+    <title>Tips</title>
     <meta charset="UTF-8">
     <meta name=”viewport” content=”width=device-width, initial-scale=1″>
     <link rel="shortcut icon" type="image/png" href="../icon/flame.png">
@@ -13,7 +13,46 @@
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/tips.css">
 </head>
+<script>
+    $(document).ready(function () {
 
+        var name = $.cookie('username');
+
+        if (name) {
+
+            $('#userTabsmaller').append("<div class=\"dropdown\" style=\"float: right;\">\n" +
+                "                      <button id=\"userBtnsmaller\" class=\"btn btn-primary dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" style=\"width: 160px;\"><span class=\"caret\"></span></button>\n" +
+                "                      <ul class=\"dropdown-menu\">\n" +
+                "                          <li><a href=\"/profile\">My account</a></li>\n" +
+                "                          <li><a href=\"/orderHistory\">My order history</a></li>\n" +
+                "                          <li><a href=\"/logout\">Log out</a></li>\n" +
+                "                      </ul>\n" +
+                "                  </div>");
+
+            $('#userTabbigger').append("<div class=\"dropdown\" style=\"float: right;\">\n" +
+                "                  <button id=\"userBtnbigger\" class=\"btn btn-primary dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" style=\"width: 160px;\"><span class=\"caret\"></span></button>\n" +
+                "                  <ul class=\"dropdown-menu\">\n" +
+                "                      <li><a href=\"/profile\">My account</a></li>\n" +
+                "                      <li><a href=\"/orderHistory\">My order history</a></li>\n" +
+                "                      <li><a href=\"/logout\">Log out</a></li>\n" +
+                "                  </ul>\n" +
+                "              </div>");
+
+            $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
+            $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
+
+
+        }
+        else {
+            $('#logSignsmaller').append("<button class=\"btn btn-outline-secondary\" style=\"color: black;\" onclick=\"location.href='/login'\" >Sign in</button>\n" +
+                "<button class=\"btn btn-primary\" style=\"\" onclick=\"location.href='/signup'\" >Sign up</button>");
+
+            $('#logSignbigger').append("<button class=\"btn btn-outline-secondary\" style=\"color: black;\" onclick=\"location.href='/login'\" >Sign in</button>\n" +
+                "<button class=\"btn btn-primary\" style=\"\" onclick=\"location.href='/signup'\" >Sign up</button>");
+
+        }
+    });
+</script>
 <body>
 
 
@@ -30,22 +69,13 @@
 
             <!--logSign-->
             <div class="navbar-btn smaller" id="logSignsmaller" style="float: left; margin-left: 10px;">
-                <button class="btn btn-outline-secondary" style="color: white;"><a href="/login" >Sign in</a></button>
-                <button class="btn btn-primary" style=""><a href="/signup" style="color:white;">Sign up</a></button>
 
             </div>
             <!--end logSign-->
 
             <!--userTab-->
             <div class="navbar-btn smaller" id="userTabsmaller">
-                <div class="dropdown" style="float: right;">
-                    <button id="userBtnsmaller" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="/profile">My account</a></li>
-                        <li><a href="/orderHistory">My order history</a></li>
-                        <li><a href="/logout">Log out</a></li>
-                    </ul>
-                </div>
+
             </div>
             <!--end userTab  -->
 
@@ -60,34 +90,26 @@
 
         <!--logSign-->
         <div class="navbar-btn bigger" id="logSignbigger" style="float: right;">
-            <button class="btn btn-outline-secondary" style="color: white;"><a href="/login" >Sign in</a></button>
-            <button class="btn btn-primary" style=""><a href="/signup" style="color:white;">Sign up</a></button>
+
         </div>
         <!--end logSign-->
 
         <!--userTab-->
         <div class="navbar-btn bigger" id="userTabbigger" style="float: right;">
-            <div class="dropdown" style="float: right;">
-                <button id="userBtnbigger" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li><a href="/profile">My account</a></li>
-                    <li><a href="/orderHistory">My order history</a></li>
-                    <li><a href="/logout">Log out</a></li>
-                </ul>
-            </div>
+
         </div>
         <!--end userTab  -->
 
         <div class="collapse navbar-collapse" id="menu">
             <ul class="nav navbar-nav" style="margin-top: 10px;">
-                <li ><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li ><a href="../index.html"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-fire"></span> Products
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#""><span class="glyphicon glyphicon-fire"></span> Products
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Gas</a></li>
-                        <li><a href="#">Devices</a></li>
-                        <li><a href="#">Maintenance services</a></li>
+                        <li><a href="/products">Gas</a></li>
+                        <li><a href="/products">Devices</a></li>
+                        <li><a href="/products">Maintenance services</a></li>
                     </ul>
                 </li>
                 <li class="active"><a style="background:none;" href="/tips"><span class="glyphicon glyphicon-thumbs-up"></span> Tips for using</a></li>
@@ -98,7 +120,7 @@
 
 </nav>
 
-<script type="text/javascript">
+<!--<script type="text/javascript">
     $(function () {
         let name = $.cookie('username');
         $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
@@ -106,18 +128,14 @@
         if(name){
             $('#logSignbigger').hide();
             $('#logSignsmaller').hide();
-            $('div.mainsection>center>div>span.intro').html("Thank you for using our services.<br>Start ordering your need or take a look at our safety advices.");
-            $('div.mainsection>center>div>button.btn.btn-outline-secondary.buttonChange').html("<a href=\"../productSites/products.html\">Products</a>");
         }
         else {
             $('#userTabbigger').hide();
             $('#userTabsmaller').hide();
-            $('div.mainsection>center>div>span.intro').html("Thank you for using our services.<br>Login to order your needs or take a look at our safety advices.");
-            $('div.mainsection>center>div>button.btn.btn-outline-secondary.buttonChange').html("<a href=\"../userSites/login.html\">Sign in</a>");
         }
     })
 
-</script>
+</script>-->
 <div style="outline: none; border-color: #158dff; box-shadow: 0 0 10px #158dff; background: white;width:80%; margin: 20px auto; height: auto; overflow: auto; padding: 1%;">
     <legend><h3>Tips for using</h3></legend>
     <div class="tips">
@@ -126,7 +144,7 @@
         </div>
         <div class="tips-art">
             <div class="title">How to be xinh like Chi Pu</div>
-            <div class="preview">Chi Pu is very xinh, but how can we be like her?<br><a href="#">Read more...</a></div>
+            <div class="preview">Chi Pu is very xinh, but how can we be like her?<br><a href="/tips/tips-article-1.html">Read more...</a></div>
         </div>
     </div>
     <div class="tips">
@@ -135,7 +153,7 @@
         </div>
         <div class="tips-art">
             <div class="title">How to sing perfectly like Chi Pu</div>
-            <div class="preview">Chi Pu sings very perfectly, but how can we be like her?<br><a href="#">Read more...</a></div>
+            <div class="preview">Chi Pu sings very perfectly, but how can we be like her?<br><a href="/tips/tips-article-1.html">Read more...</a></div>
         </div>
     </div>
 </div>

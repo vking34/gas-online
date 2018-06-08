@@ -25,6 +25,46 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
+    <script>
+        $(document).ready(function () {
+
+            var name = $.cookie('username');
+
+            if (name) {
+
+                $('#userTabsmaller').append("<div class=\"dropdown\" style=\"float: right;\">\n" +
+                    "                      <button id=\"userBtnsmaller\" class=\"btn btn-primary dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" style=\"width: 160px;\"><span class=\"caret\"></span></button>\n" +
+                    "                      <ul class=\"dropdown-menu\">\n" +
+                    "                          <li><a href=\"/profile\">My account</a></li>\n" +
+                    "                          <li><a href=\"/orderHistory\">My order history</a></li>\n" +
+                    "                          <li><a href=\"/logout\">Log out</a></li>\n" +
+                    "                      </ul>\n" +
+                    "                  </div>");
+
+                $('#userTabbigger').append("<div class=\"dropdown\" style=\"float: right;\">\n" +
+                    "                  <button id=\"userBtnbigger\" class=\"btn btn-primary dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" style=\"width: 160px;\"><span class=\"caret\"></span></button>\n" +
+                    "                  <ul class=\"dropdown-menu\">\n" +
+                    "                      <li><a href=\"/profile\">My account</a></li>\n" +
+                    "                      <li><a href=\"/orderHistory\">My order history</a></li>\n" +
+                    "                      <li><a href=\"/logout\">Log out</a></li>\n" +
+                    "                  </ul>\n" +
+                    "              </div>");
+
+                $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
+                $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
+
+
+            }
+            else {
+                $('#logSignsmaller').append("<button class=\"btn btn-outline-secondary\" style=\"color: black;\" onclick=\"location.href='/login'\" >Sign in</button>\n" +
+                    "<button class=\"btn btn-primary\" style=\"\" onclick=\"location.href='/signup'\" >Sign up</button>");
+
+                $('#logSignbigger').append("<button class=\"btn btn-outline-secondary\" style=\"color: black;\" onclick=\"location.href='/login'\" >Sign in</button>\n" +
+                    "<button class=\"btn btn-primary\" style=\"\" onclick=\"location.href='/signup'\" >Sign up</button>");
+
+            }
+        });
+    </script>
 
 </head>
 <body>
@@ -40,16 +80,15 @@
                 ICT Gas Store
             </a>
 
+            <!--logSign-->
+            <div class="navbar-btn smaller" id="logSignsmaller" style="float: left; margin-left: 10px;">
+
+            </div>
+            <!--end logSign-->
+
             <!--userTab-->
             <div class="navbar-btn smaller" id="userTabsmaller">
-                <div class="dropdown" style="float: right;">
-                    <button id="userBtnsmaller" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="/profile">My account</a></li>
-                        <li class="active"><a href="/orderHistory">My order history</a></li>
-                        <li><a href="/logout">Log out</a></li>
-                    </ul>
-                </div>
+
             </div>
             <!--end userTab  -->
 
@@ -62,44 +101,56 @@
 
         </div>
 
+
+        <!--logSign-->
+        <div class="navbar-btn bigger" id="logSignbigger" style="float: right;">
+
+        </div>
+        <!--end logSign-->
+
         <!--userTab-->
         <div class="navbar-btn bigger" id="userTabbigger" style="float: right;">
-            <div class="dropdown" style="float: right;">
-                <button id="userBtnbigger" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li><a href="/profile">My account</a></li>
-                    <li class="active"><a href="/orderHistory">My order history</a></li>
-                    <li><a href="/logout">Log out</a></li>
-                </ul>
-            </div>
+
         </div>
         <!--end userTab  -->
 
         <div class="collapse navbar-collapse" id="menu">
             <ul class="nav navbar-nav" style="margin-top: 10px;">
-                <li><a href="/" style="background:none;"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li ><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-fire"></span> Products
-                        <span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#""><span class="glyphicon glyphicon-fire"></span> Products
+                    <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Gas</a></li>
-                        <li><a href="#">Devices</a></li>
-                        <li><a href="#">Maintenance services</a></li>
+                        <li><a href="/products">Gas</a></li>
+                        <li><a href="/products">Devices</a></li>
+                        <li><a href="/products">Maintenance services</a></li>
                     </ul>
                 </li>
-                <li><a href="../tips/tips.html"><span class="glyphicon glyphicon-thumbs-up"></span> Tips for using</a></li>
-                <li><a href="../others/abouts.html"><span class="glyphicon glyphicon-briefcase"></span> About us</a></li>
+                <li><a href="/tips"><span class="glyphicon glyphicon-thumbs-up"></span> Tips for using</a></li>
+                <li><a style="background:none;" href="/abouts"><span class="glyphicon glyphicon-briefcase"></span> About us</a></li>
             </ul>
         </div>
     </div>
 
 </nav>
 
-<script type="text/javascript">
-    var name = $.cookie('username');
-    $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
-    $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
-</script>
+
+<!--<script type="text/javascript">
+    $(function () {
+        let name = $.cookie('username');
+        $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
+        $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
+        if(name){
+            $('#logSignbigger').hide();
+            $('#logSignsmaller').hide();
+        }
+        else {
+            $('#userTabbigger').hide();
+            $('#userTabsmaller').hide();
+        }
+    })
+
+</script>-->
 
 <!--display history-->
 <div style="outline: none; border-color: #158dff; box-shadow: 0 0 10px #158dff; text-align: center; border-radius: 15px; background: white;width:95%;padding:2%; margin-right:auto; margin-left:auto; margin-top: 40px;">
@@ -113,7 +164,7 @@
         <tr>
             <th style="width: 4%;"></th>
             <th style="width: 16%">Date</th>
-            <th style="width: 10%">Phone Number</th>
+            <th style="width: 10%">Bill Code</th>
             <th style="width: 27%">Delivery Address</th>
             <th style="width: 16%">Gas Brand</th>
             <th style="width: 6%">Size</th>
@@ -126,7 +177,7 @@
         <tr>
             <th></th>
             <th>Date</th>
-            <th>Phone Number</th>
+            <th>Bill Code</th>
             <th>Delivery Address</th>
             <th>Gas Brand</th>
             <th>Size</th>
@@ -156,7 +207,7 @@
             "columns": [
                 {"defaultContent": ""},
                 { "data": "date" },
-                { "data": "phoneNumber" },
+                { "data": "billCode" },
                 { "data": "address" },
                 { "data": "brand" },
                 { "data": "size" },
@@ -169,7 +220,7 @@
                 "orderable": false,
                 "targets": 0
             } ],
-            "order": [[ 1, 'desc' ]],
+            "order": [[ 1, 'asc' ]],
 
             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
 

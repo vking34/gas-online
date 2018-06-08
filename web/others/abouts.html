@@ -12,6 +12,48 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/about.css">
+
+    <script>
+        $(document).ready(function () {
+
+            var name = $.cookie('username');
+
+            if (name) {
+
+                $('#userTabsmaller').append("<div class=\"dropdown\" style=\"float: right;\">\n" +
+                    "                      <button id=\"userBtnsmaller\" class=\"btn btn-primary dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" style=\"width: 160px;\"><span class=\"caret\"></span></button>\n" +
+                    "                      <ul class=\"dropdown-menu\">\n" +
+                    "                          <li><a href=\"/profile\">My account</a></li>\n" +
+                    "                          <li><a href=\"/orderHistory\">My order history</a></li>\n" +
+                    "                          <li><a href=\"/logout\">Log out</a></li>\n" +
+                    "                      </ul>\n" +
+                    "                  </div>");
+
+                $('#userTabbigger').append("<div class=\"dropdown\" style=\"float: right;\">\n" +
+                    "                  <button id=\"userBtnbigger\" class=\"btn btn-primary dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" style=\"width: 160px;\"><span class=\"caret\"></span></button>\n" +
+                    "                  <ul class=\"dropdown-menu\">\n" +
+                    "                      <li><a href=\"/profile\">My account</a></li>\n" +
+                    "                      <li><a href=\"/orderHistory\">My order history</a></li>\n" +
+                    "                      <li><a href=\"/logout\">Log out</a></li>\n" +
+                    "                  </ul>\n" +
+                    "              </div>");
+
+                $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
+                $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
+
+
+            }
+            else {
+                $('#logSignsmaller').append("<button class=\"btn btn-outline-secondary\" style=\"color: black;\" onclick=\"location.href='/login'\" >Sign in</button>\n" +
+                    "<button class=\"btn btn-primary\" style=\"\" onclick=\"location.href='/signup'\" >Sign up</button>");
+
+                $('#logSignbigger').append("<button class=\"btn btn-outline-secondary\" style=\"color: black;\" onclick=\"location.href='/login'\" >Sign in</button>\n" +
+                    "<button class=\"btn btn-primary\" style=\"\" onclick=\"location.href='/signup'\" >Sign up</button>");
+
+            }
+        });
+
+    </script>
 </head>
 
 <body>
@@ -30,22 +72,13 @@
 
             <!--logSign-->
             <div class="navbar-btn smaller" id="logSignsmaller" style="float: left; margin-left: 10px;">
-                <button class="btn btn-outline-secondary" style="color: white;"><a href="/login" >Sign in</a></button>
-                <button class="btn btn-primary" style=""><a href="/signup" style="color:white;">Sign up</a></button>
 
             </div>
             <!--end logSign-->
 
             <!--userTab-->
             <div class="navbar-btn smaller" id="userTabsmaller">
-                <div class="dropdown" style="float: right;">
-                    <button id="userBtnsmaller" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="/profile">My account</a></li>
-                        <li><a href="/orderHistory">My order history</a></li>
-                        <li><a href="/logout">Log out</a></li>
-                    </ul>
-                </div>
+
             </div>
             <!--end userTab  -->
 
@@ -60,34 +93,27 @@
 
         <!--logSign-->
         <div class="navbar-btn bigger" id="logSignbigger" style="float: right;">
-            <button class="btn btn-outline-secondary" style="color: white;"><a href="/login" >Sign in</a></button>
-            <button class="btn btn-primary" style=""><a href="/signup" style="color:white;">Sign up</a></button>
+
         </div>
         <!--end logSign-->
 
         <!--userTab-->
         <div class="navbar-btn bigger" id="userTabbigger" style="float: right;">
-            <div class="dropdown" style="float: right;">
-                <button id="userBtnbigger" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li><a href="/profile">My account</a></li>
-                    <li><a href="/orderHistory">My order history</a></li>
-                    <li><a href="/logout">Log out</a></li>
-                </ul>
-            </div>
+
         </div>
         <!--end userTab  -->
+
 
         <div class="collapse navbar-collapse" id="menu">
             <ul class="nav navbar-nav" style="margin-top: 10px;">
                 <li ><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-fire"></span> Products
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#""><span class="glyphicon glyphicon-fire"></span> Products
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Gas</a></li>
-                        <li><a href="#">Devices</a></li>
-                        <li><a href="#">Maintenance services</a></li>
+                        <li><a href="/products">Gas</a></li>
+                        <li><a href="/products">Devices</a></li>
+                        <li><a href="/products">Maintenance services</a></li>
                     </ul>
                 </li>
                 <li><a href="/tips"><span class="glyphicon glyphicon-thumbs-up"></span> Tips for using</a></li>
@@ -98,7 +124,8 @@
 
 </nav>
 
-<script type="text/javascript">
+
+<!--<script type="text/javascript">
     $(function () {
         let name = $.cookie('username');
         $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
@@ -106,18 +133,14 @@
         if(name){
             $('#logSignbigger').hide();
             $('#logSignsmaller').hide();
-            $('div.mainsection>center>div>span.intro').html("Thank you for using our services.<br>Start ordering your need or take a look at our safety advices.");
-            $('div.mainsection>center>div>button.btn.btn-outline-secondary.buttonChange').html("<a href=\"../productSites/products.html\">Products</a>");
         }
         else {
             $('#userTabbigger').hide();
             $('#userTabsmaller').hide();
-            $('div.mainsection>center>div>span.intro').html("Thank you for using our services.<br>Login to order your needs or take a look at our safety advices.");
-            $('div.mainsection>center>div>button.btn.btn-outline-secondary.buttonChange').html("<a href=\"../userSites/login.html\">Sign in</a>");
         }
     })
 
-</script>
+</script>-->
 <div style="outline: none; border-color: #158dff; box-shadow: 0 0 10px #158dff; background: white;width:80%; margin-right:auto; margin-left:auto; height: auto; overflow: auto;">
     <div id="header">
         <div>
@@ -133,7 +156,7 @@
                 <div class="carousel-inner">
 
                     <div class="item active">
-                        <img src="../images/doa-hoa-hong-phien-ban-story-mang-lai-dieu-moi-me-gi-972eaf92.jpg" alt="Los Angeles" style="width:100%;">
+                        <img src="../images/doa-hoa-hong-phien-ban-story-mang-lai-dieu-moi-me-gi-972eaf92.jpg" alt="cap1" style="width:100%;">
                         <div class="carousel-caption">
                             <h3>Chi Pu</h3>
                             <p>very xinh</p>
@@ -141,7 +164,7 @@
                     </div>
 
                     <div class="item">
-                        <img src="../images/chi-pu-2.jpg" alt="Chicago" style="width:100%;">
+                        <img src="../images/chi-pu-2.jpg" alt="cap2" style="width:100%;">
                         <div class="carousel-caption">
                             <h3>Chi Pu</h3>
                             <p>still xinh</p>
@@ -149,7 +172,7 @@
                     </div>
 
                     <div class="item">
-                        <img src="../images/maxresdefault1.jpg" alt="New York" style="width:100%;">
+                        <img src="../images/maxresdefault1.jpg" alt="cap3" style="width:100%;">
                         <div class="carousel-caption">
                             <h3>Chi Pu</h3>
                             <p>xinh again</p>

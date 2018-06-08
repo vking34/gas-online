@@ -34,17 +34,15 @@ span.announce{
     nav.navbar.navbar-inverse > div.container-fluid > div#menu.collapse.navbar-collapse {
         float: left;
     }
-
+    div.info{
+        padding-left: 0px;
+    }
     nav.navbar.navbar-inverse > div.container-fluid >div.navbar-header> div#userTabsmaller.navbar-btn.smaller{
         display: inline-block;
     }
 
     nav.navbar.navbar-inverse > div.container-fluid > div#userTabbigger.navbar-btn.bigger{
         display: none;
-    }
-
-    div.info{
-        padding-left: 0px;
     }
 }
 @media all and (max-width: 650px){
@@ -56,14 +54,14 @@ span.announce{
     nav.navbar.navbar-inverse > div.container-fluid > div#menu.collapse.navbar-collapse {
         float: right;
     }
+    div.info{
+        padding-left: 30px;
+    }
     nav.navbar.navbar-inverse > div.container-fluid >div.navbar-header> div#userTabsmaller.navbar-btn.smaller{
         display: none;
     }
 
     nav.navbar.navbar-inverse > div.container-fluid > div#userTabbigger.navbar-btn.bigger{
         display: inline-block;
-    }
-    div.info{
-        padding-left: 30px;
     }
 }

@@ -32,7 +32,6 @@ body {
     nav.navbar.navbar-inverse > div.container-fluid > div#menu.collapse.navbar-collapse {
         float: left;
     }
-
     nav.navbar.navbar-inverse>div.container-fluid>div#logSignbigger.navbar-btn.bigger{
         display: none;
     }
@@ -47,7 +46,6 @@ body {
     nav.navbar.navbar-inverse > div.container-fluid > div#userTabbigger.navbar-btn.bigger{
         display: none;
     }
-
 }
 @media all and (max-width: 650px){
     div.mainsection>center>div>button.btn.btn-outline-secondary{
@@ -72,5 +70,4 @@ body {
     nav.navbar.navbar-inverse > div.container-fluid > div#userTabbigger.navbar-btn.bigger{
         display: inline-block;
     }
-
 }

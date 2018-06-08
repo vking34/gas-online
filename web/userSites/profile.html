@@ -135,18 +135,18 @@
 
         <div class="collapse navbar-collapse" id="menu">
             <ul class="nav navbar-nav" style="margin-top: 10px;">
-                <li><a href="../index.html" style="background:none;"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li><a href="/" style="background:none;"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-fire"></span> Products
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Gas</a></li>
-                        <li><a href="#">Devices</a></li>
-                        <li><a href="#">Maintenance services</a></li>
+                        <li><a href="/products">Gas</a></li>
+                        <li><a href="/products">Devices</a></li>
+                        <li><a href="/products">Maintenance services</a></li>
                     </ul>
                 </li>
-                <li><a href="../tips/tips.html"><span class="glyphicon glyphicon-thumbs-up"></span> Tips for using</a></li>
-                <li><a href="../others/abouts.html"><span class="glyphicon glyphicon-briefcase"></span> About us</a></li>
+                <li><a href="/tips"><span class="glyphicon glyphicon-thumbs-up"></span> Tips for using</a></li>
+                <li><a href="/abouts"><span class="glyphicon glyphicon-briefcase"></span> About us</a></li>
             </ul>
         </div>
     </div>
@@ -260,6 +260,16 @@
     $('#change_pass_btn').prop('disabled', true);
 
     $(document).ready(function () {
+        $('#myModal input').keypress(function(event) {
+            if (event.keyCode == 13 || event.which == 13) {
+                $('#change_phone_btn').click();
+            }
+        });
+        $('#myModal1 input').keypress(function(event) {
+            if (event.keyCode == 13 || event.which == 13) {
+                $('#change_pass_btn').click();
+            }
+        });
         $('#oldPassword').blur(function () {
             if($('#oldPassword').val() === ''){
                 oldPassStatus.text('Invalid');

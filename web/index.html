@@ -1,19 +1,58 @@
 <!doctype html>
 <html>
 <head>
-    <title>Gas Online</title>
+    <title>ICT Gas Online</title>
     <meta name=”viewport” content=”width=device-width, initial-scale=1″>
-      <link rel="shortcut icon" type="image/png" href="https://lh3.googleusercontent.com/CQAhuCZ37cztACoBmzeJ3N_0hY_WMVRNr1cG58Y5KcGQ7towXJJI_3XWl0mKxV8STKk76JmsOyt2hq7gP86HVeJ9Ppc8StJLJd0QKm28-gvcqXEbhIKYWFjpJw0Thj7IHsrqhtVUcQHK8EC83w1Hz-yOXDFewh2OBmKmAGeTF03_AgMlSwd_UTi5HY1PvN7svKVPSLqA4UoBn4wHv0SYZNfzddIAkxx0QltUT6Qua9jnT4FI--XXPIlgEq_IpXYAsFSVOs9Oq-ZM_mW1EEMkq0_Gvh_X84KJOltteGT2DwgB12AHPnstGSjhLBGzFERUlJsqCyr_ajbDEQcQY3PSrMH1YeE8PR9ETKpPuHXLGCVy6gd6552QlTU9u7pl7xIpX4deC-PDk-BcU4aAP775mkAm6C8P2aqo0pPEQsr9FMDEAtjUWTSyRjHAtqwf9H9icPE7Tf8vsHw1ww07PZXGdmTkdIsAc-ggVyBaVWFl_6Lqo-N3fyC0OvMvNzCuW8DRxCK8IWwET3tHitd0m-vN3RAIu4C3ZqyClkGbR0I46HJebak1SpdzL86N9Blh236twghxoYM9P5ZCCaNjMCSqyWNAxo_On9rvyyhTb3MpMaTxyEiHTYy3tnpUtN0xq2VDtu3e5Tyjz_HBVv_1cYq-oeNyEkizf0MG">
+      <link rel="shortcut icon" type="image/png" href="icon/flame.png">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script language="javascript" src="js/home.js"></script>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <!--<link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">-->
+      <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="css/home.css">
   </head>
+<script>
+    $(document).ready(function () {
 
+        var name = $.cookie('username');
+
+        if (name) {
+
+            $('#userTabsmaller').append("<div class=\"dropdown\" style=\"float: right;\">\n" +
+                "                      <button id=\"userBtnsmaller\" class=\"btn btn-primary dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" style=\"width: 160px;\"><span class=\"caret\"></span></button>\n" +
+                "                      <ul class=\"dropdown-menu\">\n" +
+                "                          <li><a href=\"/profile\">My account</a></li>\n" +
+                "                          <li><a href=\"/orderHistory\">My order history</a></li>\n" +
+                "                          <li><a href=\"/logout\">Log out</a></li>\n" +
+                "                      </ul>\n" +
+                "                  </div>");
+
+            $('#userTabbigger').append("<div class=\"dropdown\" style=\"float: right;\">\n" +
+                "                  <button id=\"userBtnbigger\" class=\"btn btn-primary dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" style=\"width: 160px;\"><span class=\"caret\"></span></button>\n" +
+                "                  <ul class=\"dropdown-menu\">\n" +
+                "                      <li><a href=\"/profile\">My account</a></li>\n" +
+                "                      <li><a href=\"/orderHistory\">My order history</a></li>\n" +
+                "                      <li><a href=\"/logout\">Log out</a></li>\n" +
+                "                  </ul>\n" +
+                "              </div>");
+
+            $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
+            $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
+
+
+        }
+        else {
+            $('#logSignsmaller').append("<button class=\"btn btn-outline-secondary\" style=\"color: black;\" onclick=\"location.href='/login'\" >Sign in</button>\n" +
+                "<button class=\"btn btn-primary\" style=\"\" onclick=\"location.href='/signup'\" >Sign up</button>");
+
+            $('#logSignbigger').append("<button class=\"btn btn-outline-secondary\" style=\"color: black;\" onclick=\"location.href='/login'\" >Sign in</button>\n" +
+                "<button class=\"btn btn-primary\" style=\"\" onclick=\"location.href='/signup'\" >Sign up</button>");
+
+        }
+    });
+</script>
   <body>
 
 
@@ -22,7 +61,7 @@
           <div class="navbar-header">
               <!--menu-->
               <a class="navbar-brand" href="/">
-                  <img height="40px" width="30px" src="https://lh3.googleusercontent.com/CQAhuCZ37cztACoBmzeJ3N_0hY_WMVRNr1cG58Y5KcGQ7towXJJI_3XWl0mKxV8STKk76JmsOyt2hq7gP86HVeJ9Ppc8StJLJd0QKm28-gvcqXEbhIKYWFjpJw0Thj7IHsrqhtVUcQHK8EC83w1Hz-yOXDFewh2OBmKmAGeTF03_AgMlSwd_UTi5HY1PvN7svKVPSLqA4UoBn4wHv0SYZNfzddIAkxx0QltUT6Qua9jnT4FI--XXPIlgEq_IpXYAsFSVOs9Oq-ZM_mW1EEMkq0_Gvh_X84KJOltteGT2DwgB12AHPnstGSjhLBGzFERUlJsqCyr_ajbDEQcQY3PSrMH1YeE8PR9ETKpPuHXLGCVy6gd6552QlTU9u7pl7xIpX4deC-PDk-BcU4aAP775mkAm6C8P2aqo0pPEQsr9FMDEAtjUWTSyRjHAtqwf9H9icPE7Tf8vsHw1ww07PZXGdmTkdIsAc-ggVyBaVWFl_6Lqo-N3fyC0OvMvNzCuW8DRxCK8IWwET3tHitd0m-vN3RAIu4C3ZqyClkGbR0I46HJebak1SpdzL86N9Blh236twghxoYM9P5ZCCaNjMCSqyWNAxo_On9rvyyhTb3MpMaTxyEiHTYy3tnpUtN0xq2VDtu3e5Tyjz_HBVv_1cYq-oeNyEkizf0MG">
+                  <img height="40px" width="30px" src="icon/flame.png">
               </a>
               <a class="navbar-brand logo" href="/" style="background: rgb(1,182,255); border-radius: 15px; margin-top: 10px; margin-left:1px;">
                   ICT Gas Store
@@ -30,21 +69,13 @@
 
               <!--logSign-->
               <div class="navbar-btn smaller" id="logSignsmaller" style="float: left; margin-left: 10px;">
-                  <button class="btn btn-outline-secondary" style="color: black;" onclick="location.href='/login'" >Sign in</button>
-                  <button class="btn btn-primary" style="" onclick="location.href='/signup'" >Sign up</button>
+
               </div>
               <!--end logSign-->
 
               <!--userTab-->
               <div class="navbar-btn smaller" id="userTabsmaller">
-                  <div class="dropdown" style="float: right;">
-                      <button id="userBtnsmaller" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
-                      <ul class="dropdown-menu">
-                          <li><a href="/profile">My account</a></li>
-                          <li><a href="/orderHistory">My order history</a></li>
-                          <li><a href="/logout">Log out</a></li>
-                      </ul>
-                  </div>
+
               </div>
               <!--end userTab  -->
 
@@ -59,21 +90,13 @@
 
           <!--logSign-->
           <div class="navbar-btn bigger" id="logSignbigger" style="float: right;">
-              <button class="btn btn-outline-secondary" style="color: black;" onclick="location.href='/login'" >Sign in</button>
-              <button class="btn btn-primary" style="" onclick="location.href='/signup'" >Sign up</button>
+
           </div>
           <!--end logSign-->
 
           <!--userTab-->
           <div class="navbar-btn bigger" id="userTabbigger" style="float: right;">
-              <div class="dropdown" style="float: right;">
-                  <button id="userBtnbigger" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                      <li><a href="/profile">My account</a></li>
-                      <li><a href="/orderHistory">My order history</a></li>
-                      <li><a href="/logout">Log out</a></li>
-                  </ul>
-              </div>
+
           </div>
           <!--end userTab  -->
 
@@ -84,9 +107,9 @@
                       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-fire"></span> Products
                           <span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                          <li><a href="#">Gas</a></li>
-                          <li><a href="#">Devices</a></li>
-                          <li><a href="#">Maintenance services</a></li>
+                          <li><a href="/products">Gas</a></li>
+                          <li><a href="/products">Devices</a></li>
+                          <li><a href="/products">Maintenance services</a></li>
                       </ul>
                   </li>
                   <li><a href="/tips"><span class="glyphicon glyphicon-thumbs-up"></span> Tips for using</a></li>
@@ -97,7 +120,7 @@
 
   </nav>
 
-  <script type="text/javascript">
+  <!--<script type="text/javascript">
       $(function () {
           let name = $.cookie('username');
           $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
@@ -105,26 +128,23 @@
           if(name){
               $('#logSignbigger').hide();
               $('#logSignsmaller').hide();
-              $('div.mainsection>center>div>span.intro').html("Thank you for using our services.<br>Start ordering your need or take a look at our safety advices.");
-              $('div.mainsection>center>div>button.btn.btn-outline-secondary.buttonChange').html("<a href=\"productSites/products.html\">Products</a>");
           }
           else {
               $('#userTabbigger').hide();
               $('#userTabsmaller').hide();
-              $('div.mainsection>center>div>span.intro').html("Thank you for using our services.<br>Login to order your needs or take a look at our safety advices.");
-              $('div.mainsection>center>div>button.btn.btn-outline-secondary.buttonChange').html("<a href=\"userSites/login.html\">Sign in</a>");
+              $('div.mainsection>center>div').append("<span style=\"font-size: 20px;\"><br><br>Log in to save your point!</span>\n" + "<a href=\"/login\" style=\"font-size: 20px;\">Sign in</a>" + "<span style=\"font-size: 20px;\"><br>Don't have an account?</span>\n" + "<a href=\"/signup\" style=\"font-size: 20px;\">Sign up</a>");
           }
       })
 
-  </script>
+  </script>-->
 
-<div class="mainsection" style="background-image: url(https://lh3.googleusercontent.com/NEsG4SyqshNoZYUmU71qBlbV5_qSxWWYx3Le29qZB4sb8nb9Wrxd7lmi3IdzvbdR3AM9b3dPhKwvG73h7w_nYGc8xV40_gRMMAuY9JFkUsygVIj_d3BJF65t6W6OlSxa93gVAuyRklQFnaOH21Sy6yKeeKNEc1N-O6WD-QJxw5oFwdgVxo-JhjiZqMgYKIn8TresU9t_ygx_LVQ3nHCdq_Umig6dLoi-U-0c6QpejqlRQkjiGQWu34JjIBpPKkxqKtdioI-T5PjgbsLYL8NVTFvCNHY0wFsXaKO1pIoiHvqpxu5ghystHPvEapPzn-HOiATfaKNs84lEbWfjAsCi065Szgmq-eMPryucvCIkzXUuqefOcviyxuA8KLsOLN1w7bPAPjVYLwMdicDQt0xLx2UJ9mweo7hDyb6Y5u0gVGi7gySj0FRk1Tx25yCKtOb6YjeJXdTusHQauog0FgwjjS5oNfXZdzKrKHU4HP_r1V07iBs3RuvPTTr74vD3tV0lOQGSyZyzWLeGp571c2Wpi4gDTVRuU1J-4bwiqKBTx5jviJ7drbi2sMVBHlyK9XUwyRRndCaE-wngwZSchADhQNLiMSNVJoGIDXxTYSH4uQASwMr_oQMi9MGi5trK1zp75_T0WejELN-anVi1nG55KyvsHQqGnBJz); margin-top: 0;">
+<div class="mainsection" style="background-image: url(images/seamless-gas-fire-and-flame-border-wanlop-sonngam.jpg); margin-top: 0;">
     <center>
         <div style="width: 60%; background-color: rgba(255, 255, 255, 0.75); margin: 100px 0; font-size:30px; padding: 50px 2%; border-radius: 30px;">
-            <span class="intro">Thank you for using our services.<br>Login to order your needs or take a look at our safety advices.</span><br><br>
-            <button class="btn btn-primary " style="color: white; font-size:40px" onclick="location.href='/orderForm'">Order gas</button>
-            <button class="btn btn-primary" style="color: white; font-size:40px" onclick="location.href='/products'" >Products</button>
-            <button class="btn btn-primary" style="color: white; font-size:40px" onclick="location.href='/tips'" >Tips for using</button>
+            <span class="intro">Thank you for using our services.<br>Order your needs now or take a look at our safety advices.</span><br><br>
+            <button class="btn btn-outline-secondary" style="color: white; font-size:20px" onclick="location.href='/orderForm'"><a href="#">Order gas</a></button>
+            <button class="btn btn-outline-secondary" style="color: white; font-size:20px" onclick="location.href='/products'"><a href="#" >Products</a></button>
+            <button class="btn btn-outline-secondary" style="color: white; font-size:20px" onclick="location.href='/tips'"><a href="#" >Tips for using</a></button>
 
         </div>
     </center>

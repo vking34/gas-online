@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
-@WebServlet(name = "products_view")
-public class products_view extends HttpServlet {
+@WebServlet(name = "productsList")
+public class productsList extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println("Request products from client...");
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String products = new product_db().getProducts();
         System.out.println(products);
 
@@ -23,9 +25,6 @@ public class products_view extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.print(products);
         out.close();
-    }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/productSites/products.html").forward(request,response);
     }
 }

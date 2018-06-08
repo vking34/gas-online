@@ -47,8 +47,8 @@
                     "                  </ul>\n" +
                     "              </div>");
 
-                $('#userBtnsmaller').text(name);
-                $('#userBtnbigger').text(name);
+                $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
+                $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
 
                 $.ajax({
                     url: "/getLastOrder",
@@ -321,7 +321,7 @@
         }
 
         function validatePhone(phone) {
-            var filter = /^[0-9-+]+$/;
+            var filter = /^0[0-9]+$/;
             if(filter.test(phone))
             {
                 return true;
@@ -376,8 +376,6 @@
 
 </head>
 
-<div>
-
 <nav class="navbar navbar-inverse" style="padding-bottom: 10px; margin-bottom: 0px; border-radius: 0px;">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -391,13 +389,14 @@
 
             <!--logSign-->
             <div class="navbar-btn smaller" id="logSignsmaller" style="float: left; margin-left: 10px;">
+
             </div>
             <!--end logSign-->
 
             <!--userTab-->
             <div class="navbar-btn smaller" id="userTabsmaller">
-            </div>
 
+            </div>
             <!--end userTab  -->
 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu" style="float: right; margin-top: 20px;">
@@ -411,38 +410,59 @@
 
         <!--logSign-->
         <div class="navbar-btn bigger" id="logSignbigger" style="float: right;">
+
         </div>
         <!--end logSign-->
 
         <!--userTab-->
         <div class="navbar-btn bigger" id="userTabbigger" style="float: right;">
+
         </div>
         <!--end userTab  -->
 
+
         <div class="collapse navbar-collapse" id="menu">
             <ul class="nav navbar-nav" style="margin-top: 10px;">
-                <li><a href="/" style="background:none;"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li ><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-fire"></span> Products
-                        <span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#""><span class="glyphicon glyphicon-fire"></span> Products
+                    <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Gas</a></li>
-                        <li><a href="#">Devices</a></li>
-                        <li><a href="#">Maintenance services</a></li>
+                        <li><a href="/products">Gas</a></li>
+                        <li><a href="/products">Devices</a></li>
+                        <li><a href="/products">Maintenance services</a></li>
                     </ul>
                 </li>
                 <li><a href="/tips"><span class="glyphicon glyphicon-thumbs-up"></span> Tips for using</a></li>
-                <li><a href="/abouts"><span class="glyphicon glyphicon-briefcase"></span> About us</a></li>
+                <li><a style="background:none;" href="/abouts"><span class="glyphicon glyphicon-briefcase"></span> About us</a></li>
             </ul>
         </div>
     </div>
 
 </nav>
 
+
+<!--<script type="text/javascript">
+    $(function () {
+        let name = $.cookie('username');
+        $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
+        $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
+        if(name){
+            $('#logSignbigger').hide();
+            $('#logSignsmaller').hide();
+        }
+        else {
+            $('#userTabbigger').hide();
+            $('#userTabsmaller').hide();
+        }
+    })
+
+</script>-->
+
 <div style="outline: none; border-color: #158dff; box-shadow: 0 0 10px #158dff; border-radius: 15px; background: white;width:95%; margin-right:auto; margin-left:auto; margin-top: 40px; height: auto; overflow: auto;">
     <div id="map" class="col-sm-11 col-md-5" style="height:450px; margin: 30px 4%;"></div>
 
-    <div class="container col-sm-11 col-md-5" style="margin: 30px 4%;>
+    <div class="container col-sm-11 col-md-5" style="margin: 30px 4%;">
         <div class="row" id="input">
             <div class="span8">
                 <form action="/orderForm" method="post" class="form-horizontal" id="orderForm" accept-charset="utf-8">
@@ -494,7 +514,7 @@
                     <br>
                     <div class="control-group">
                         <label class="control-label" >Humanity Check:</label>
-                        <div class="controls">
+                        <div class="controls" style="margin-left:20px">
                             <label class="radio inline">
                                 <input type="radio" name="humancheck" id="humancheck-0" checked="checked">I'm a Robot (not be able to order)</label>
                             <label class="radio inline">
@@ -518,297 +538,303 @@
             <h4 id="address"></h4>
             <p>We'll call back to confirm.</p>
             <h4 id="phone"></h4>
-            <h4>Thank for your trusted consumption.</h4>
+            <h4>Thank you for your trusting us.</h4>
         </div>
 
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('input').keypress(function(event) {
+            if (event.keyCode == 13 || event.which == 13) {
+                $('#btn').click();
+            }
+        });
+    });
+</script>
+<!--<script>
 
-<!--<script>-->
-
-    <!--var map, infowindow, marker;-->
-    <!--var order = new Object();-->
-    <!--var street = "";-->
-
-
-    <!--function initMap() {-->
-        <!--map = new google.maps.Map(document.getElementById('map'), {-->
-            <!--center: {lat: 21.0157795, lng: 105.8276146},-->
-            <!--zoom: 14,-->
-            <!--mapTypeControl: false,-->
-            <!--zoomControl: true,-->
-            <!--zoomControlOptions: {-->
-                <!--style: google.maps.ZoomControlStyle.SMALL-->
-            <!--}-->
-        <!--});-->
-
-        <!--$('#input').show();-->
-        <!--$('#confirmed').hide();-->
-
-        <!--infowindow = new google.maps.InfoWindow();  // info Window pops up when the marker appears-->
-
-        <!--marker = new google.maps.Marker({           // declare a marker-->
-            <!--map: map-->
-        <!--});-->
-
-        <!--// for Pinning the map-->
-
-        <!--marker.setMap(map);                         // add marker under the map layer for Listener-->
-        <!--map.addListener('click', addPin);           // handling with 'click' on map-->
-
-        <!--// for Sharing location-->
-
-        <!--if (navigator.geolocation) {                // asking for sharing location-->
-            <!--navigator.geolocation.getCurrentPosition(function(position) {-->
-                <!--var pos = {-->
-                    <!--lat: position.coords.latitude,-->
-                    <!--lng: position.coords.longitude-->
-                <!--};-->
-
-                <!--window.order.pos = pos;-->
-                <!--map.setCenter(pos);-->
-                <!--map.setZoom(16.5);-->
-                <!--marker.setPosition(pos);-->
-                <!--marker.setAnimation(google.maps.Animation.BOUNCE);-->
-
-                <!--reverserGeoCoding(pos);-->
-
-            <!--}, function() {-->
-                <!--handleLocationError(true, infowindow, map.getCenter());-->
-            <!--});-->
-        <!--} else {-->
-            <!--// Browser doesn't support Geolocation-->
-            <!--handleLocationError(false, infowindow, map.getCenter());-->
-        <!--}-->
+    var map, infowindow, marker;
+    var order = new Object();
+    var street = "";
 
 
-        <!--// for Typing location-->
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 21.0157795, lng: 105.8276146},
+            zoom: 14,
+            mapTypeControl: false,
+            zoomControl: true,
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.SMALL
+            }
+        });
 
-        <!--var input = document.getElementById('street');-->
+        $('#input').show();
+        $('#confirmed').hide();
 
-        <!--var autocomplete = new google.maps.places.Autocomplete(input);-->
+        infowindow = new google.maps.InfoWindow();  // info Window pops up when the marker appears
 
-        <!--autocomplete.addListener('place_changed', function() {-->
-            <!--marker.setAnimation(null);-->
-            <!--infowindow.close();-->
-            <!--marker.setVisible(false);-->
-            <!--var place = autocomplete.getPlace();-->
-            <!--if (!place.geometry) {-->
-                <!--// User entered the name of a Place that was not suggested and-->
-                <!--// pressed the Enter key, or the Place Details request failed.-->
-                <!--window.alert("No details available for input: '" + place.name + "'");-->
-                <!--return;-->
-            <!--}-->
+        marker = new google.maps.Marker({           // declare a marker
+            map: map
+        });
 
-            <!--// If the place has a geometry, then present it on a map.-->
-            <!--if (place.geometry.viewport) {-->
-                <!--map.fitBounds(place.geometry.viewport);-->
-            <!--} else {-->
-                <!--map.setCenter(place.geometry.location);-->
-                <!--map.setZoom(16.5);  // Why 17? Because it looks good.-->
-            <!--}-->
+        // for Pinning the map
 
-            <!--marker.setPosition(place.geometry.location);-->
-            <!--marker.setVisible(true);-->
+        marker.setMap(map);                         // add marker under the map layer for Listener
+        map.addListener('click', addPin);           // handling with 'click' on map
 
-            <!--var address = '';-->
-            <!--if (place.address_components) {-->
-                <!--address = [-->
-                    <!--(place.address_components[0] && place.address_components[0].short_name || ''),-->
-                    <!--" ",-->
-                    <!--(place.address_components[1] && place.address_components[1].short_name || ''),-->
-                    <!--", ",-->
-                    <!--(place.address_components[2] && place.address_components[2].short_name || ''),-->
-                    <!--" ward"-->
-                <!--].join('');-->
-                <!--window.street = place.address_components[0].short_name + " " + place.address_components[1].short_name;-->
-                <!--window.order.ward = place.address_components[2].short_name;-->
-            <!--}-->
+        // for Sharing location
 
-            <!--infowindow.setContent("<img src=\"" + place.icon +"\" width=\"16\" height=\"16\" id=\"place-icon\">" +-->
-                <!--"<span id=\"place-name\"  class=\"title\">  " + place.name + "</span><br>" +-->
-                <!--"<span id=\"place-address\">" + address + "</span>");-->
-            <!--infowindow.open(map, marker);-->
-        <!--});-->
-    <!--}-->
+        if (navigator.geolocation) {                // asking for sharing location
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
 
-    <!--function addPin(event) {                // properties for click are returned in event-->
-        <!--marker.setAnimation(null);-->
-        <!--infowindow.close();-->
-        <!--marker.setVisible(false);-->
-        <!--marker.setPosition(event.latLng);-->
-        <!--marker.setVisible(true);-->
-        <!--window.order.pos = event.latLng;-->
-        <!--reverserGeoCoding(event.latLng);-->
-    <!--}-->
+                window.order.pos = pos;
+                map.setCenter(pos);
+                map.setZoom(16.5);
+                marker.setPosition(pos);
+                marker.setAnimation(google.maps.Animation.BOUNCE);
 
-    <!--function reverserGeoCoding(pos) {-->
-        <!--var geocoder = new google.maps.Geocoder;-->
-        <!--geocoder.geocode({'location': pos}, function (results, status) {-->
-            <!--if (status === 'OK'){-->
+                reverserGeoCoding(pos);
 
-                <!--var location = results[0];-->
-                <!--if(location){-->
-                    <!--window.street = "";-->
-                    <!--var details = "";-->
-
-                    <!--route: {-->
-                        <!--if(location.address_components[0].types[0] == 'street_number')-->
-                        <!--{-->
-                            <!--details = details + location.address_components[0].short_name;-->
-                        <!--}-->
-                        <!--else-->
-                        <!--{-->
-                            <!--if(location.address_components[0].types[0] == 'route')-->
-                            <!--{-->
-                                <!--window.street = location.address_components[0].short_name;-->
-                                <!--break route;-->
-                            <!--}-->
-                        <!--}-->
-
-                        <!--if(location.address_components[1].types[0] == 'route') {-->
-                            <!--window.street = location.address_components[1].short_name;-->
-                        <!--}-->
-
-                    <!--}-->
+            }, function() {
+                handleLocationError(true, infowindow, map.getCenter());
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infowindow, map.getCenter());
+        }
 
 
-                    <!--if(location.address_components[1].types[0] == 'political')-->
-                    <!--{-->
-                        <!--window.order.ward = location.address_components[1].short_name;-->
-                    <!--}-->
-                    <!--else-->
-                    <!--{-->
-                        <!--if(location.address_components[2].types[0] == 'political' || location.address_components[2].types[0] == 'administrative_area_level_3')-->
-                        <!--{-->
-                            <!--window.order.ward = location.address_components[2].short_name;-->
-                        <!--}-->
-                    <!--}-->
+        // for Typing location
+
+        var input = document.getElementById('street');
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+        autocomplete.addListener('place_changed', function() {
+            marker.setAnimation(null);
+            infowindow.close();
+            marker.setVisible(false);
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                // User entered the name of a Place that was not suggested and
+                // pressed the Enter key, or the Place Details request failed.
+                window.alert("No details available for input: '" + place.name + "'");
+                return;
+            }
+
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(16.5);  // Why 17? Because it looks good.
+            }
+
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
+
+            var address = '';
+            if (place.address_components) {
+                address = [
+                    (place.address_components[0] && place.address_components[0].short_name || ''),
+                    " ",
+                    (place.address_components[1] && place.address_components[1].short_name || ''),
+                    ", ",
+                    (place.address_components[2] && place.address_components[2].short_name || ''),
+                    " ward"
+                ].join('');
+                window.street = place.address_components[0].short_name + " " + place.address_components[1].short_name;
+                window.order.ward = place.address_components[2].short_name;
+            }
+
+            infowindow.setContent("<img src=\"" + place.icon +"\" width=\"16\" height=\"16\" id=\"place-icon\">" +
+                "<span id=\"place-name\"  class=\"title\">  " + place.name + "</span><br>" +
+                "<span id=\"place-address\">" + address + "</span>");
+            infowindow.open(map, marker);
+        });
+    }
+
+    function addPin(event) {                // properties for click are returned in event
+        marker.setAnimation(null);
+        infowindow.close();
+        marker.setVisible(false);
+        marker.setPosition(event.latLng);
+        marker.setVisible(true);
+        reverserGeoCoding(event.latLng);
+    }
+
+    function reverserGeoCoding(pos) {
+        var geocoder = new google.maps.Geocoder;
+        geocoder.geocode({'location': pos}, function (results, status) {
+            if (status === 'OK'){
+
+                var location = results[0];
+                if(location){
+                    window.street = "";
+                    var details = "";
+
+                    route: {
+                        if(location.address_components[0].types[0] == 'street_number')
+                        {
+                            details = details + location.address_components[0].short_name;
+                        }
+                        else
+                        {
+                            if(location.address_components[0].types[0] == 'route')
+                            {
+                                window.street = location.address_components[0].short_name;
+                                break route;
+                            }
+                        }
+
+                        if(location.address_components[1].types[0] == 'route') {
+                            window.street = location.address_components[1].short_name;
+                        }
+
+                    }
 
 
-                    <!--$('#details').val(details);-->
-                    <!--$('#street').val(window.street + ", " + window.order.ward);-->
+                    if(location.address_components[1].types[0] == 'political')
+                    {
+                        window.order.ward = location.address_components[1].short_name;
+                    }
+                    else
+                    {
+                        if(location.address_components[2].types[0] == 'political' || location.address_components[2].types[0] == 'administrative_area_level_3')
+                        {
+                            window.order.ward = location.address_components[2].short_name;
+                        }
+                    }
 
-                    <!--infowindow.setContent("<img src=\"https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png\" width=\"16\" height=\"16\" id=\"place-icon\">"+-->
-                        <!--"<span id=\"place-name\"  class=\"title\">  " + details + "</span><br>" +-->
-                        <!--"<span id=\"place-address\">"+ window.street + ", " + window.order.ward + "</span>");-->
 
-                    <!--infowindow.open(map, marker);-->
-                <!--}-->
-                <!--else {-->
-                    <!--window.alert('No results found');-->
-                <!--}-->
-            <!--}-->
-            <!--else {-->
-                <!--window.alert('Geocoder failed due to: ' + status);-->
-            <!--}-->
-        <!--});-->
+                    $('#details').val(details);
+                    $('#street').val(window.street + ", " + window.order.ward);
 
-    <!--}-->
+                    infowindow.setContent("<img src=\"https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png\" width=\"16\" height=\"16\" id=\"place-icon\">"+
+                        "<span id=\"place-name\"  class=\"title\">  " + details + "</span><br>" +
+                        "<span id=\"place-address\">"+ window.street + ", " + window.order.ward + "</span>");
 
-    <!--function handleLocationError(browserHasGeolocation, infoWindow, pos) {-->
-        <!--infoWindow.setPosition(pos);-->
-        <!--infoWindow.setContent(browserHasGeolocation ?-->
-            <!--'Error: The Geolocation service failed.' :-->
-            <!--'Error: Your browser doesn\'t support geolocation.');-->
-        <!--infoWindow.open(map);-->
-    <!--}-->
+                    infowindow.open(map, marker);
+                }
+                else {
+                    window.alert('No results found');
+                }
+            }
+            else {
+                window.alert('Geocoder failed due to: ' + status);
+            }
+        });
 
-    <!--$(document).ready(function () {-->
-        <!--var phoneStatus = 0;-->
-        <!--$('#btn').prop('disabled', true);-->
+    }
 
-        <!--$('#phoneNumber').blur(function (e) {-->
-            <!--if(validatePhone($('#phoneNumber').val())){-->
-                <!--$('#phoneStatus').html('Valid');-->
-                <!--$('#phoneStatus').css('color', 'green');-->
-                <!--phoneStatus = 1;-->
-            <!--}-->
-            <!--else {-->
-                <!--$('#phoneStatus').html('Invalid');-->
-                <!--$('#phoneStatus').css('color', 'red');-->
-                <!--phoneStatus = 0;-->
-            <!--}-->
-        <!--});-->
-        <!---->
-        <!--$('#humancheck-1').click(function () {-->
-            <!--if($('#phoneNumber').val() != '' && $('#street').val() != '' && phoneStatus == 1){-->
-                <!--$('#btn').prop('disabled', false);-->
-            <!--}-->
-        <!--});-->
-        <!--$('#humancheck-0').click(function () {-->
-            <!--$('#btn').prop('disabled', true);-->
-        <!--});-->
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+    }
 
-        <!--$('#phoneNumber, #street, #humancheck-1').keyup(function(){-->
-            <!--if(phoneStatus == 1 && $('#phoneNumber').val() != '' && $('#street').val() != '' && $('#humancheck-1').is(':checked'))-->
-            <!--{-->
-                <!--$('#btn').prop('disabled', false);-->
-            <!--}-->
-            <!--else {-->
-                <!--$('#btn').prop('disabled', true);-->
-            <!--}-->
-        <!--});-->
+    $(document).ready(function () {
+        var phoneStatus = 0;
+        $('#btn').prop('disabled', true);
 
-        <!--$('#btn').keypress(function (e) {-->
-            <!--if(e.which() == 13){-->
-                <!--$('#btn').click();-->
-            <!--}-->
-        <!--});-->
+        $('#phoneNumber').blur(function (e) {
+            if(validatePhone($('#phoneNumber').val())){
+                $('#phoneStatus').html('Valid');
+                $('#phoneStatus').css('color', 'green');
+                phoneStatus = 1;
+            }
+            else {
+                $('#phoneStatus').html('Invalid');
+                $('#phoneStatus').css('color', 'red');
+                phoneStatus = 0;
+            }
+        });
+        
+        $('#humancheck-1').click(function () {
+            if($('#phoneNumber').val() != '' && $('#street').val() != '' && phoneStatus == 1){
+                $('#btn').prop('disabled', false);
+            }
+        });
+        $('#humancheck-0').click(function () {
+            $('#btn').prop('disabled', true);
+        });
 
-    <!--});-->
-    <!---->
-    <!--function validatePhone(phone) {-->
-        <!--var filter = /^0[0-9]+$/;-->
-        <!--if(filter.test(phone))-->
-        <!--{-->
-            <!--return true;-->
-        <!--}-->
-        <!--else {-->
-            <!--return false;-->
-        <!--}-->
-    <!--}-->
+        $('#phoneNumber, #street, #humancheck-1').keyup(function(){
+            if(phoneStatus == 1 && $('#phoneNumber').val() != '' && $('#street').val() != '' && $('#humancheck-1').is(':checked'))
+            {
+                $('#btn').prop('disabled', false);
+            }
+            else {
+                $('#btn').prop('disabled', true);
+            }
+        });
 
-    <!--function sendOrder() {-->
-        <!--marker.setAnimation(null);-->
-        <!--window.order.gasCode = $('#gasCode').val();-->
-        <!--window.order.phoneNumber = $('#phoneNumber').val();-->
-        <!--if($('#details').val() != '')-->
-        <!--{-->
-            <!--window.order.address = $('#details').val() + ", " + window.street;-->
-        <!--}-->
-        <!--else {-->
-            <!--window.order.address = window.street;-->
-        <!--}-->
+        $('#btn').keypress(function (e) {
+            if(e.which() == 13){
+                $('#btn').click();
+            }
+        });
 
-        <!--$.ajax(-->
-            <!--{-->
-                <!--url : '/orderForm',-->
-                <!--type : 'POST',-->
-                <!--dataType: 'json',-->
-                <!--data: JSON.stringify(window.order),-->
-                <!--contentType: 'application/json; charset=UTF-8',-->
-                <!--success: function (message) {-->
+    });
+    
+    function validatePhone(phone) {
+        var filter = /^0[0-9]+$/;
+        if(filter.test(phone))
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
-                    <!--if(message.status)-->
-                    <!--{-->
-                        <!--$('#input').hide();-->
-                        <!--$('#confirmed').show();-->
-                        <!--$('#gasCylinder').text(message.cylinder);-->
-                        <!--$('#address').text(message.address);-->
-                        <!--$('#phone').text(message.phoneNumber);-->
-                    <!--}-->
-                    <!--else-->
-                    <!--{-->
-                        <!--alert("Sorry!!! You're out of our service scope\nOr the input is invalid.");-->
-                    <!--}-->
-                <!--}-->
-            <!--}-->
-        <!--);-->
-    <!--}-->
+    function sendOrder() {
+        marker.setAnimation(null);
+        window.order.gasCode = $('#gasCode').val();
+        window.order.phoneNumber = $('#phoneNumber').val();
+        if($('#details').val() != '')
+        {
+            window.order.address = $('#details').val() + ", " + window.street;
+        }
+        else {
+            window.order.address = window.street;
+        }
 
-<!--</script>-->
+        $.ajax(
+            {
+                url : '/orderForm',
+                type : 'POST',
+                dataType: 'json',
+                data: JSON.stringify(window.order),
+                contentType: 'application/json; charset=UTF-8',
+                success: function (message) {
 
+                    if(message.status)
+                    {
+                        $('#input').hide();
+                        $('#confirmed').show();
+                        $('#gasCylinder').text(message.cylinder);
+                        $('#address').text(message.address);
+                        $('#phone').text(message.phoneNumber);
+                    }
+                    else
+                    {
+                        alert("Sorry!!! You're out of our service scope\nOr the input is invalid.");
+                    }
+                }
+            }
+        );
+    }
+
+</script>-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqq4Qc-3Ysc7yy9miNKpcUzEw_IwDj0dw&libraries=places&callback=initMap"
         async defer></script>
 </body>

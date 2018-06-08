@@ -15,21 +15,32 @@
     <script type="text/javascript" src="../js/products.js"></script>
 
     <script>
-        $(document).ready(function () {
 
-            window.products = new Array();
-
-            $.ajax({
-                url: 'http://gasnow.cleverapps.io/products',
-                type: 'POST',
-                dataType: "json",
-                async: false,
-                complete: function (data) {
-                    window.products = data;
-                    window.alert("success" + window.products.length);
+        $.ajax({
+            url: '/productsList',
+            type: 'GET',
+            success: function (data) {
+                var i;
+                for(i=0; i<data.length;i++) {
+                    $('#myProducts>#product-list').append("<div class=\"each-item current-pro\">\n" +
+                        "</div>");
+                    $('.current-pro').html("<img class=\"port-image\" src=\""+data[i].img+"\"/>\n" +
+                        "<div class=\"caption\">\n" +
+                        "<p class=\"title\">"+data[i].name+"</p>\n" +
+                        "<p class=\"price\">"+data[i].price+"</p>\n" +
+                        "</div>\n");
+                    if(data[i].type==1)
+                        $('.current-pro').addClass("gas");
+                    else if(data[i].type==2)
+                        $('.current-pro').addClass("device");
+                    else
+                        $('.current-pro').addClass("service");
+                    $('.each-item.current-pro').removeClass("current-pro");
                 }
-            });
+            }
+        });
 
+        $(document).ready(function () {
 
             var name = $.cookie('username');
 
@@ -67,8 +78,6 @@
 
             }
         });
-
-
 
     </script>
 </head>

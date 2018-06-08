@@ -17,10 +17,10 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <!--menu-->
-            <a class="navbar-brand" href="../index.html">
+            <a class="navbar-brand" href="/">
                 <img height="40px" width="30px" src="../icon/flame.png">
             </a>
-            <a class="navbar-brand logo" href="../index.html" style="background: rgb(1,182,255); border-radius: 15px; margin-top: 10px; margin-left:1px;">
+            <a class="navbar-brand logo" href="/" style="background: rgb(1,182,255); border-radius: 15px; margin-top: 10px; margin-left:1px;">
                 ICT Gas Store
             </a>
 
@@ -43,9 +43,9 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-fire"></span> Products
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Gas</a></li>
-                        <li><a href="#">Devices</a></li>
-                        <li><a href="#">Maintenance services</a></li>
+                        <li><a href="/products">Gas</a></li>
+                        <li><a href="/products">Devices</a></li>
+                        <li><a href="/products">Maintenance services</a></li>
                     </ul>
                 </li>
                 <li><a href="/tips"><span class="glyphicon glyphicon-thumbs-up"></span> Tips for using</a></li>
@@ -163,6 +163,11 @@
             }
             else {
                 $('#btn').prop('disabled', true);
+            }
+        });
+        $('.form-control').keypress(function(event) {
+            if (event.keyCode == 13 || event.which == 13) {
+                $('#btn').click();
             }
         });
     });

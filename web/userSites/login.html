@@ -44,9 +44,9 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-fire"></span> Products
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Gas</a></li>
-                        <li><a href="#">Devices</a></li>
-                        <li><a href="#">Maintenance services</a></li>
+                        <li><a href="/products">Gas</a></li>
+                        <li><a href="/products">Devices</a></li>
+                        <li><a href="/products">Maintenance services</a></li>
                     </ul>
                 </li>
                 <li><a href="/tips"><span class="glyphicon glyphicon-thumbs-up"></span> Tips for using</a></li>
@@ -99,11 +99,12 @@
                                 </div>
                             </div>
                         </fieldset>
+
                     </form>
                 </div>
                 <div class="panel-footer ">
-                    Don't have an account? <a href="/signup"> Sign Up Here </a><br />
-                    Forgot your password? <a href="/forgetPassword"> Take it back Here</a>
+                    Don't have an account? <a href="signup.html"> Sign Up Here </a><br />
+                    Forgot your password? <a href="forgetPassword.html"> Take it back Here</a>
                 </div>
             </div>
         </div>
@@ -121,7 +122,11 @@
                 $('#btn').prop('disabled', true);
             }
         });
-
+        $('.form-control').keypress(function(event) {
+            if (event.keyCode == 13 || event.which == 13) {
+                $('#btn').click();
+            }
+        });
     });
     function sendUser() {
         var user = new Object();

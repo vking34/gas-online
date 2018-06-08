@@ -202,6 +202,17 @@
         <url-pattern>/abouts</url-pattern>
     </servlet-mapping>
 
+    <!--List of products-->
+    <servlet>
+        <servlet-name>productsList</servlet-name>
+        <servlet-class>products.productsList</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>productsList</servlet-name>
+        <url-pattern>/productsList</url-pattern>
+    </servlet-mapping>
+
     <!--order WebSocket-->
     <servlet>
         <servlet-name>distributeOrder</servlet-name>
@@ -212,6 +223,7 @@
         <servlet-name>distributeOrder</servlet-name>
         <url-pattern>/manageOrder</url-pattern>
     </servlet-mapping>
+
 
 
 </web-app>

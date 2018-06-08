@@ -41,4 +41,39 @@ public class product_db {
             return null;
         }
     }
+
+    public String getList(){
+
+        Statement statement = null;
+        String sql = null;
+
+        JSONObject list = new JSONObject();
+
+        try {
+            statement = connection.createStatement();
+
+            sql = "(SELECT type, name, price, brand, img FROM gas_device) UNION (SELECT 1 as type, name, price, brand, img FROM gas_cylinder);";
+
+            ResultSet rs = statement.executeQuery(sql);
+
+            list.put("status", true);
+            JSONArray products = new JSONArray();
+
+            while (rs.next()){
+                JSONObject product = new JSONObject();
+                product.put("type", rs.getInt("type"));
+                product.put("name", rs.getString("name"));
+                product.put("price", rs.getInt("price"));
+                product.put("brand", rs.getString("brand"));
+                product.put("img", rs.getString("img"));
+                products.put(product);
+            }
+            list.put("products", products);
+
+        } catch (SQLException e) {
+            list.put("status", false);
+        }
+
+        return list.toString();
+    }
 }

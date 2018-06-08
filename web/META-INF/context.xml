@@ -10,3 +10,14 @@
             username="utuu6mcqmehz7exr"
             password="j8vhyB73s6LdBGMuKjD1"/>
 </Context>
+
+<!--<Context>-->
+<!--<Resource-->
+        <!--name="DSpool"-->
+        <!--auth="Container"-->
+        <!--type="javax.sql.DataSource"-->
+        <!--driverClassName="com.mysql.jdbc.Driver"-->
+        <!--url="jdbc:mysql://localhost:3306/gas_online"-->
+        <!--username="root"-->
+        <!--password=""/>-->
+<!--</Context>-->
