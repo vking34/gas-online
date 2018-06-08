@@ -21,7 +21,6 @@
             type: 'GET',
             success: function (data) {
                 var i;
-                // // if(data.status){
                 for(i=0; i<data.length;i++) {
                     $('#myProducts>#product-list').append("<div class=\"each-item current-pro\">\n" +
                         "</div>");
@@ -38,10 +37,6 @@
                         $('.current-pro').addClass("service");
                     $('.each-item.current-pro').removeClass("current-pro");
                 }
-                // }
-                // else {
-                //     window.alert('Can not show the products!');
-                // }
             }
         });
 
