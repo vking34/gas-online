@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 public class products_view extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        System.out.println("Request products from client...");
         String products = new product_db().getProducts();
         System.out.println(products);
 
