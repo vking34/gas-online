@@ -13,6 +13,64 @@
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/products.css">
     <script type="text/javascript" src="../js/products.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            window.products = new Array();
+
+            $.ajax({
+                url: 'http://gasnow.cleverapps.io/products',
+                type: 'POST',
+                dataType: "json",
+                async: false,
+                complete: function (data) {
+                    window.products = data;
+                    window.alert("success" + window.products.length);
+                }
+            });
+
+
+            var name = $.cookie('username');
+
+            if (name) {
+
+                $('#userTabsmaller').append("<div class=\"dropdown\" style=\"float: right;\">\n" +
+                    "                      <button id=\"userBtnsmaller\" class=\"btn btn-primary dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" style=\"width: 160px;\"><span class=\"caret\"></span></button>\n" +
+                    "                      <ul class=\"dropdown-menu\">\n" +
+                    "                          <li><a href=\"/profile\">My account</a></li>\n" +
+                    "                          <li><a href=\"/orderHistory\">My order history</a></li>\n" +
+                    "                          <li><a href=\"/logout\">Log out</a></li>\n" +
+                    "                      </ul>\n" +
+                    "                  </div>");
+
+                $('#userTabbigger').append("<div class=\"dropdown\" style=\"float: right;\">\n" +
+                    "                  <button id=\"userBtnbigger\" class=\"btn btn-primary dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" style=\"width: 160px;\"><span class=\"caret\"></span></button>\n" +
+                    "                  <ul class=\"dropdown-menu\">\n" +
+                    "                      <li><a href=\"/profile\">My account</a></li>\n" +
+                    "                      <li><a href=\"/orderHistory\">My order history</a></li>\n" +
+                    "                      <li><a href=\"/logout\">Log out</a></li>\n" +
+                    "                  </ul>\n" +
+                    "              </div>");
+
+                $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
+                $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
+
+
+            }
+            else {
+                $('#logSignsmaller').append("<button class=\"btn btn-outline-secondary\" style=\"color: black;\" onclick=\"location.href='/login'\" >Sign in</button>\n" +
+                    "<button class=\"btn btn-primary\" style=\"\" onclick=\"location.href='/signup'\" >Sign up</button>");
+
+                $('#logSignbigger').append("<button class=\"btn btn-outline-secondary\" style=\"color: black;\" onclick=\"location.href='/login'\" >Sign in</button>\n" +
+                    "<button class=\"btn btn-primary\" style=\"\" onclick=\"location.href='/signup'\" >Sign up</button>");
+
+            }
+        });
+
+
+
+    </script>
 </head>
 
 <body>
@@ -31,22 +89,13 @@
 
             <!--logSign-->
             <div class="navbar-btn smaller" id="logSignsmaller" style="float: left; margin-left: 10px;">
-                <button class="btn btn-outline-secondary" style="color: white;"><a href="/login" >Sign in</a></button>
-                <button class="btn btn-primary" style=""><a href="/signup" style="color:white;">Sign up</a></button>
 
             </div>
             <!--end logSign-->
 
             <!--userTab-->
             <div class="navbar-btn smaller" id="userTabsmaller">
-                <div class="dropdown" style="float: right;">
-                    <button id="userBtnsmaller" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="/profile">My account</a></li>
-                        <li><a href="/orderHistory">My order history</a></li>
-                        <li><a href="/logout">Log out</a></li>
-                    </ul>
-                </div>
+
             </div>
             <!--end userTab  -->
 
@@ -61,21 +110,13 @@
 
         <!--logSign-->
         <div class="navbar-btn bigger" id="logSignbigger" style="float: right;">
-            <button class="btn btn-outline-secondary" style="color: white;"><a href="/login" >Sign in</a></button>
-            <button class="btn btn-primary" style=""><a href="/signup" style="color:white;">Sign up</a></button>
+
         </div>
         <!--end logSign-->
 
         <!--userTab-->
         <div class="navbar-btn bigger" id="userTabbigger" style="float: right;">
-            <div class="dropdown" style="float: right;">
-                <button id="userBtnbigger" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 160px;"><span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li><a href="/profile">My account</a></li>
-                    <li><a href="/orderHistory">My order history</a></li>
-                    <li><a href="/logout">Log out</a></li>
-                </ul>
-            </div>
+
         </div>
         <!--end userTab  -->
 
@@ -86,9 +127,9 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="background:none;"><span class="glyphicon glyphicon-fire"></span> Products
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Gas</a></li>
-                        <li><a href="#">Devices</a></li>
-                        <li><a href="#">Maintenance services</a></li>
+                        <li><a href="/products">Gas</a></li>
+                        <li><a href="/products">Devices</a></li>
+                        <li><a href="/products">Maintenance services</a></li>
                     </ul>
                 </li>
                 <li><a href="/tips"><span class="glyphicon glyphicon-thumbs-up"></span> Tips for using</a></li>
@@ -99,7 +140,7 @@
 
 </nav>
 
-<script type="text/javascript">
+<!--<script type="text/javascript">
     $(function () {
         let name = $.cookie('username');
         $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
@@ -107,18 +148,14 @@
         if(name){
             $('#logSignbigger').hide();
             $('#logSignsmaller').hide();
-            $('div.mainsection>center>div>span.intro').html("Thank you for using our services.<br>Start ordering your need or take a look at our safety advices.");
-            $('div.mainsection>center>div>button.btn.btn-outline-secondary.buttonChange').html("<a href=\"../productSites/products.html\">Products</a>");
         }
         else {
             $('#userTabbigger').hide();
             $('#userTabsmaller').hide();
-            $('div.mainsection>center>div>span.intro').html("Thank you for using our services.<br>Login to order your needs or take a look at our safety advices.");
-            $('div.mainsection>center>div>button.btn.btn-outline-secondary.buttonChange').html("<a href=\"../userSites/login.html\">Sign in</a>");
         }
     })
 
-</script>
+</script>-->
 
 <div id="header">
     <div>
@@ -134,7 +171,7 @@
             <div class="carousel-inner">
 
                 <div class="item active">
-                    <img src="../images/11.jpg" alt="Los Angeles" style="width:100%;">
+                    <img src="../images/11.jpg" alt="cap1" style="width:100%;">
                     <div class="carousel-caption">
                         <h3>Chi Pu</h3>
                         <p>Queen</p>
@@ -142,7 +179,7 @@
                 </div>
 
                 <div class="item">
-                    <img src="../images/bep-gas-mua-o-dau-tot.jpg" alt="Chicago" style="width:100%;">
+                    <img src="../images/bep-gas-mua-o-dau-tot.jpg" alt="cap2" style="width:100%;">
                     <div class="carousel-caption">
                         <h3>Chi Pu</h3>
                         <p>Talk to me</p>
@@ -150,7 +187,7 @@
                 </div>
 
                 <div class="item">
-                    <img src="../images/maxresdefault.jpg" alt="New York" style="width:100%;">
+                    <img src="../images/maxresdefault.jpg" alt="cap3" style="width:100%;">
                     <div class="carousel-caption">
                         <h3>Chi Pu</h3>
                         <p>Feel like ooh</p>
@@ -175,81 +212,82 @@
         <legend><h3><b>Products</b></h3></legend>
         <button id="gas">Gas</button>
         <button id="device">Devices</button>
-        <button id="service">Maintenance Service</button>
+        <button id="service">Maintenance Services</button>
         <button id="all">All Products</button>
     </div>
     <div class="col-xs-12 col-sm-9" id="myProducts" style="float: left; margin-top: 15px;">
-        <div class="row" style="margin: 0.5%;">
-            <div class="each-item gas">
-                <img class="port-image" src="../images/maxresdefault.jpg"/>
-                <div class="caption">
-                    <p class="title">Chi Pu</p>
-                    <p class="price">$130000</p>
-                </div>
-            </div>
-            <div class="each-item device">
-                <img class="port-image" src="../images/maxresdefault.jpg"/>
-                <div class="caption">
-                    <p class="title">Still Chi Pu</p>
-                    <p class="price">$690000</p>
-                </div>
-            </div>
-            <div class="each-item gas">
-                <img class="port-image" src="../images/maxresdefault.jpg"/>
-                <div class="caption">
-                    <p class="title">Chi Pu Again</p>
-                    <p class="price">$690000</p>
-                </div>
-            </div>
-            <div class="each-item service">
-                <img class="port-image" src="../images/maxresdefault.jpg"/>
-                <div class="caption">
-                    <p class="title">Chi Pu</p>
-                    <p class="price">$690000</p>
-                </div>
-            </div>
-            <div class="each-item service">
-                <img class="port-image" src="../images/maxresdefault.jpg"/>
-                <div class="caption">
-                    <p class="title">Chi Pu Queen</p>
-                    <p class="price">$690000</p>
-                </div>
-            </div>
-            <div class="each-item device">
-                <img class="port-image" src="../images/maxresdefault.jpg"/>
-                <div class="caption">
-                    <p class="title">Chi Pu ESRAXLED</p>
-                    <p class="price">$690000</p>
-                </div>
-            </div>
-            <div class="each-item device">
-                <img class="port-image" src="../images/maxresdefault.jpg"/>
-                <div class="caption">
-                    <p class="title">Chi Pu xinh vl =))</p>
-                    <p class="price">$690000</p>
-                </div>
-            </div>
-            <div class="each-item gas">
-                <img class="port-image" src="../images/maxresdefault.jpg"/>
-                <div class="caption">
-                    <p class="title">Chi Pu</p>
-                    <p class="price">$690000</p>
-                </div>
-            </div>
-            <div class="each-item service">
-                <img class="port-image" src="../images/maxresdefault.jpg"/>
-                <div class="caption">
-                    <p class="title">Chi Pu Chicken</p>
-                    <p class="price">$690000</p>
-                </div>
-            </div>
-            <div class="each-item device">
-                <img class="port-image" src="../images/maxresdefault.jpg"/>
-                <div class="caption">
-                    <p class="title">Chi Pu Ooooohhhh</p>
-                    <p class="price">$690000</p>
-                </div>
-            </div>
+        <div id="product-list" class="row" style="margin: 0.5%;">
+            <!--<div class="each-item gas">-->
+                <!--<img class="port-image" src="../images/maxresdefault.jpg"/>-->
+                <!--<div class="caption">-->
+                    <!--<p class="title">Chi Pu</p>-->
+                    <!--<p class="price">$130000</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="each-item device">-->
+                <!--<img class="port-image" src="../images/maxresdefault.jpg"/>-->
+                <!--<div class="caption">-->
+                    <!--<p class="title">Still Chi Pu</p>-->
+                    <!--<p class="price">$690000</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="each-item gas">-->
+                <!--<img class="port-image" src="../images/maxresdefault.jpg"/>-->
+                <!--<div class="caption">-->
+                    <!--<p class="title">Chi Pu Again</p>-->
+                    <!--<p class="price">$690000</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="each-item service">-->
+                <!--<img class="port-image" src="../images/maxresdefault.jpg"/>-->
+                <!--<div class="caption">-->
+                    <!--<p class="title">Chi Pu</p>-->
+                    <!--<p class="price">$690000</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="each-item service">-->
+                <!--<img class="port-image" src="../images/maxresdefault.jpg"/>-->
+                <!--<div class="caption">-->
+                    <!--<p class="title">Chi Pu Queen</p>-->
+                    <!--<p class="price">$690000</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="each-item device">-->
+                <!--<img class="port-image" src="../images/maxresdefault.jpg"/>-->
+                <!--<div class="caption">-->
+                    <!--<p class="title">Chi Pu ESRAXLED</p>-->
+                    <!--<p class="price">$690000</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="each-item device">-->
+                <!--<img class="port-image" src="../images/maxresdefault.jpg"/>-->
+                <!--<div class="caption">-->
+                    <!--<p class="title">Chi Pu xinh vl =))</p>-->
+                    <!--<p class="price">$690000</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="each-item gas">-->
+                <!--<img class="port-image" src="../images/maxresdefault.jpg"/>-->
+                <!--<div class="caption">-->
+                    <!--<p class="title">Chi Pu</p>-->
+                    <!--<p class="price">$690000</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="each-item service">-->
+                <!--<img class="port-image" src="../images/maxresdefault.jpg"/>-->
+                <!--<div class="caption">-->
+                    <!--<p class="title">Chi Pu Chicken</p>-->
+                    <!--<p class="price">$690000</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="each-item device">-->
+                <!--<img class="port-image" src="../images/maxresdefault.jpg"/>-->
+                <!--<div class="caption">-->
+                    <!--<p class="title">Chi Pu Ooooohhhh</p>-->
+                    <!--<p class="price">$690000</p>-->
+                <!--</div>-->
+            <!--</div>-->
+
         </div>
     </div>
 </div>
