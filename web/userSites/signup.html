@@ -170,6 +170,13 @@
                 $('#btn').click();
             }
         });
+
+        $('.form-control').keypress(function(event) {
+            if (event.keyCode == 13 || event.which == 13) {
+                sendObj();
+            }
+        });
+
     });
 
     function validatePass(pass1, pass2) {
