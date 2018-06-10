@@ -1,3 +1,6 @@
+html {
+    height: 110%;
+}
 .navbar-inverse{
     height: auto;
 }
@@ -10,19 +13,56 @@
     font-size: 30px;
 }
 body {
-  background: #cedfd9;
+    background: #cedfd9;
+    min-height: 100%;
+}
+#navbtn>button{
+    text-align: left;
+    width: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    color: white;
+    border-radius: 10px;
 }
 
-.mainsection{
-    height: 680px;
-    color: black;
-    background-size: cover;
-    overflow: hidden;
+#navbtn>button:hover{
+    outline: none;
+    border: 2px solid;
+    border-color: #158dff;
+    box-shadow: 0 0 10px #158dff;
 }
+@media all and (min-width: 1001px) {
+    nav.navbar.navbar-inverse > div.container-fluid > div#menu.collapse.navbar-collapse {
+        float: right;
+    }
+    nav.navbar.navbar-inverse>div.container-fluid>div#logSignbigger.navbar-btn.bigger{
+        display: inline-block;
+    }
+    nav.navbar.navbar-inverse > div.container-fluid > div.navbar-header>div#logSignsmaller.navbar-btn.smaller{
+        display: none;
+    }
 
-.btn-outline-secondary:hover{
-    background: #b8caca;
-    border: white solid 1px;
+    nav.navbar.navbar-inverse > div.container-fluid >div.navbar-header> div#userTabsmaller.navbar-btn.smaller{
+        display: none;
+    }
+
+    nav.navbar.navbar-inverse > div.container-fluid > div#userTabbigger.navbar-btn.bigger{
+        display: inline-block;
+    }
+    #welcome-head{
+        font-size: 50pt;
+    }
+    #welcome-thank{
+        font-size: 20pt;
+    }
+    #navbtn{
+        width: 30%;
+    }
+    #navbtn>button{
+        margin: 20px 0;
+        padding: 20px 0 20px 8px;
+        font-size: 25pt;
+    }
 }
 @media all and (max-width: 1000px){
     .logo{
@@ -46,28 +86,60 @@ body {
     nav.navbar.navbar-inverse > div.container-fluid > div#userTabbigger.navbar-btn.bigger{
         display: none;
     }
-}
-@media all and (max-width: 650px){
-    div.mainsection>center>div>button.btn.btn-outline-secondary{
-        width: 80%;
+    #navbtn{
+        width: 35%;
     }
-}
-@media all and (min-width: 1001px) {
-    nav.navbar.navbar-inverse > div.container-fluid > div#menu.collapse.navbar-collapse {
-        float: right;
+    #welcome-head{
+        font-size: 50pt;
     }
-    nav.navbar.navbar-inverse>div.container-fluid>div#logSignbigger.navbar-btn.bigger{
-        display: inline-block;
-    }
-    nav.navbar.navbar-inverse > div.container-fluid > div.navbar-header>div#logSignsmaller.navbar-btn.smaller{
-        display: none;
+    #welcome-thank{
+        font-size: 20pt;
     }
 
-    nav.navbar.navbar-inverse > div.container-fluid >div.navbar-header> div#userTabsmaller.navbar-btn.smaller{
-        display: none;
+    #navbtn>button{
+        margin: 20px 0;
+        padding: 20px 0 20px 8px;
+        font-size: 25pt;
     }
+}
 
-    nav.navbar.navbar-inverse > div.container-fluid > div#userTabbigger.navbar-btn.bigger{
-        display: inline-block;
+
+@media all and (max-width: 750px){
+    #welcome-head{
+        font-size: 30pt;
+    }
+    #welcome-thank{
+        font-size: 15pt;
+    }
+    #navbtn{
+        width: 40%;
+    }
+    #navbtn>button{
+        margin: 15px 0;
+        padding: 15px 0 15px 8px;
+        font-size: 20pt;
+    }
+}
+@media all and (max-width: 540px){
+    #navbtn>button{
+        margin: 15px 0;
+        padding: 15px 0 15px 8px;
+        font-size: 15pt;
+    }
+}
+@media all and (max-width: 400px){
+    #welcome-head{
+        font-size: 20pt;
+    }
+    #welcome-thank{
+        font-size: 10pt;
+    }
+    #navbtn{
+        width: 60%;
+    }
+    #navbtn>button{
+        margin: 10px 0;
+        padding: 10px 0 10px 8px;
+        font-size: 15pt;
     }
 }

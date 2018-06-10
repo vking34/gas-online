@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tips</title>
+    <meta charset="UTF-8">
+    <meta name=”viewport” content=”width=device-width, initial-scale=1″>
+    <link rel="shortcut icon" type="image/png" href="../icon/flame.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/tips.css">
+</head>
+<script>
+    $(document).ready(function () {
+
+        var name = $.cookie('username');
+
+        if (name) {
+
+            $('#userTabsmaller').append("<div class=\"dropdown\" style=\"float: right;\">\n" +
+                "                      <button id=\"userBtnsmaller\" class=\"btn btn-primary dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" style=\"width: 160px;\"><span class=\"caret\"></span></button>\n" +
+                "                      <ul class=\"dropdown-menu\">\n" +
+                "                          <li><a href=\"/profile\">My account</a></li>\n" +
+                "                          <li><a href=\"/orderHistory\">My order history</a></li>\n" +
+                "                          <li><a href=\"/logout\">Log out</a></li>\n" +
+                "                      </ul>\n" +
+                "                  </div>");
+
+            $('#userTabbigger').append("<div class=\"dropdown\" style=\"float: right;\">\n" +
+                "                  <button id=\"userBtnbigger\" class=\"btn btn-primary dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" style=\"width: 160px;\"><span class=\"caret\"></span></button>\n" +
+                "                  <ul class=\"dropdown-menu\">\n" +
+                "                      <li><a href=\"/profile\">My account</a></li>\n" +
+                "                      <li><a href=\"/orderHistory\">My order history</a></li>\n" +
+                "                      <li><a href=\"/logout\">Log out</a></li>\n" +
+                "                  </ul>\n" +
+                "              </div>");
+
+            $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
+            $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
+
+
+        }
+        else {
+            $('#logSignsmaller').append("<button class=\"btn btn-outline-secondary\" style=\"color: black;\" onclick=\"location.href='/login'\" >Sign in</button>\n" +
+                "<button class=\"btn btn-primary\" style=\"\" onclick=\"location.href='/signup'\" >Sign up</button>");
+
+            $('#logSignbigger').append("<button class=\"btn btn-outline-secondary\" style=\"color: black;\" onclick=\"location.href='/login'\" >Sign in</button>\n" +
+                "<button class=\"btn btn-primary\" style=\"\" onclick=\"location.href='/signup'\" >Sign up</button>");
+
+        }
+    });
+</script>
+<body>
+
+
+<nav class="navbar navbar-inverse" style="padding-bottom: 10px; margin-bottom: 0px; border-radius: 0px;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <!--menu-->
+            <a class="navbar-brand" href="../index.html">
+                <img height="40px" width="30px" src="../icon/flame.png">
+            </a>
+            <a class="navbar-brand logo" href="../index.html" style="background: rgb(1,182,255); border-radius: 15px; margin-top: 10px; margin-left:1px;">
+                ICT Gas Store
+            </a>
+
+            <!--logSign-->
+            <div class="navbar-btn smaller" id="logSignsmaller" style="float: left; margin-left: 10px;">
+
+            </div>
+            <!--end logSign-->
+
+            <!--userTab-->
+            <div class="navbar-btn smaller" id="userTabsmaller">
+
+            </div>
+            <!--end userTab  -->
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu" style="float: right; margin-top: 20px;">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+
+        <!--logSign-->
+        <div class="navbar-btn bigger" id="logSignbigger" style="float: right;">
+
+        </div>
+        <!--end logSign-->
+
+        <!--userTab-->
+        <div class="navbar-btn bigger" id="userTabbigger" style="float: right;">
+
+        </div>
+        <!--end userTab  -->
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="nav navbar-nav" style="margin-top: 10px;">
+                <li ><a href="../index.html"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#""><span class="glyphicon glyphicon-fire"></span> Products
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Gas</a></li>
+                        <li><a href="#">Devices</a></li>
+                        <li><a href="#">Maintenance services</a></li>
+                    </ul>
+                </li>
+                <li class="active"><a style="background:none;" href="../tips/tips.html"><span class="glyphicon glyphicon-thumbs-up"></span> Tips for using</a></li>
+                <li><a href="../others/abouts.html"><span class="glyphicon glyphicon-briefcase"></span> About us</a></li>
+            </ul>
+        </div>
+    </div>
+
+</nav>
+
+<!--<script type="text/javascript">
+    $(function () {
+        let name = $.cookie('username');
+        $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
+        $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
+        if(name){
+            $('#logSignbigger').hide();
+            $('#logSignsmaller').hide();
+        }
+        else {
+            $('#userTabbigger').hide();
+            $('#userTabsmaller').hide();
+        }
+    })
+
+</script>-->
+<div style="outline: none; border-color: #158dff; box-shadow: 0 0 10px #158dff; background: white;width:80%; margin: 20px auto; height: auto; overflow: auto; padding: 1%; text-align: left;">
+    <legend><h1>Cleaning a Gas Stove Routinely</h1></legend>
+    <p style="font-weight: bold;"></p>
+    <center><img style="width: 70%; margin: 10px 0;" src="https://lh3.googleusercontent.com/CCTxusIs2Aw8rfZ086w2_aOxhDGpiRpDimtZi3XZlcF1D_i1dfmaKE71j9HXB_kwwuQCoe5cOlcAmG4BUc5MVtHaanLvYuKoLZU6L6-i8nHhj_Y5Q-ubOMxqTklgsJC2dms1ZavPG59DBoVRYw6VYAKX-37ENnh8A1HrfEl_aiO1Q7r7FZEG0IuXEL6QmFRdDxrwsWBOOg2inPCPtH5ctbMpQ9oXh7qRut346CEMv_NAS9fgCUuLkgku2oQCTbJOowY9Ac8QRC4Awm9j_vjot_hQYFzvF-orHs9FZZzV0_N42Ena9BRk-RGa-1NSYSjF8Vx0D6_jvCsP_i5sXLAOTTRSmIP-n7QA82sDGMua5fTQyuxovfpdjOXXFBqFFMxRwH0Rw-7dWpx7hSW2CdKtSA4Q3dF5qYsVoT32V7HFAis1-eg5sO6GTe9oqM_HrWFh36FRM7_o_pFMy6O8Y9kTMVwG6IgkMTzRawbxRZSH-025P0-gDT0ciGhqHM0yeY8TVJFP6Uw1ybQbwOF16zCPSmJ7n1p1QMibGbfPmxzETnve59r-sYn8TRCKvfhndRSNcjo6Z7lX-wnZv_N2lmBNq516QlXCuF-D_zOou9Q"></center>
+    <p>While cleaning your stove, you may need to use water, dish soap, and other cleaners. To avoid electrocution, unplug your stove range before you begin working. If your stove was recently on, wait until the stovetop cools down before cleaning.</p>
+    <p>Take your burner grates off of the stove and place them in the sink. Then, fill the sink with hot, soapy water. Let your burner grates soak for several minutes, then clean them off with a wet sponge or dishcloth.</p>
+    <p>After all of the crumbs are brushed away, spray your stovetop with a spray bottle filled with a 1:1 water-white vinegar ratio. Let the mixture sit for a few minutes, then wipe it off with a wet sponge or dishcloth.</p>
+    <p>After wiping off any crumbs and stains from the stovetop, dry off burner grates and caps. Place the grates and caps back in place to reassemble the stove and make it ready for use again.</p>
+    <p>Wipe off the stove knobs and back panel with a wet washcloth to remove any dust or minor stains. If there are larger food stains on your knobs or panels, spray them with the vinegar-water mixture and let it sit for several minutes before wiping them off again.</p>
+</div>
+<body>
+
+</body>
+</html>

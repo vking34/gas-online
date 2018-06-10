@@ -14,6 +14,9 @@ public class tips extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        System.out.println("tips");
+
         request.getRequestDispatcher("/tips/tips.html").forward(request,response);
     }
 }

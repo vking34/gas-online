@@ -140,4 +140,6 @@ body {
 }
 body>div>p{
     text-align: justify;
+    margin: 20px 5%;
+    font-size: 16pt;
 }

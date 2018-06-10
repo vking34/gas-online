@@ -170,13 +170,6 @@
                 $('#btn').click();
             }
         });
-
-        $('.form-control').keypress(function(event) {
-            if (event.keyCode == 13 || event.which == 13) {
-                sendObj();
-            }
-        });
-
     });
 
     function validatePass(pass1, pass2) {
@@ -207,6 +200,7 @@
         user.lastName = $('#lastName').val();
         user.username = $('#username').val();
         user.password = $('#password').val();
+        // user.password1 = $('#password1').val();
         user.phoneNumber = $('#phoneNumber').val();
         user.email = $('#email').val();
 

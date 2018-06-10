@@ -26,6 +26,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
     <script>
+
         $(document).ready(function () {
 
             var name = $.cookie('username');
@@ -63,6 +64,7 @@
                     "<button class=\"btn btn-primary\" style=\"\" onclick=\"location.href='/signup'\" >Sign up</button>");
 
             }
+
         });
     </script>
 
@@ -135,23 +137,6 @@
 </nav>
 
 
-<!--<script type="text/javascript">
-    $(function () {
-        let name = $.cookie('username');
-        $('#userBtnbigger').html(name + " <span class=\"caret\"></span>");
-        $('#userBtnsmaller').html(name + " <span class=\"caret\"></span>");
-        if(name){
-            $('#logSignbigger').hide();
-            $('#logSignsmaller').hide();
-        }
-        else {
-            $('#userTabbigger').hide();
-            $('#userTabsmaller').hide();
-        }
-    })
-
-</script>-->
-
 <!--display history-->
 <div style="outline: none; border-color: #158dff; box-shadow: 0 0 10px #158dff; text-align: center; border-radius: 15px; background: white;width:95%;padding:2%; margin-right:auto; margin-left:auto; margin-top: 40px;">
     <legend align="center" style="color: blue;"><b>My Order History</b></legend>
@@ -164,12 +149,12 @@
         <tr>
             <th style="width: 4%;"></th>
             <th style="width: 16%">Date</th>
-            <th style="width: 10%">Bill Code</th>
-            <th style="width: 27%">Delivery Address</th>
+            <th style="width: 12%">Phone Number</th>
+            <th style="width: 33%">Delivery Address</th>
             <th style="width: 16%">Gas Brand</th>
             <th style="width: 6%">Size</th>
             <th style="width: 13%">Price (VND)</th>
-            <th style="width: 8%">Status</th>
+
         </tr>
         </thead>
 
@@ -177,25 +162,17 @@
         <tr>
             <th></th>
             <th>Date</th>
-            <th>Bill Code</th>
+            <th>Phone Number</th>
             <th>Delivery Address</th>
             <th>Gas Brand</th>
             <th>Size</th>
             <th>Price</th>
-            <th>Status</th>
         </tr>
         </tfoot>
     </table>
 </div>
 
-</div>
-
-
-<script type="text/javascript">
-
-
-
-    $(document).ready(function() {
+    <script>
         var t = $('#example').DataTable( {
             // "processing": true,
             // "serverSide": true,
@@ -207,12 +184,11 @@
             "columns": [
                 {"defaultContent": ""},
                 { "data": "date" },
-                { "data": "billCode" },
+                { "data": "phoneNumber" },
                 { "data": "address" },
                 { "data": "brand" },
                 { "data": "size" },
-                { "data": "price" },
-                { "data": "status"}
+                { "data": "price" }
             ],
 
             "columnDefs": [ {
@@ -220,7 +196,7 @@
                 "orderable": false,
                 "targets": 0
             } ],
-            "order": [[ 1, 'asc' ]],
+            "order": [[ 1, 'desc' ]],
 
             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
 
@@ -238,10 +214,10 @@
                 cell.innerHTML = i+1;
             } );
         } ).draw();
+    </script>
 
-    } );
+</div>
 
-</script>
 
 
 </body>

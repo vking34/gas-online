@@ -38,17 +38,6 @@
         <url-pattern>/signup</url-pattern>
     </servlet-mapping>
 
-    <!--forget Password-->
-    <servlet>
-        <servlet-name>forgetPass</servlet-name>
-        <servlet-class>webapp.user.forgetPass</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>forgetPass</servlet-name>
-        <url-pattern>/forgetPassword</url-pattern>
-    </servlet-mapping>
-
 
     <!--greeting-->
     <servlet>
@@ -82,18 +71,8 @@
         <url-pattern>/orderForm</url-pattern>
     </servlet-mapping>
 
-    <!--get Last Order-->
-    <servlet>
-        <servlet-name>getLastOrder</servlet-name>
-        <servlet-class>webapp.order.getLastOrder</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>getLastOrder</servlet-name>
-        <url-pattern>/getLastOrder</url-pattern>
-    </servlet-mapping>
-
     <!--received-->
+    
     <servlet>
         <servlet-name>successfulOrder</servlet-name>
         <servlet-class>webapp.order.successfulOrder</servlet-class>
@@ -109,10 +88,20 @@
         <servlet-name>maps</servlet-name>
         <servlet-class>webapp.test.maps</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>maps</servlet-name>
         <url-pattern>/maps</url-pattern>
+    </servlet-mapping>
+
+    <!--welcome-->
+    <servlet>
+        <servlet-name>welcome</servlet-name>
+        <servlet-class>webapp.test.welcome</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>welcome</servlet-name>
+        <url-pattern>/welcome</url-pattern>
     </servlet-mapping>
 
     <!--logout-->
@@ -188,7 +177,37 @@
     
     <servlet-mapping>
         <servlet-name>tips</servlet-name>
-        <url-pattern>/tips</url-pattern>
+        <url-pattern>/tips/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>tipNumber</servlet-name>
+        <servlet-class>tips.tipNumber</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>tipNumber</servlet-name>
+        <url-pattern>/tips/1</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>tipNumber</servlet-name>
+        <url-pattern>/tips/2</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>tipNumber</servlet-name>
+        <url-pattern>/tips/3</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>tipNumber</servlet-name>
+        <url-pattern>/tips/4</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>tipNumber</servlet-name>
+        <url-pattern>/tips/5</url-pattern>
     </servlet-mapping>
 
     <!--about-->
@@ -201,39 +220,6 @@
         <servlet-name>abouts</servlet-name>
         <url-pattern>/abouts</url-pattern>
     </servlet-mapping>
-
-    <!--List of products-->
-    <servlet>
-        <servlet-name>productsList</servlet-name>
-        <servlet-class>products.productsList</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>productsList</servlet-name>
-        <url-pattern>/productsList</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>welcome</servlet-name>
-        <servlet-class>webapp.user.welcome</servlet-class>
-    </servlet>
-    
-    <servlet-mapping>
-        <servlet-name>welcome</servlet-name>
-        <url-pattern>/welcome</url-pattern>
-    </servlet-mapping>
-
-    <!--order WebSocket-->
-    <servlet>
-        <servlet-name>distributeOrder</servlet-name>
-        <servlet-class>manager.distributeOrder</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>distributeOrder</servlet-name>
-        <url-pattern>/manageOrder</url-pattern>
-    </servlet-mapping>
-
 
 
 </web-app>
