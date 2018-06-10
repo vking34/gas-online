@@ -21,9 +21,6 @@
         var map, infowindow, marker;
         var street = "";
         var sign = false;
-        var phoneStatus = 0;
-        var addressStatus = 0;
-        var humanStatus = 0;
 
         $(document).ready(function () {
 
@@ -69,9 +66,8 @@
                             window.order.status = lastOrder.status;
 
                             $('#phoneNumber').val(order.phoneNumber);
-                            phoneStatus = 1;
                             $('#street').val(order.address + ", " + order.ward);
-                            addressStatus = 1;
+
                             map.setCenter(order.pos);
                             map.setZoom(16.5);
                             marker.setPosition(order.pos);
@@ -96,7 +92,7 @@
             $('#input').show();
             $('#confirmed').hide();
 
-
+            var phoneStatus = 0;
             $('#btn').prop('disabled', true);
 
             $('#phoneNumber').blur(function (e) {
@@ -110,79 +106,24 @@
                     $('#phoneStatus').css('color', 'red');
                     phoneStatus = 0;
                 }
-                if(phoneStatus ===1 && addressStatus===1 && humanStatus ===1){
-                    $('#btn').prop("disabled", false);
-                }
-                else{
-                    $('#btn').prop("disabled", true);
-                }
-            });
-            $('#phoneNumber').keyup(function (e) {
-                if(validatePhone($('#phoneNumber').val())){
-                    $('#phoneStatus').html('Valid');
-                    $('#phoneStatus').css('color', 'green');
-                    phoneStatus = 1;
-                }
-                else {
-                    $('#phoneStatus').html('Invalid');
-                    $('#phoneStatus').css('color', 'red');
-                    phoneStatus = 0;
-                }
-                if(phoneStatus ===1 && addressStatus===1 && humanStatus ===1){
-                    $('#btn').prop("disabled", false);
-                }
-                else{
-                    $('#btn').prop("disabled", true);
-                }
             });
 
             $('#humancheck-1').click(function () {
-                humanStatus = 1;
-                if(phoneStatus ===1 && addressStatus===1 && humanStatus ===1){
-                    $('#btn').prop("disabled", false);
-                }
-                else{
-                    $('#btn').prop("disabled", true);
+                if($('#phoneNumber').val() != '' && $('#street').val() != '' && phoneStatus == 1){
+                    $('#btn').prop('disabled', false);
                 }
             });
             $('#humancheck-0').click(function () {
-                humanStatus = 0;
-                if(phoneStatus ===1 && addressStatus===1 && humanStatus ===1){
-                    $('#btn').prop("disabled", false);
-                }
-                else{
-                    $('#btn').prop("disabled", true);
-                }
+                $('#btn').prop('disabled', true);
             });
 
-            $('#street').keyup(function(){
-                if($('#street').val() !== '')
+            $('#phoneNumber, #street, #humancheck-1').keyup(function(){
+                if(phoneStatus == 1 && $('#phoneNumber').val() != '' && $('#street').val() != '' && $('#humancheck-1').is(':checked'))
                 {
-                    addressStatus = 1;
+                    $('#btn').prop('disabled', false);
                 }
                 else {
-                    addressStatus = 0;
-                }
-                if(phoneStatus ===1 && addressStatus===1 && humanStatus ===1){
-                    $('#btn').prop("disabled", false);
-                }
-                else{
-                    $('#btn').prop("disabled", true);
-                }
-            });
-            $('#street').blur(function(){
-                if($('#street').val() !== '')
-                {
-                    addressStatus = 1;
-                }
-                else {
-                    addressStatus = 0;
-                }
-                if(phoneStatus ===1 && addressStatus===1 && humanStatus ===1){
-                    $('#btn').prop("disabled", false);
-                }
-                else{
-                    $('#btn').prop("disabled", true);
+                    $('#btn').prop('disabled', true);
                 }
             });
 
@@ -353,7 +294,7 @@
 
                         $('#details').val(details);
                         $('#street').val(window.street + ", " + window.order.ward);
-                        // window.order.status = false;
+                        window.order.status = false;
                         infowindow.setContent("<img src=\"https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png\" width=\"16\" height=\"16\" id=\"place-icon\">"+
                             "<span id=\"place-name\"  class=\"title\">  " + details + "</span><br>" +
                             "<span id=\"place-address\">"+ window.street + ", " + window.order.ward + "</span>");
@@ -368,7 +309,6 @@
                     window.alert('Geocoder failed due to: ' + status);
                 }
             });
-            addressStatus = 1;
 
         }
 
@@ -381,7 +321,7 @@
         }
 
         function validatePhone(phone) {
-            var filter = /^0[0-9]{9,10}$/;
+            var filter = /^0[0-9]+$/;
             if(filter.test(phone))
             {
                 return true;
@@ -534,9 +474,9 @@
                         <div class="controls">
                             <!--<input name="ward" type="text" value="" id="ward">-->
                             <select class="form-control" name="gasCode" id="gasCode">
-                                <option value=100000>12 Kg Petrolimex Cylinder (300.000 VND)</option>
-                                <option value=100100>NaMiLux Mini Cylinder (20.000 VND)</option>
-                                <option value="100200">45 Kg Petrolimex Cylinder (1.050.000 VND)</option>
+                                <option value=100000>12 Kg Petrolimex Cylinder (325.000 VND)</option>
+                                <option value=100100>2 Kg Petrolimex Cylinder (70.000VND)</option>
+                                <option value="100200">48 Kg Petrolimex Cylinder (1.150.000 VND)</option>
                             </select>
                         </div>
                     </div>
@@ -553,21 +493,21 @@
                     </div>
 
                     <div class="control-group">
-                        <label for="street" class="control-label">
-                            Street/ Ward/ District (*):
-                        </label>
-                        <div class="controls"><input class="form-control" name="street" placeholder="Enter your location" type="text" value="" id="street" style=>
-                            <span class="help-inline"> *The delivery address </span>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
                         <label for="details" class="control-label">
                             Floor/ No/ Alley:
                         </label>
                         <div class="controls">
                             <input class="form-control" name="details" type="text" id="details">
                             <span class="help-inline"> *For specifying your location</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="street" class="control-label">
+                            Street/ Ward/ District:
+                        </label>
+                        <div class="controls"><input class="form-control" name="street" placeholder="Enter your location" type="text" value="" id="street" style=>
+                            <span class="help-inline"> *The delivery address </span>
                         </div>
                     </div>
 
