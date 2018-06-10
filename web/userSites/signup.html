@@ -181,7 +181,7 @@
     }
 
     function validatePhone(phone) {
-        var filter = /^0[0-9]+$/;
+        var filter = /^0[0-9]{9,10}$/;
         return filter.test(phone);
     }
 
